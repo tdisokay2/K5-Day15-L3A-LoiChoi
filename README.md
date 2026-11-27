@@ -96,7 +96,14 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | Công cụ tra cứu & kiểm tra (`codebase/tools.py`) | **Thật** | `lookup_components` và `check_compatibility` chạy bằng code Python thuần trên catalog cục bộ |
 | Luồng chính (`codebase/agent.py`) | **Thật** | Workflow cố định: nhận diện → tra cứu → xác thực id → checker → hiển thị có căn cứ |
 | Tích hợp CP3 · bước 06 ([#17](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/17)) | **Đã smoke test model thật** | Alias duy nhất được lookup xác thực; tên gần đúng/mơ hồ vẫn hỏi lại. Code nhận cách nói tương đương hẹp về không lắp radiator trước, giữ context gốc trong fact. Model không đổi kết luận hoặc thêm URL |
-| Đánh giá model thật, mô phỏng chi phí & slide | **Chưa triển khai** | Bộ câu thử và `metric_spec.yaml` đã dựng cho CP2; chạy `eval`/`simulate` thật và slide làm ở CP3–CP4 |
+| Đánh giá model thật (`eval/run-1.csv`) | **Thật** (`openai/gpt-4.1-mini`) | Lượt 1 `run-1@20261128-005643`: `16/25` (64%), 0 lỗi; chưa đạt chuẩn §7 (`≥80%` và 0 sót xung đột) |
+| Thử mô phỏng chi phí 10 phiên (`simulate --try`) | **Thật** (`simulate-try@20261128-033519`) | 10 phiên trên `openai/gpt-4.1-mini` (`--rate-from eval/run-1.csv`): 24 lượt gọi, 9.520 token vào / 2.680 token ra, 0/10 lỗi. Đây là chạy thử CP3, chưa phải bản `≥50` phiên / CP4 |
+| Mô phỏng chi phí ≥50 phiên & slide | **Chưa triển khai** | Hoàn thiện ở chặng CP4 |
+
+### Video demo CP3 (~30 giây)
+
+- **Model:** `openai/gpt-4.1-mini` (cùng model lượt 1) · **Kịch bản:** [docs/cp3-demo.md](docs/cp3-demo.md)
+- **Link video (YouTube Không công khai):** https://youtu.be/syBKNhpcIIE
 
 **Bàn giao bước 06:** 44/44 unittest đạt; `python run.py check` không cảnh báo (25 câu, 5 metric, 4 thành viên). Smoke mới nhất: [`smoke-cp3-17-20261127T174226Z`](traces/smoke-cp3-17-20261127T174226Z.jsonl), 7 ca Mini thật, tổng 2764 token vào/748 token ra, không lỗi kỹ thuật; CLI thật 433/193 token tại [biên bản CLI](traces/cli-cp3-17-20261127T174307Z.jsonl). Giữ [lượt smoke trước sửa](traces/smoke-cp3-17-20261127T174105Z.jsonl) để truy lỗi điều kiện radiator. Lỗi API/tools/JSON được kiểm bằng giả lập trong unittest, không mô tả là lỗi API thật. Đây chưa phải lượt đánh giá chính thức hoặc tỷ lệ đạt. **B15 còn thiếu kết luận xung đột do tên viết tắt quá ngắn chưa xác thực được**; giữ nguyên expected để đánh giá. Catalog `09fac5b`, benchmark đã chốt `15183c9`; bàn giao SHA code tại commit hoàn thành issue #17.
 
@@ -134,5 +141,5 @@ Nhóm sử dụng coding agent (Claude Code / Antigravity / Codex) để hỗ tr
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: ____ |
+| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: https://youtu.be/syBKNhpcIIE |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
