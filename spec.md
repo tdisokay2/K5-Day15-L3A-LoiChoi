@@ -8,31 +8,31 @@ Data BTC cấp đã dùng: chưa ghi nhận trong hồ sơ CP2. Danh mục hiệ
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
 
-Luồng tham chiếu theo tài liệu công khai của hãng, chờ đối chiếu qua phỏng vấn. [Hướng dẫn ráp PC của MSI, phần lập cấu hình và PCPartPicker](https://storage-asset.msi.com/event/mb/2017/pcBuild_landing/pdf/en/How%20to%20Build%20a%20PC%20E%20Book.pdf#page=24)
+Luồng tham chiếu theo tài liệu công khai của hãng. Khảo sát cho biết người tham gia dựa vào nguồn nào và có phải làm thêm bước nào. Ba cuộc phỏng vấn bổ sung trình tự thực tế. P1 xem video và bài so sánh, lập bảng tính, đặt hàng rồi phát hiện sai socket khi ráp thử. P2 rà lại trước khi mua và kể rằng mọi thứ suôn sẻ. P3 rà lại danh sách sau khi đổi một món vì hết hàng. [Hướng dẫn ráp PC của MSI, phần lập cấu hình và PCPartPicker](https://storage-asset.msi.com/event/mb/2017/pcBuild_landing/pdf/en/How%20to%20Build%20a%20PC%20E%20Book.pdf#page=24) · [Tổng hợp bằng chứng](evidence/summary.md)
 
 1. Xác định mục đích sử dụng và lập danh sách linh kiện dự kiến.
 2. Ghi lại mã và biến thể từ danh sách sản phẩm. Ví dụ, ASUS công bố hai bản TUF GAMING B760M-PLUS WIFI với thế hệ RAM khác nhau. [Bảng so sánh hai biến thể của ASUS](https://www.asus.com/us/product-compare?LevelId=Motherboards-Components-Motherboards&ProductID=22497%2C22366)
 3. Tra trang thông số và danh sách hỗ trợ theo đúng mã, rồi đối chiếu socket, BIOS, DDR hoặc chiều dài GPU theo bố trí vỏ. [Danh sách CPU hỗ trợ của ASUS](https://www.asus.com/us/supportonly/tuf%20gaming%20b650-plus%20wifi/helpdesk_cpu/) · [Giới hạn chiều dài GPU của NZXT](https://support.nzxt.com/hc/en-us/articles/47061130443291-What-is-the-maximum-GPU-length-for-the-H5-Flow-2024)
 4. Xác nhận các điểm chưa rõ trước khi chốt danh sách mua.
 
-Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Trong 4 phản hồi qua sàng lọc, 3 chọn hỏi trợ lý AI là cách họ dựa vào chủ yếu và 1 chọn hỏi người có kinh nghiệm, bạn bè hoặc cộng đồng. Ảnh chụp luồng thực tế vẫn chờ bổ sung. [Khảo sát ngày 27/11](evidence/summary.md)
+Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Trong 9 người qua sàng lọc trả lời câu 4, 3 chọn hỏi trợ lý AI, 2 chọn xem tài liệu hãng và 4 chọn các cách khác nhau. Ở bước xác nhận, 6 trong 10 người qua sàng lọc chọn tra thêm tài liệu hoặc nguồn khác và 2 chọn nhờ người khác xác nhận. [Khảo sát ngày 27/11](evidence/summary.md)
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 
 - **Người dùng chính** là sinh viên lần đầu tự chọn linh kiện để ráp máy tính để bàn.
 - **Việc cần làm** là rà danh sách linh kiện đã chọn trước khi đặt mua.
-- **Giả thuyết về khó khăn.** Tên biến thể gần giống nhau và thông số nằm trên nhiều trang có thể khiến người mới phải tra lại, nhờ xác nhận hoặc đổi linh kiện. Phỏng vấn sẽ kiểm xem họ đang xoay xở bằng cách nào và khâu nào thực sự mất công nhất.
-- **Bằng chứng ban đầu tại CP2.** Có 8 phản hồi khảo sát, 4 qua sàng lọc. Ở câu 7, 2/4 chọn một bước phát sinh do chưa rõ tính tương thích (1 tra thêm, 1 nhờ xác nhận). Hai phản hồi còn lại có câu trả lời chưa nhất quán về việc có kiểm tra hay không. Hiện có 0 bản ghi phỏng vấn và 4/20 phản hồi đủ điều kiện theo ngưỡng khảo sát. [Tổng hợp bằng chứng](evidence/summary.md)
+- **Giả thuyết về khó khăn.** Tên biến thể gần giống nhau và thông số nằm trên nhiều trang có thể khiến người mới phải tra lại, nhờ xác nhận hoặc đổi linh kiện. Phỏng vấn ghi **1/3** người có bước phát sinh do tương thích, dưới tiêu chí **2/3** đã đặt ra. Nhóm thu hẹp giả thuyết vào việc phát hiện xung đột cụ thể trước khi mua. [Giả thuyết và đối chiếu](evidence/hypothesis.md)
+- **Bằng chứng hiện có cho CP3.** Có 3 cuộc phỏng vấn thật với sinh viên ngoài nhóm, đúng đối tượng và kể chuyện trong 30 ngày qua. Bản xuất khảo sát có 20 phản hồi, trong đó 10 qua sàng lọc và 8/10 báo một bước phát sinh ở câu 7. Giá/ngân sách đứng đầu câu 6 với 6/10 lựa chọn. Hồ sơ có 9 ví dụ nguyên văn từ khảo sát và 2 trích dẫn phỏng vấn được phép lưu. [Tổng hợp bằng chứng và ví dụ](evidence/summary.md)
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| Rà ba cặp linh kiện trước khi mua | 2/4 trong mẫu báo có bước phát sinh vì chưa rõ tương thích | Chưa đủ căn cứ | Thiếu dữ liệu về thời gian phát sinh | Chưa tính | Khả thi với danh mục nhỏ và quy tắc xác định | Chọn theo phạm vi thiết kế §4 |
-| So giá và tối ưu cấu hình theo ngân sách | Chưa đo | Chưa đo | Chưa đo | Chưa tính | Cần dữ liệu giá và tồn kho theo thời điểm | Ngoài phạm vi CP2 |
-| Rà toàn bộ cấu hình, gồm nguồn và tản nhiệt | Chưa đo | Chưa đo | Chưa đo | Chưa tính | Cần thêm dữ liệu và quy tắc lắp đặt | Ngoài phạm vi CP2 |
+| Rà ba cặp linh kiện trước khi mua | 1/3 người phỏng vấn phải đổi mainboard vì sai socket. Khảo sát có 8/10 báo bước phát sinh khi chưa rõ tương thích. | Chưa có ước lượng đáng tin. Câu 9 khảo sát có câu trả lời mâu thuẫn. | P1 ghi 40 phút ở lần gần nhất. Chưa xác định phần thời gian tăng thêm do đổi mainboard. | Chưa tính | Có catalog 12 linh kiện và quy tắc đối chiếu cho ba cặp | Chọn để thử luồng nhỏ có thể kiểm chứng từ nguồn hãng. [Data Card](data/DATA_CARD.md) |
+| So giá và tối ưu cấu hình theo ngân sách | 6/10 chọn giá hoặc ngân sách là việc tốn thời gian nhất ở câu 6. Số người từng gặp khó chưa đo. | Chưa đo | Chưa đo | Chưa tính | Cần dữ liệu giá và tồn kho theo thời điểm | Hoãn vì nguồn dữ liệu hiện tại chỉ có thông số kỹ thuật. |
+| Rà toàn bộ cấu hình, gồm nguồn và tản nhiệt | Chưa đo nhu cầu rà toàn bộ cấu hình | Chưa đo | Chưa đo | Chưa tính | Cần thêm thông số và quy tắc lắp đặt | Hoãn vì phạm vi kiểm chưa có đủ căn cứ cho nguồn và tản nhiệt. |
 
-Impact thời gian mỗi tháng cần số người gặp × số lần gặp mỗi người mỗi tháng × số phút phát sinh mỗi lần. Mẫu hiện có chưa cho phép suy rộng số người gặp. Hai câu trả lời về tần suất lệch với thời điểm rà gần nhất và bản xuất chưa có số phút. Chưa tính impact hoặc dùng số lần của mẫu cho persona ở §8. [Cách đếm và giới hạn](evidence/summary.md)
+Để ước lượng impact theo phút/người/tháng, cần số lần gặp trong 30 ngày và số phút phát sinh mỗi lần. Muốn tính tổng impact còn cần quy mô nhóm người gặp. Câu 9 khảo sát còn mâu thuẫn và bản xuất thiếu câu 10 về thời gian. Các phiếu phỏng vấn chưa xác định số phút phát sinh cùng một cách. Chưa đủ dữ liệu để tính impact hoặc suy ra tần suất cho persona ở §8. [Cách đếm và giới hạn](evidence/summary.md)
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 
@@ -236,6 +236,9 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 | 27/11/2026 21:34 (UTC+7) | Đổi nhánh thành `CP3`; chọn `openai/gpt-4.1-mini` và điền model trong cấu hình riêng/mẫu | Nano gọi `eval --try` B01–B03 được nhưng B03 chỉ trích RAM. Thử Mini trực tiếp cùng 3 input: đủ 5 loại mỗi câu, tổng usage 831 vào/509 ra; CLI Mini 279 vào/165 ra. Chưa chấm benchmark; tên viết tắt và điều kiện vỏ khác cách diễn đạt vẫn hỏi lại. Giá Mini $0,40 vào/$1,60 ra trên một triệu token theo https://openrouter.ai/openai/gpt-4.1-mini (kiểm 27/11/2026); khoảng $0,04/100 câu là tự ước tính theo mẫu 3 câu |
 | 27/11/2026 21:39 (UTC+7) | Xác nhận Dương đã chạy `python run.py eval --try` với Mini; đối chiếu CSV/trace | B01–B03 đều dùng `openai/gpt-4.1-mini`, một lần gọi/câu, tổng 831 token vào/484 token ra, cột error trống và trace không có lỗi. Run ID thử: `run-try`; không phải lượt 1 hoặc kết quả chấm đạt. Khung đã ghi đè lượt thử Nano khi người dùng chạy lại; không ghi nhận có bản lưu Nano |
 | 27/11/2026 22:59 (UTC+7) | CP3 bước 04 / issue #15: thêm 11 câu B15–B25 vào `eval/benchmark.csv` (25 câu: thuong 9 · kho 11 · tu_choi 5, 3 câu tấn công; data_that 18/25); cập nhật `eval/README.md` mục 2 | Checklist CP3 cần 20–30 câu. Phủ thêm tên viết tắt, hai xung đột cùng lúc, ranh giới 199/200 mm, điều kiện vỏ lệch, hai CPU cùng loại, BIOS không so được, thông tin shop mâu thuẫn thông số hãng, injection giả danh dev, câu hỏi PSU/giá. Giữ nguyên 14 câu CP2, metric và §7; expected dựa trên catalog `09fac5b` và quy tắc §4, đã chạy thử qua `tools.py`, chờ Thắng/Dũng rà trước lượt 1 |
+| 27/11/2026 · CP3 | Dũng rà 12 linh kiện, ghi phiên bản và điều kiện kỹ thuật trong Data Card, cập nhật bằng chứng và bảng impact §0–§2 | Issue #13 và #14. Bản xuất cập nhật có 20 phản hồi, 10 qua sàng lọc và 8/10 báo bước phát sinh. Bản xuất thiếu số phút và câu tần suất còn mâu thuẫn. Nguồn hãng xác nhận các giá trị catalog đã lưu. |
+| CP3 · phỏng vấn ngày 27/11/2026 | Lưu ba phiếu P1–P3 đã xác nhận và đối chiếu giả thuyết ở §0–§2 | Issue #13. Có 3 người đúng đối tượng, 1/3 báo phát sinh do tương thích. Dữ liệu số phút chưa đủ để tính impact. |
+| 28/11/2026 · CP3 | Rà nguồn B15–B25 và ghi lưu ý cho câu B22 | Đối chiếu catalog và nguồn hãng. Mốc 322 mm của Terra áp dụng cho bố trí khác mốc 200 mm khi có radiator 120 mm. Ghi ở `eval/README.md`, giữ nguyên bộ câu thử đã chốt. |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

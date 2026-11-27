@@ -1,6 +1,6 @@
 # Khảo sát cách sinh viên chọn linh kiện khi tự ráp PC
 
-> Bản CSV xuất ngày 27/11/2026 ghi nhận các câu 1–9. Tiêu đề các câu khớp với bản này. Phương án “Không chắc” của câu 1 xuất hiện trong CSV dưới dạng “Không chắc chắn”. Câu 10 bên dưới thuộc bản chuẩn bị, chưa có dữ liệu trong lần xuất này. Các phản hồi không qua sàng lọc vẫn có đáp án ở phần sau, nên khi phân tích chỉ lấy người chọn “Có”.
+> Bản CSV xuất ngày 27/11/2026 có 20 phản hồi và ghi nhận các câu 1–9. Tiêu đề các câu khớp với bản này. Phương án “Không chắc” của câu 1 xuất hiện trong CSV dưới dạng “Không chắc chắn”. Câu 10 bên dưới thuộc bản chuẩn bị, chưa có trong bản xuất. Các phản hồi không qua sàng lọc vẫn có đáp án ở phần sau. Khi phân tích chỉ lấy người chọn “Có”. [CSV ẩn danh](results.csv)
 
 ## Nội dung đưa vào biểu mẫu
 
@@ -131,7 +131,8 @@ Tham gia là tự nguyện. Nhóm dùng phản hồi để tổng hợp kết qu
 - Phát cho sinh viên ngoài nhóm và thu **ít nhất 20 phản hồi đủ điều kiện**. Ghi kênh phát, thời gian mở và thời gian chốt. Lưu bản xuất đã ẩn danh thành `results.csv`, mỗi dòng một phản hồi.
 - Tính **x/N** ở câu 7. N là số người đủ điều kiện có câu trả lời hợp lệ, gồm phương án “không kiểm tra”. x là số người chọn một trong bốn bước phát sinh đầu tiên. Báo riêng số chọn “không kiểm tra”, “không nhớ” hoặc bỏ trống. Loại “không nhớ” và bỏ trống khỏi N.
 - Dùng câu 6 để so sánh việc rà linh kiện với giá, hiệu năng và hàng còn sẵn. Báo số người theo từng nhóm ở câu 9 và 10, giữ nhóm 0 và báo riêng “không nhớ”. Dữ liệu theo khoảng cho phép báo khoảng trung vị khi cần, còn thời gian chính xác từng người chưa được đo.
-- Lưu số chính ở `evidence/summary.md`. Có thể chọn 5 dòng phản hồi đã ẩn danh làm ví dụ nếu thu đủ. Gắn mã như S01 và ghi lại các đáp án thực tế của từng dòng. Nếu cần lời kể nguyên văn, dùng ghi chép phỏng vấn.
+- Với đợt CP3, kiểm trên bản xem trước rằng “Không” và “Không chắc” kết thúc ngay sau câu 1, còn “Có” đi tới câu 10. Lưu phiên bản biểu mẫu và đối chiếu khi gộp. Với baseline 9 câu, để trống câu 10 nếu chưa hỏi. Khi tổng hợp thời gian, ghi số người có câu 10 hợp lệ trên tổng số người đúng vai.
+- Lưu số chính ở `evidence/summary.md`. Gắn mã như S01 và mã câu hỏi cho từng ví dụ, giữ đáp án thực tế. Khi một người có nhiều ví dụ, vẫn đếm người đó một lần trong mẫu. Nếu cần lời kể nguyên văn, dùng ghi chép phỏng vấn.
 
 | Kênh phát | Giờ mở (UTC+7) | Giờ chốt (UTC+7) |
 |---|---|---|
