@@ -5,4 +5,3 @@
 1. Vai trò + phần mình làm (trỏ tới file / commit):
 2. AI hỗ trợ mình thế nào (việc gì, công cụ gì, chỗ nào phải sửa lại output AI):
 3. Một câu thử trượt của nhóm và mình học được gì từ nó:
-
