@@ -36,4 +36,3 @@ Chi phí / task thành công = chi phí trung bình mỗi phiên ÷ tỉ lệ đ
 - Bảng độ nhạy: model rẻ hơn · cache · cắt ngữ cảnh · giới hạn bước — mỗi cần gạt đổi chi phí bao nhiêu
 - Chi phí ngoài model: hosting, lưu trữ, giờ công người duyệt
 - Quy mô nào thì bài toán còn đáng làm
-
