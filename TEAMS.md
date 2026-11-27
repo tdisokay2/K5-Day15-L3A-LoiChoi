@@ -4,16 +4,17 @@
 > Giữ nguyên tên file `TEAMS.md` ở thư mục gốc repo, giữ nguyên các dòng `- Tên nhóm:` … và tiêu đề cột của bảng. Chỉ thay chỗ `____`.
 > Kiểm bằng `python run.py check`: phần "Kiểm TEAMS.md" không báo gì là đúng format.
 
-- Tên nhóm: ____
-- Lớp: ____
-- Track: ____
-- Link repo: ____
+- Tên nhóm: LoiChoi
+- Lớp: L3A
+- Track: D
+- Link repo: https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
+| 1 | Nguyễn Triều Dương | 2A202603524 | Đội trưởng | Điều phối nhóm, thiết kế giải pháp và tích hợp bản chạy thử |
+| 2 | Hồ Văn Dũng | 2A202603458 | Thành viên | Thu thập bằng chứng nhu cầu người dùng, phân tích dữ liệu và tổng hợp pain point |
+| 3 | Nguyễn Khắc Khánh | 2A202603472 | Thành viên | Xây dựng bộ câu thử, định nghĩa metric và đánh giá kết quả |
+| 4 | Kiều Văn Thắng | 2A202603424 | Thành viên | Mô phỏng chi phí, chuẩn bị slide và kịch bản demo |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
