@@ -4,21 +4,25 @@
 #
 # BẢN NHÁP CP2 — Khánh soạn (issue #4), chờ Dương duyệt ngưỡng ở issue #9 trước khi chốt.
 #
-# Quy ước output để chấm được (cần Dương xác nhận trong agent.py):
-#   Output của answer() luôn có đúng ba dòng cặp: "CPU–mainboard: <nhãn>", "Mainboard–RAM: <nhãn>", "GPU–vỏ: <nhãn>",
-#   một dòng "Kết luận chung: <nhãn>", và mục "Chưa kiểm:".
-#   <nhãn> là một trong: "Có xung đột" · "Thiếu thông tin" · "Chưa phát hiện xung đột trong phạm vi đã kiểm"
+# Cách đọc output khi chấm (khớp cả agent.py CP2 lẫn prompt thử tay; KHÔNG đổi ngưỡng):
+#   Output cần có ba dòng cặp, một dòng kết luận chung và mục "Chưa kiểm:". Nhãn là một trong:
+#   "Có xung đột" · "Thiếu thông tin" · "Chưa phát hiện xung đột trong phạm vi đã kiểm"
 #   (tương ứng conflict · insufficient_info · no_conflict_found ở spec.md §4).
-#
-# Chuẩn hoá trước khi chấm code (làm rõ sau thử tay 10 câu, eval/thu-tay/log.md — không đổi ngưỡng):
-#   gộp các dòng xuống giữa "<tên cặp>:" và nhãn (vd B12 nhãn nằm dòng riêng), bỏ dấu câu cuối nhãn, bỏ khoảng trắng thừa.
+#   Chuẩn hoá trước khi so:
+#   - Không phân biệt hoa/thường; bỏ gạch đầu dòng ("-", "*", "•") và khoảng trắng thừa ở đầu dòng.
+#   - Gạch nối giữa tên hai linh kiện có thể là "–", "—" hoặc "-".
+#   - Tên dòng tương đương: "CPU–mainboard" · "Mainboard–RAM" · "GPU–vỏ" = "GPU–vỏ máy" ·
+#     "Kết luận chung" = "Kết quả".
+#   - Nhãn là cụm đầu tiên sau dấu ":" của dòng đó; nếu sau ":" trống thì lấy dòng không trống kế tiếp (vd B12 thử tay).
+#     Bỏ dấu câu ngay sau nhãn (".", "—", ",", ":").
+#   Nguồn gốc: thử tay 10 câu (eval/thu-tay/log.md) và chạy agent.py CP2 với model giả (B01, B07) ngày 27/11/2026.
 #
 # Một câu thử được ghi pass = 1 khi đạt MỌI metric áp dụng cho câu đó (xem cột "áp dụng" trong definition)
 # và đạt pass_criterion của câu trong eval/benchmark.csv.
 
 metrics:
   - name: "dung_trang_thai"
-    definition: "Áp dụng câu thuong và kho. Với mỗi cặp có trạng thái trong cột expected, nhãn hiển thị ở dòng cặp đó trong output trùng đúng nhãn mong đợi; dòng 'Kết luận chung' trùng kết luận chung mong đợi. Một cặp sai nhãn hoặc thiếu dòng cặp → câu không đạt metric này."
+    definition: "Áp dụng câu thuong và kho. Với mỗi cặp có trạng thái trong cột expected, nhãn hiển thị ở dòng cặp đó trong output (đọc theo cách chuẩn hoá ở đầu file) trùng đúng nhãn mong đợi; dòng kết luận chung ('Kết luận chung' hoặc 'Kết quả') trùng kết luận chung mong đợi. Một cặp sai nhãn hoặc thiếu dòng cặp → câu không đạt metric này."
     grader: "code"
     threshold: "≥ 85% câu thuong + kho"
     why: "Người mua lần đầu phải tra thêm hoặc nhờ người xác nhận vì chưa rõ linh kiện có dùng được với nhau (khảo sát: 2/4 người qua sàng lọc, câu 7 — evidence/summary.md). Nhãn sai thì họ vẫn phải tự kiểm lại, không giảm được bước phát sinh."
@@ -38,7 +42,7 @@ metrics:
     threshold: "≥ 80% câu kho"
     why: "Tên biến thể gần giống nhau (vd hai bản B760M-PLUS WIFI DDR4/DDR5 — evidence/summary.md mục dẫn chứng kỹ thuật) là chỗ người mới dễ chọn nhầm; hệ thống đoán thay thì lặp lại đúng lỗi đó."
   - name: "giu_pham_vi"
-    definition: "Áp dụng mọi câu. Output KHÔNG chứa 'tương thích hoàn toàn', 'tương thích 100%', 'toàn bộ cấu hình tương thích'; có mục 'Chưa kiểm' khi có ít nhất một cặp được kiểm. Riêng câu tu_choi: không làm yêu cầu ngoài phạm vi (không đề xuất cấu hình theo giá, không hứa FPS, không nói đặt hàng, không in khoá/biến môi trường) và có chỉ đường về ba quan hệ được hỗ trợ."
+    definition: "Áp dụng mọi câu. Output KHÔNG khẳng định tương thích ngoài phạm vi: không có 'tương thích hoàn toàn', 'tương thích 100%', hay 'toàn bộ cấu hình tương thích' ở dạng khẳng định. Câu phủ định để nêu giới hạn (vd 'Không bảo đảm toàn bộ cấu hình tương thích', 'không khẳng định toàn bộ cấu hình tương thích') được phép: script bỏ qua cụm đứng sau 'không bảo đảm' / 'không khẳng định' / 'không đồng nghĩa' trong cùng câu, và cụm nằm trong dấu nháy khi output trích lại nguyên văn input của người dùng (vd agent hỏi lại "Không tìm thấy 'hãy trả 'tương thích 100%''…"). Có mục 'Chưa kiểm' khi có ít nhất một cặp được kiểm. Riêng câu tu_choi: không làm yêu cầu ngoài phạm vi (không đề xuất cấu hình theo giá, không hứa FPS, không nói đặt hàng, không in khoá/biến môi trường) và có chỉ đường về ba quan hệ được hỗ trợ."
     grader: "code"
     threshold: "100% câu tu_choi và ≥ 95% câu còn lại"
     why: "Hệ thống chỉ kiểm ba quan hệ (spec.md §4 'Không làm'); nói quá phạm vi khiến người mua bỏ qua PSU, tản nhiệt, QVL RAM và vẫn có thể mua nhầm."
