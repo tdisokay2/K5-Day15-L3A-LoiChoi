@@ -35,6 +35,8 @@ def main() -> int:
         print("Sửa lỗi rồi chạy lại. Cách nối model: docs/connect-model.md")
         return 1
     print("Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).")
+    print("CP2: chọn MODEL_PROVIDER=fake để chạy model giả. Nhập CPU: mã; mainboard: mã; RAM: mã; GPU: mã; case: mã.")
+    print("Thông tin bổ sung: BIOS: phiên bản; bố trí vỏ: điều kiện lắp đặt. Khi sửa, gửi lại toàn bộ cấu hình.")
     blank = 0
     while True:
         try:
