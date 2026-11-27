@@ -11,14 +11,19 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 > Bộ câu thử CP2 (Khánh, issue #7). Dương đã duyệt ngày 27/11/2026 (qua tin nhắn nhóm). Dũng rà cột `source` B01–B14 (đối chiếu linh kiện và URL hãng trong `data/components.json`, nhãn data_that/tu_viet): đã rà xong ngày 27/11/2026, xác nhận qua tin nhắn nhóm. Thắng rà `expected` B01–B14 đối chiếu `codebase/tools.py`: khớp quy tắc tra cứu, 3 cặp kiểm tra, `insufficient_info` và ưu tiên `conflict`.
 
-- `eval/benchmark.csv`: 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công: B12, B13)
-- Nguồn: nguoi_dung 0 · data_that 10 · tu_viet 4 · sinh_seed 0 → từ người dùng / data thật 10/14 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
-- Độ phủ — lưới input 4 chiều:
-  - quan hệ: CPU–main (B01, B02, B05, B06, B09) · main–RAM (B03, B07, B08, B12) · GPU–vỏ (B04, B10, B11);
-  - mức thông tin: đủ (B01–B04) · thiếu một linh kiện (B05, B08, B09) · thiếu điều kiện BIOS/bố trí vỏ (B06, B10);
-  - nhận diện: mã chính xác · alias nhiều ứng viên (B07, B08) · mã ngoài danh mục (B11);
-  - hành vi mong đợi: báo xung đột · chưa phát hiện xung đột trong phạm vi (B02) · hỏi lại · từ chối (B12–B14).
-- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B11 · lớp 2: B07, B08, B09 · lớp 3: (câu tu_choi B12–B14) · lớp 4: B06, B10
+> **CP3 (issue #15):** thêm B15–B25, giữ nguyên 14 câu CP2 và expected cũ (không sửa, không xoá dòng nào). Expected 9 câu mới dựng từ catalog (B15–B21, B25 và cấu hình của B22) đã chạy thử qua `check_compatibility` / `lookup_components` trong `codebase/tools.py`: khớp cả kết luận chung lẫn từng cặp. Thắng và Dương đã rà B15–B25 ngày 27/11/2026 (xác nhận qua tin nhắn nhóm), không yêu cầu sửa câu nào. Đã rà `source` B15–B25 cho phần việc của Dũng (#14), có lưu ý về B22 bên dưới. **Bộ chốt cho lượt 1 (CP3) và lượt 2 (CP4): `eval/benchmark.csv` tại commit `15183c9` (sửa B22), catalog `data/components.json` tại `09fac5b`.** Bản `37f88c7` không còn dùng để chạy. Không sửa bộ này giữa hai lượt.
+
+- `eval/benchmark.csv`: 25 câu (thuong 9 · kho 11 · tu_choi 5, trong đó 3 câu tấn công: B12, B13, B23)
+- Nguồn: nguoi_dung 0 · data_that 18 · tu_viet 7 · sinh_seed 0 → từ người dùng / data thật 18/25 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog. B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Bộ đã chốt chưa có câu lấy nguyên văn từ phỏng vấn.
+- **Rà nguồn B22:** Dũng phát hiện 322 mm là mốc Fractal Design công bố cho Terra khi không lắp radiator; có radiator 120 mm thì giảm còn 200 mm. Kết luận xung đột (300 mm > 200 mm) vẫn đúng, nhưng tiêu chí cũ gọi 322 mm là "không phải thông số hãng" là sai sự thật. **Đã sửa expected, pass_criterion và source của riêng B22 trước lượt 1** (28/11/2026 00:19, xem spec §10); trạng thái mong đợi không đổi, không có output nào được dùng để sửa. [Nguồn Fractal Design](https://support.fractal-design.com/support/solutions/articles/4000194849)
+- Catalog dùng để dựng expected: `data/components.json` tại commit `09fac5b` (12 linh kiện, chưa đổi từ CP2).
+- Độ phủ — lưới input 5 chiều:
+  - quan hệ: CPU–main (B01, B02, B05, B06, B09, B20, B21) · main–RAM (B03, B07, B08, B12, B25) · GPU–vỏ (B04, B10, B11, B16–B19, B22) · nhiều cặp xung đột cùng lúc (B15);
+  - mức thông tin: đủ (B01–B04, B15, B16, B18) · thiếu một linh kiện (B05, B08, B09, B25) · thiếu hoặc lệch điều kiện BIOS/bố trí vỏ (B06, B10, B17, B19, B21);
+  - nhận diện: mã chính xác · tên viết tắt tự nhiên (B15) · alias nhiều ứng viên (B07, B08) · hai mã cùng loại (B20) · mã ngoài danh mục (B11);
+  - ranh giới và nguồn: chiều dài sát giới hạn 199/200 mm (B18) · BIOS khác mốc không so được thứ tự (B21) · thông tin người dùng/shop mâu thuẫn thông số hãng (B22);
+  - hành vi mong đợi: báo xung đột · chưa phát hiện xung đột trong phạm vi (B02, B16, B18) · hỏi lại · từ chối (B12–B14, B23, B24).
+- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B11, B22 · lớp 2: B07, B08, B09, B20 · lớp 3: (câu tu_choi B12–B14, B23, B24) · lớp 4: B06, B10, B17, B19, B21
 
 ## 3. Metric và cách chấm
 
@@ -54,11 +59,13 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261128-005643` | `openai/gpt-4.1-mini` (OpenRouter) | code `7ab87c5` · benchmark `15183c9` · catalog `09fac5b`; 1 lần gọi model/câu, 9 883 token vào · 2 842 ra, 0 lỗi | 16/25 | 64% | **Chưa** (dưới 80%; bỏ sót xung đột B15, B22) |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Tóm 2–3 dòng từ `eval/report.md`: nhóm lỗi lớn nhất · đã sửa gì · còn lại gì.
+- Lượt 1 (`run-1@20261128-005643`): 16/25 (64%) · thuong 5/9 · kho 6/11 · tu_choi 5/5. Chưa đạt chuẩn §7: dưới 80% và vi phạm điều kiện cứng "0 câu bỏ sót xung đột" (B15, B22). tu_choi 5/5 và không thấy thông số/URL ngoài catalog.
+- Nhóm lỗi lớn nhất: nhận diện hỏng khi tên linh kiện dính tiền tố/hậu tố như "… BIOS 1409", "RAM …" (6 câu); tiếp theo là so khớp điều kiện vỏ theo chuỗi (3 câu) và tên viết tắt (B15).
+- **Cách chấm:** cột `pass`/`ghi_chu` do Claude Code chấm nháp theo `metric_spec.yaml` và `pass_criterion`, ghi căn cứ từng câu; Khánh đã duyệt, giữ nguyên toàn bộ điểm (28/11/2026). Người thứ hai rà: Kiều Văn Thắng rà độc lập B04, B15, B19, B22 (gồm cả hai câu bỏ sót xung đột và một câu sát ranh giới) ngày 28/11/2026 → đồng ý 4/4 với điểm đã duyệt, không có bất đồng (xác nhận qua tin nhắn nhóm). Cải tiến và lượt 2 thuộc CP4, chạy trên cùng benchmark `15183c9`.

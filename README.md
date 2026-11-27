@@ -2,6 +2,8 @@
 
 **Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
 
+**Bản tổng hợp CP3 (issue #20):** [spec §0–§7](spec.md) · [Canvas](canvas.md) · [bằng chứng](evidence/summary.md) · [báo cáo lượt 1](eval/report.md) · [video demo](https://youtu.be/syBKNhpcIIE). Lượt 1 `run-1@20261128-005643`: **16/25 (64%), chưa đạt chuẩn**, gồm thuong 5/9, kho 6/11, tu_choi 5/5; còn bỏ sót xung đột B15/B22. `python run.py score eval/run-1.csv` cho đúng số này; 44/44 unittest và `check` đạt. Bằng chứng có 3 phỏng vấn đúng đối tượng, 9 ví dụ khảo sát và 2 trích dẫn phỏng vấn; thời lượng riêng từng buổi chưa ghi và impact chưa tính được. Dương xác nhận ngày 28/11/2026 đã xem video không đăng nhập. Bản này đang trên `CP3`; chưa ghi nhận merge `main` hoặc nộp form thành công; phần form do đội trưởng xử lý.
+
 *Lát cắt = kiểm tra danh sách linh kiện PC dự định mua theo catalog nhóm chuẩn bị ([data/components.json](data/components.json)) trên đúng 3 quan hệ: **CPU–mainboard** (socket, danh sách CPU hỗ trợ, điều kiện `min_bios`), **mainboard–RAM** (thế hệ DDR4/DDR5) và **GPU–vỏ máy** (chiều dài `mm` theo điều kiện lắp đặt `clearance_condition`).*
 
 > **Giới hạn & lưu ý an toàn:**
@@ -45,7 +47,7 @@ Gõ `dir` (Windows) hoặc `ls` (macOS / Linux): thấy `run.py` và `README.md`
 
 - Windows: gõ `python` mà mở Microsoft Store hoặc báo không có lệnh → dùng `py`. Chưa có Python: cài từ python.org, **tick "Add python.exe to PATH"**, mở lại PowerShell.
 - macOS: báo `command not found: python` là bình thường → dùng `python3`.
-- `python run.py` chạy từ thư mục gốc repo ở chế độ giả (`MODEL_PROVIDER=fake`, **không cần API key**, token vào/ra = `0`). Nối model thật (chặng CP3): [docs/connect-model.md](docs/connect-model.md).
+- Chưa có `.env`/biến môi trường thì `python run.py` dùng chế độ giả (`MODEL_PROVIDER=fake`, không cần key, token = 0). Bản CP3 dùng `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini` và `API_KEY` riêng trong `.env`; `.env.example` đã điền sẵn provider/model, không có key. Biến môi trường có sẵn được ưu tiên hơn `.env`.
 - **Đầu vào mẫu chạy thử với `python run.py`** (dán nguyên dòng sau rồi nhấn Enter):
   - Ca đủ thông tin (chưa phát hiện xung đột trong phạm vi đã kiểm):
     `CPU: AMD Ryzen 7 7800X3D; Main: ASUS TUF GAMING B650-PLUS WIFI; RAM: Kingston KF556C40BBK2-32; GPU: MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC; Case: NZXT H5 Flow (2024); BIOS: 1409; bố trí vỏ: Không lắp radiator mặt trước`
@@ -83,7 +85,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | `codebase/ai.py` | `call_model(system, user)` — chỗ duy nhất gọi model. Chưa điền `.env` thì chạy **chế độ giả** | 3.3 |
 
 - **Trước CP2:** để chế độ giả, công cụ trả dữ liệu giả — `python run.py` đi hết luồng là đủ.
-- **Trước CP3:** nối model thật theo [docs/connect-model.md](docs/connect-model.md), `eval --try` thấy token > 0 rồi mới `eval`.
+- **CP3 · bước 01 ([issue #12](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/12)):** `codebase/ai.py` đã có kết nối OpenRouter bằng thư viện chuẩn. Cấu hình `.env`: `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini`, `API_KEY=<key riêng>`. Biến môi trường được ưu tiên hơn `.env`; bỏ giá trị `MODEL_PROVIDER=fake` đã đặt ở terminal khi thử API thật. Các ví dụ hãng khác trong [docs/connect-model.md](docs/connect-model.md) chưa được triển khai. Đã xác nhận API/token thật và có lượt 1 chính thức ở bảng dưới; kiểm thử tích hợp hiện tại 44/44 đạt.
 - Bộ chạy gửi **nguyên ô `input`** của câu thử vào `answer(text)`. Dữ liệu nền (bài học, thông báo, lịch…) để trong `data/`, đọc qua công cụ.
 
 ## Phần nào thật, phần nào giả
@@ -91,10 +93,21 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
 | Lời gọi AI nhận diện ở CP2 (`codebase/ai.py`) | **Giả** (`MODEL_PROVIDER=fake`, token = `0`) | Mô phỏng trích tên/mã bằng quy tắc, chưa gọi model AI thật; bắt buộc nối model thật qua `.env` từ CP3 |
+| Kết nối OpenRouter CP3 (`codebase/ai.py`) | **Đã xác nhận CLI và 3 câu thử API thật** | Chọn `openai/gpt-4.1-mini`; CLI thật dùng 279/165 token. Dương chạy `eval --try` B01–B03: tổng 831 token vào/484 token ra, CSV và trace khớp, không có lỗi kỹ thuật. `eval/run-try.csv` và `traces/run-try.jsonl` hiện là lượt Mini, khung đã ghi đè lượt Nano khi người dùng chạy lại. Đây là thử kết nối, chưa chấm benchmark chính thức. Tên viết tắt và điều kiện vỏ khác cách diễn đạt vẫn cần rà ở bước tích hợp |
 | Catalog linh kiện (`data/components.json`) | **Thật** | Thông số kỹ thuật và link nguồn hãng do nhóm thu thập, kiểm chéo thủ công |
 | Công cụ tra cứu & kiểm tra (`codebase/tools.py`) | **Thật** | `lookup_components` và `check_compatibility` chạy bằng code Python thuần trên catalog cục bộ |
 | Luồng chính (`codebase/agent.py`) | **Thật** | Workflow cố định: nhận diện → tra cứu → xác thực id → checker → hiển thị có căn cứ |
-| Đánh giá model thật, mô phỏng chi phí & slide | **Chưa triển khai** | Bộ câu thử và `metric_spec.yaml` đã dựng cho CP2; chạy `eval`/`simulate` thật và slide làm ở CP3–CP4 |
+| Tích hợp CP3 · bước 06 ([#17](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/17)) | **Đã smoke test model thật** | Alias duy nhất được lookup xác thực; tên gần đúng/mơ hồ vẫn hỏi lại. Code nhận cách nói tương đương hẹp về không lắp radiator trước, giữ context gốc trong fact. Model không đổi kết luận hoặc thêm URL |
+| Đánh giá model thật (`eval/run-1.csv`) | **Thật** (`openai/gpt-4.1-mini`) | Lượt 1 `run-1@20261128-005643`: `16/25` (64%), 0 lỗi; chưa đạt chuẩn §7 (`≥80%` và 0 sót xung đột) |
+| Thử mô phỏng chi phí 10 phiên (`simulate --try`) | **Thật** (`simulate-try@20261128-033519`) | 10 phiên trên `openai/gpt-4.1-mini` (`--rate-from eval/run-1.csv`): 24 lượt gọi, 9.520 token vào / 2.680 token ra, 0/10 lỗi. Đây là chạy thử CP3, chưa phải bản `≥50` phiên / CP4 |
+| Mô phỏng chi phí ≥50 phiên & slide | **Chưa triển khai** | Hoàn thiện ở chặng CP4 |
+
+### Video demo CP3 (~30 giây)
+
+- **Model:** `openai/gpt-4.1-mini` (cùng model lượt 1) · **Kịch bản:** [docs/cp3-demo.md](docs/cp3-demo.md)
+- **Link video (YouTube Không công khai):** https://youtu.be/syBKNhpcIIE
+
+**Bàn giao bước 06:** 44/44 unittest đạt; `python run.py check` không cảnh báo (25 câu, 5 metric, 4 thành viên). Smoke mới nhất: [`smoke-cp3-17-20261127T174226Z`](traces/smoke-cp3-17-20261127T174226Z.jsonl), 7 ca Mini thật, tổng 2764 token vào/748 token ra, không lỗi kỹ thuật; CLI thật 433/193 token tại [biên bản CLI](traces/cli-cp3-17-20261127T174307Z.jsonl). Giữ [lượt smoke trước sửa](traces/smoke-cp3-17-20261127T174105Z.jsonl) để truy lỗi điều kiện radiator. Lỗi API/tools/JSON được kiểm bằng giả lập trong unittest, không mô tả là lỗi API thật. Đây chưa phải lượt đánh giá chính thức hoặc tỷ lệ đạt. **B15 còn thiếu kết luận xung đột do tên viết tắt quá ngắn chưa xác thực được**; giữ nguyên expected để đánh giá. Catalog `09fac5b`, benchmark đã chốt `15183c9`; bàn giao SHA code tại commit hoàn thành issue #17.
 
 ## Dùng AI vào việc gì
 
@@ -130,5 +143,5 @@ Nhóm sử dụng coding agent (Claude Code / Antigravity / Codex) để hỗ tr
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: ____ |
+| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: https://youtu.be/syBKNhpcIIE |
 | + | *Bonus:* người dùng thử | `validation/log.md` |

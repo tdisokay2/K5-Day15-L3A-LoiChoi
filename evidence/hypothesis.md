@@ -9,3 +9,11 @@
 - **Có thể còn cách giải thích khác:** thời gian chủ yếu dành cho giá, hiệu năng hoặc hàng còn sẵn. Nếu người bán đã rà toàn bộ cấu hình, việc tra tương thích có thể ít tốn công với người mua.
 - **Tín hiệu nhóm sẽ dùng để xét giả thuyết:** ít nhất 2 trong 3 người đầu tiên đủ tiêu chí tự kể được một tình huống cụ thể trong lần chọn gần nhất mà việc rà tương thích khiến họ phải tra thêm, nhờ xác nhận hoặc thay linh kiện. Đếm một lần mỗi người và ghi mẫu số thực tế. Đây là ngưỡng kiểm giả thuyết với mẫu nhỏ.
 - **Nguồn chính:** phỏng vấn ít nhất 3 người đủ tiêu chí. Nguồn kiểm lại: danh sách linh kiện đã ẩn danh nếu người tham gia đồng ý, và tài liệu đúng mã linh kiện của hãng.
+
+## Đối chiếu tại CP3
+
+Khảo sát CP2 có 2/4 người qua sàng lọc báo phát sinh một bước. Bản xuất cập nhật cho CP3 có 8/10 người báo phát sinh một bước, gồm 6 tra thêm và 2 nhờ xác nhận. Câu 6 có 6/10 người chọn giá/ngân sách là việc tốn thời gian nhất và 1/10 chọn kiểm tương thích.
+
+Ba cuộc phỏng vấn có **1/3** người kể một tình huống phát sinh do tương thích. P1 phải đổi mainboard vì sai socket. P2 kể lần mua suôn sẻ. P3 phải đổi linh kiện vì hết hàng.
+
+**Kết luận:** mẫu phỏng vấn chưa đạt tiêu chí 2/3. Nhóm thu hẹp giả thuyết vào việc phát hiện một số xung đột cụ thể trong lần rà trước khi mua. Chưa đủ dữ liệu cùng định nghĩa để tính số phút phát sinh. [Tổng hợp và giới hạn](summary.md)

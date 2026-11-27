@@ -1,4 +1,4 @@
-"""Nối model — chỗ DUY NHẤT trong bản chạy thử gọi model AI. NHÓM VIẾT phần gọi model thật.
+"""Nối model — chỗ DUY NHẤT trong bản chạy thử gọi model AI.
 
 Hợp đồng (giữ nguyên để khung đo được token):
     call_model(system: str, user: str) -> dict với 4 khoá
@@ -16,13 +16,15 @@ Chế độ giả (mặc định khi .env chưa có MODEL_PROVIDER, hoặc MODEL
     Không phải khả năng hiểu ngôn ngữ của model thật; không đọc benchmark hay tự sinh thông số.
     Lượt `run.py eval` / `run.py simulate` chạy bằng model giả KHÔNG được tính.
 
-Nối model thật: điền .env (chép từ .env.example), rồi viết nhánh gọi API ở dưới theo docs/connect-model.md
-(có ví dụ OpenAI, Claude, model chạy trên máy, và cách nối nhà cung cấp khác). Không dán API key vào file này.
+Model thật CP3: MODEL_PROVIDER=openrouter, MODEL_NAME là id model trên OpenRouter,
+API_KEY chỉ ở .env/biến môi trường. Không fallback sang fake khi API lỗi.
 """
 import os
 import json
 import re
 import unicodedata
+import urllib.error
+import urllib.request
 
 try:
     from tracing import model_call
@@ -51,6 +53,74 @@ if (os.environ.get("MODEL_PROVIDER") or "").strip().lower() != "fake":
 MODEL_PROVIDER = (os.environ.get("MODEL_PROVIDER") or "fake").strip().lower()
 MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
 API_KEY = (os.environ.get("API_KEY") or "").strip()
+
+URL_OPENROUTER = "https://openrouter.ai/api/v1/chat/completions"
+
+
+def _post_json(body):
+    """Một POST OpenRouter, timeout 60s; lỗi không chứa key, header hay body API."""
+    request = urllib.request.Request(
+        URL_OPENROUTER, data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", "Authorization": "Bearer " + API_KEY},
+        method="POST")
+    try:
+        with urllib.request.urlopen(request, timeout=60) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        status = exc.code
+        exc.close()
+        hints = {401: "kiểm tra API_KEY", 402: "kiểm tra credit", 403: "kiểm tra quyền truy cập",
+                 404: "kiểm tra MODEL_NAME", 429: "giới hạn lượt; thử lại sau với --wait"}
+        raise RuntimeError("OpenRouter HTTP %s: %s" % (status, hints.get(status, "yêu cầu API thất bại"))) from None
+    except (TimeoutError, urllib.error.URLError, OSError):
+        raise RuntimeError("OpenRouter: mất kết nối hoặc timeout; chưa thể kết luận") from None
+    except (ValueError, UnicodeError):
+        raise RuntimeError("OpenRouter: phản hồi không phải JSON hợp lệ") from None
+    if not isinstance(data, dict):
+        raise RuntimeError("OpenRouter: phản hồi sai cấu trúc")
+    if "error" in data:
+        raise RuntimeError("OpenRouter: API trả lỗi; kiểm tra trạng thái dịch vụ và cấu hình")
+    return data
+
+
+def _usage_count(usage, key):
+    value = usage.get(key)
+    if type(value) is not int or value < 0:
+        raise RuntimeError("OpenRouter: thiếu hoặc sai usage.%s; không ước lượng token" % key)
+    return value
+
+
+def _call_openrouter(system, user):
+    if not MODEL_NAME or not API_KEY:
+        raise RuntimeError("OpenRouter: cần MODEL_NAME và API_KEY trong .env/biến môi trường")
+    data = _post_json({
+        "model": MODEL_NAME,
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        "stream": False,
+        "response_format": {"type": "json_object"},
+        "provider": {"require_parameters": True},
+        "max_tokens": 4096,
+    })
+    # completion_tokens đã bao gồm reasoning_tokens; không cộng lần thứ hai.
+    usage = data.get("usage")
+    if not isinstance(usage, dict):
+        raise RuntimeError("OpenRouter: thiếu usage; không ước lượng token")
+    tokens_in = _usage_count(usage, "prompt_tokens")
+    tokens_out = _usage_count(usage, "completion_tokens")
+    model = data.get("model")
+    if not isinstance(model, str) or not model.strip() or model.strip().lower() in ("fake", "mock"):
+        raise RuntimeError("OpenRouter: thiếu tên model thật trong phản hồi")
+    try:
+        choice = data["choices"][0]
+        message = choice["message"]
+        text = message["content"]
+        if choice.get("finish_reason") != "stop" or message.get("tool_calls"):
+            raise ValueError()
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError()
+    except (KeyError, IndexError, TypeError, AttributeError, ValueError):
+        raise RuntimeError("OpenRouter: thiếu nội dung, bị chặn hoặc câu trả lời chưa hoàn tất") from None
+    return {"text": text, "model": model, "tokens_in": tokens_in, "tokens_out": tokens_out}
 
 
 def _plain(text):
@@ -157,8 +227,6 @@ def call_model(system: str, user: str) -> dict:
         result = _fake_extract(payload["input"])
         return {"text": json.dumps(result, ensure_ascii=False), "model": "fake", "tokens_in": 0, "tokens_out": 0}
 
-    # NHÓM VIẾT: gọi model thật ở đây (theo MODEL_PROVIDER, MODEL_NAME, API_KEY) rồi trả đúng 4 khoá.
-    # Ví dụ chép được cho từng nhà cung cấp: docs/connect-model.md mục 2.
-    raise NotImplementedError(
-        "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"
-        % MODEL_PROVIDER)
+    if MODEL_PROVIDER == "openrouter":
+        return _call_openrouter(system, user)
+    raise ValueError("MODEL_PROVIDER chưa được hỗ trợ; chọn fake hoặc openrouter")
