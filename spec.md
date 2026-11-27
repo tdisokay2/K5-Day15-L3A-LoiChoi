@@ -1,10 +1,10 @@
-# AI SPEC — [Tên lát cắt] · Nhóm [tên nhóm] · Phòng [XXX] · Zone [X]
+# AI SPEC — Kiểm tra tương thích cấu hình PC trước khi mua · Nhóm LoiChoi
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
 
-Track: [ ] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: [đề gợi ý trong file track, hoặc bài toán nhóm tự mở rộng] __
-Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
+Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — Thương mại điện tử: rà ba quan hệ tương thích linh kiện PC trước khi mua. Lớp L3A; Phòng/Zone chưa có thông tin xác nhận trong hồ sơ.
+Data BTC cấp đã dùng: chưa ghi nhận trong hồ sơ CP2. Danh mục hiện có được nhóm tổng hợp từ nguồn hãng; khảo sát là phản hồi nhóm thu thập, xem `data/DATA_CARD.md` và `evidence/summary.md`.
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
 
@@ -41,7 +41,7 @@ Impact thời gian mỗi tháng cần số người gặp × số lần gặp m�
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 
-**Phụ trách:** Nguyễn Triều Dương. Schema và giao diện được nhóm xác nhận bằng reaction trên [bình luận bàn giao issue #1](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/1#issuecomment-7215115574) ngày 27/11/2026: `khackhanh1201` (❤️), `katsu1154` (🎉), `DungZai` (❤️); Dương xác nhận các reaction này là ý kiến duyệt của đồng đội. Bản thiết kế bàn giao tại commit `0f12f73`. Các công cụ được mô tả là hợp đồng cần triển khai; hiện `tools.py` vẫn là khung mẫu.
+**Phụ trách:** Nguyễn Triều Dương. Schema và giao diện được nhóm xác nhận bằng reaction trên [bình luận bàn giao issue #1](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/1#issuecomment-7215115574) ngày 27/11/2026: `khackhanh1201` (❤️), `katsu1154` (🎉), `DungZai` (❤️); Dương xác nhận các reaction này là ý kiến duyệt của đồng đội. Thiết kế bàn giao tại `0f12f73`; agent/model giả đã tích hợp với `lookup_components` và `check_compatibility` trong `tools.py` tại `928fe14`, được Khánh và Thắng xác nhận review ở [issue #6](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/6#issuecomment-7217443678).
 
 **Lát cắt một câu:** Khi sinh viên lần đầu tự ráp PC gửi danh sách linh kiện dự định mua, AI xác định mã hoặc hỏi lại điểm chưa rõ, chuyển cấu hình cho code kiểm CPU–mainboard, mainboard–RAM và GPU–vỏ máy, rồi trả các xung đột hoặc thông tin còn thiếu kèm căn cứ để người mua quyết định.
 
@@ -49,7 +49,7 @@ Impact thời gian mỗi tháng cần số người gặp × số lần gặp m�
 
 **Không làm:** tối ưu ngân sách/so giá; dự đoán FPS hay hiệu năng; tự đặt hàng/thanh toán/liên hệ người bán; kiểm PSU, đầu nguồn, tản nhiệt, ổ đĩa hoặc kích thước mainboard–vỏ; kiểm toàn bộ QVL, tốc độ/dung lượng/số thanh RAM, độ dày GPU hoặc khoảng trống dây nguồn. Không kết luận toàn bộ máy tương thích.
 
-**Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent. Ba phép kiểm có quy tắc và điểm dừng xác định; AI chỉ nhận diện/hỏi lại và diễn đạt. Không cần vòng lặp tự chọn công cụ hoặc nhiều agent vì không có tác vụ độc lập cần điều phối; mỗi lượt gọi model tối đa hai lần (nhận diện, giải thích).
+**Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent. Ba phép kiểm có quy tắc và điểm dừng xác định; AI chỉ hỗ trợ nhận diện/hỏi lại. Không cần vòng lặp tự chọn công cụ hoặc nhiều agent vì không có tác vụ độc lập cần điều phối; thiết kế cho phép tối đa hai lời gọi model, bản CP2 hiện dùng một lời gọi nhận diện và mẫu trình bày bằng code.
 
 ```mermaid
 flowchart TD
@@ -154,7 +154,7 @@ Kết quả chung ưu tiên `conflict` nếu có cặp xung đột; tiếp đế
 | Người dùng giữ quyền quyết định | Nút cuối là người mua; không có công cụ đặt hàng/thanh toán |
 | Tách nhận diện khỏi kiểm định | AI nhận diện, code đối chiếu; lời giải thích không được đổi trạng thái của checker |
 
-**Thật/giả tại thời điểm soạn thiết kế:** repo còn công cụ/model mẫu, chưa có `data/components.json`; các API trên chưa triển khai. CP2 cho phép model giả với `model="fake"`, token vào/ra bằng 0 và giữ `@model_call`; dữ liệu/công cụ giả phải ghi nhãn, không phải bằng chứng nhu cầu hay kết quả đánh giá model thật. Hợp đồng của luồng vẫn là `answer(text) -> {"output": str}`. Giữ nguyên `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py`.
+**Thật/giả tại CP2:** `data/components.json` có 12 linh kiện gắn `synthetic: false`, nguồn hãng và giới hạn được mô tả trong Data Card; hai công cụ tra/kiểm chạy bằng code trên catalog đó. Phần giả là nhận diện qua `call_model` (`model="fake"`, token vào/ra bằng 0, giữ `@model_call`), hỗ trợ tốt nhất danh sách có nhãn hoặc JSON. Mã gần đúng/tên viết tắt chưa xác nhận được sẽ hỏi mã đầy đủ; BIOS và bố trí vỏ phải do người dùng nêu, không tự lấy điều kiện catalog làm xác nhận. Mẫu code giữ nguyên trạng thái/facts/sources của checker; không gọi model để đổi kết luận. Kiểm thử tích hợp 26/26 đạt, gồm chạy CLI qua ca thường/xung đột/thiếu mã/tấn công; đây không phải lượt benchmark model thật. Hợp đồng vẫn là `answer(text) -> {"output": str}`; chưa nối model thật, chưa ghi kết quả run-N hoặc chi phí. Giữ nguyên `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py`.
 
 ## §5. Chỗ khó — 4 lớp + ≥6 kịch bản + 2 tấn công *(guide 2.3)*
 
@@ -179,8 +179,13 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 (1) nguồn sự thật · (2) mơ hồ / thiếu thông tin · (3) ngoài phạm vi / thẩm quyền · (4) đặc thù lĩnh vực (sai thì người dùng mất gì đắt nhất)
 
 ## §6. Bốn đường đi của trải nghiệm
-- Mọi thứ suôn sẻ: · Không chắc (lớp 2): · Không có căn cứ (lớp 1): · Người dùng sửa:
-- Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
+
+- **Mọi thứ suôn sẻ:** xác nhận duy nhất các mã và đủ điều kiện BIOS/bố trí vỏ; checker trả ba phép kiểm, kết luận trong phạm vi, thông số/nguồn và phần chưa kiểm. Người mua tự quyết định.
+- **Không chắc (lớp 2):** tên có nhiều ứng viên, hai mã cùng loại hoặc thiếu linh kiện thì không chọn ngầm. Nêu các ứng viên/thông tin còn thiếu và vẫn kiểm những cặp đã đủ mã; người dùng bổ sung bằng toàn bộ cấu hình ở lượt mới.
+- **Không có căn cứ (lớp 1):** mã ngoài danh mục, thiếu nguồn, model/công cụ lỗi hoặc đầu ra sai hợp đồng thì báo thiếu thông tin/chưa thể kết luận, ghi trace và đề nghị kiểm lại mã/danh mục. Không dùng thông số của linh kiện gần giống.
+- **Người dùng sửa:** mỗi lượt kiểm độc lập; gửi lại toàn bộ cấu hình cùng BIOS và bố trí vỏ nếu có. Kết luận cũ không được dùng cho danh sách đã thay đổi.
+- **Ngoài phạm vi (lớp 3):** nêu giới hạn ba quan hệ, không đọc bí mật, so giá, hứa FPS hoặc đặt hàng; mời gửi danh sách linh kiện được hỗ trợ.
+- **Đặc thù lĩnh vực (lớp 4):** cùng socket chưa đủ để kết luận CPU–mainboard; phải có nguồn hỗ trợ và điều kiện BIOS. GPU–vỏ chỉ kiểm chiều dài ở đúng bố trí có căn cứ; DDR chỉ kiểm thế hệ. Luôn nêu PSU/tản nhiệt/QVL và các điều kiện ngoài phạm vi chưa được kiểm.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công) · metric: `eval/metric_spec.yaml` (5 metric)
@@ -200,8 +205,27 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
-- Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
+
+| Thành viên | Phần việc CP2 | Phối hợp / review | Chặng tiếp theo |
+|---|---|---|---|
+| Nguyễn Triều Dương | Thiết kế §3–§5, agent/model giả, tổng hợp Canvas/spec, điều phối duyệt chuẩn | Cùng Thắng chốt công cụ; cùng Khánh duyệt metric và chấm lại 5 output | Tích hợp model thật CP3, điều phối hồ sơ và nộp checkpoint |
+| Hồ Văn Dũng | Bằng chứng nhu cầu, catalog/Data Card, spec §0–§2, rà nguồn benchmark | Cùng Thắng chuẩn hóa dữ liệu, cùng Dương cập nhật bằng chứng | Bổ sung người dùng/bản ghi thật, kiểm thiếu/mâu thuẫn và số liệu impact |
+| Nguyễn Khắc Khánh | 14 câu thử, 5 metric, spec §7, hồ sơ và thử tay | Khánh review hành vi agent; Thắng và Dương chấm lại 5 output, Dũng rà nguồn | Mở rộng bộ thử CP3, tổ chức chấm lượt model thật theo chuẩn đã chốt |
+| Kiều Văn Thắng | Công cụ kiểm tương thích, README chạy thử, khai báo dùng AI | Cùng Dương thử luồng; rà expected theo tools và chấm lại 5 output | Slide/demo và mô phỏng chi phí ở chặng sau |
+
+**Dùng AI:** coding agent hỗ trợ thiết kế, code, ca kiểm thử và biên tập hồ sơ; Dương kiểm tích hợp, Thắng kiểm công cụ, Dũng kiểm nguồn và Khánh kiểm đánh giá. Codex hỗ trợ đối chiếu 5 output thử tay, Dương đã đọc lại và xác nhận; không dùng làm kết quả run-N. Chi tiết: `docs/ai-usage.md`, `eval/README.md`.
+
+**Chốt CP2:** metric và toàn bộ §7 được commit tại [`11ca3ed`](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/commit/11ca3edbf01bfd381b921266dd163b91ecbf67f8), thời điểm commit **18:54:32 ngày 27/11/2026 (UTC+7)**, trước hạn 19:30. Dương xác nhận trong cuộc trò chuyện hỗ trợ issue #9 rằng cả nhóm đã đọc 5 output thử tay, đồng ý 5 metric và chuẩn §7. Thắng chấm lại khớp 5/5; Dương đối chiếu có AI hỗ trợ, đọc lại và xác nhận khớp 5/5. Không sửa metric, chuẩn đạt hoặc expected theo kết quả triển khai.
+
+**Thay đổi từ CP1 đến CP2 — ngày 27/11/2026:**
+
+| Mốc / commit | Đổi gì | Căn cứ / giới hạn |
+|---|---|---|
+| Thiết kế `0f12f73`, duyệt `ed9c672` | Giữ ba quan hệ; chốt schema, giao diện công cụ, sơ đồ và cách hỏi lại | Issue #1; không mở rộng sang giá/FPS/toàn bộ cấu hình |
+| Tích hợp `928fe14` | Agent gọi tools thật trên catalog 12 linh kiện, model nhận diện giả, trình bày kết quả bằng mẫu | Issue #6; 26 kiểm thử tích hợp đạt, chưa phải benchmark model thật |
+| Chuẩn đánh giá `11ca3ed` · 18:54:32 | Chốt 14 câu thử, 5 metric và chuẩn §7; hồ sơ chấm chéo ở `5c2356a`, `c03948f` | Issue #4/#7; thử tay và chấm chéo không phải run-N |
+| Tổng hợp issue #9 | Canvas ghi 8 phản hồi, 4 qua sàng lọc, 2/4 có bước phát sinh; cập nhật phân công, §4 và §6 | `evidence/summary.md`; còn thiếu 16 phản hồi đủ điều kiện, 0 bản ghi phỏng vấn, chưa có số phút để tính impact |
+
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
