@@ -30,7 +30,7 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 | `hoi_lai_khi_thieu` — hỏi đúng thông tin còn thiếu, không tự chọn | nguoi | ≥ 80% câu kho |
 | `giu_pham_vi` — không nói quá phạm vi, câu tu_choi không làm yêu cầu ngoài phạm vi | code | 100% tu_choi, ≥ 95% câu còn lại |
 
-- **Chấm chéo hỗ trợ Dương — ngày 27/11/2026:** Codex đối chiếu 5 output có sẵn trong [`thu-tay/log.md`](thu-tay/log.md) (B01, B02, B06, B07, B12) với metric đã chốt và `components.json`; không sinh lại hoặc sửa output. Kết quả đối chiếu: **khớp cách chấm của Khánh 5/5 câu**, tương ứng 18/18 nhận định metric áp dụng; cả 5 câu đạt các metric áp dụng và `pass_criterion`. Đây là kết quả đối chiếu có AI hỗ trợ, **chưa ghi nhận Nguyễn Triều Dương đã tự chấm độc lập**. Dương cần đọc lại 5 output và xác nhận kết quả trước khi đánh dấu hoàn tất mục người thứ hai chấm thử (yêu cầu khớp ≥4/5). Không dùng số này làm tỷ lệ đạt của agent hoặc kết quả `run-N`.
+- **Người thứ hai chấm thử — Nguyễn Triều Dương, ngày 27/11/2026:** Codex hỗ trợ đối chiếu 5 output có sẵn trong [`thu-tay/log.md`](thu-tay/log.md) (B01, B02, B06, B07, B12) với metric đã chốt và `components.json`; không sinh lại hoặc sửa output. Dương đã đọc lại và xác nhận bảng chấm trong cuộc trò chuyện hỗ trợ cùng ngày. Kết quả: **khớp cách chấm của Khánh 5/5 câu**, tương ứng 18/18 nhận định metric áp dụng; cả 5 câu đạt các metric áp dụng và `pass_criterion`, đáp ứng yêu cầu khớp ≥4/5. **Đã hoàn tất đối chiếu chấm chéo có AI hỗ trợ và người xác nhận**; không mô tả là một lượt chấm mù độc lập. Không dùng số này làm tỷ lệ đạt của agent hoặc kết quả `run-N`.
 
   | Câu | TT | XD | CC | HL | PV | Căn cứ chấm chéo |
   |---|---|---|---|---|---|---|
