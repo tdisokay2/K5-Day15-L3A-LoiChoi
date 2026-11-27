@@ -27,4 +27,3 @@ def answer(text: str) -> dict:
     # Bước 2 (ví dụ): model quyết định dựa trên căn cứ
     reply = call_model(SYSTEM, "Căn cứ:\n%s\n\nĐầu vào của người dùng:\n%s" % (context, text))
     return {"output": reply["text"]}
-

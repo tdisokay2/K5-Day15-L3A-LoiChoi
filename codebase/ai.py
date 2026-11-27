@@ -54,4 +54,3 @@ def call_model(system: str, user: str) -> dict:
     raise NotImplementedError(
         "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"
         % MODEL_PROVIDER)
-
