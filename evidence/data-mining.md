@@ -38,4 +38,3 @@ Ghi dạng "x/N (y%)". "Nhiều bạn…" không phải số.
 
 Data cho biết người ta **làm gì**, không cho biết **vì sao**. Thiếu gì, lệch về phía nào: __
 → Kiểm lại bằng phỏng vấn / khảo sát nào: __
-

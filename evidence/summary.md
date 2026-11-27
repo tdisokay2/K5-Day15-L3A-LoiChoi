@@ -46,4 +46,3 @@ Giả thuyết ở `evidence/hypothesis.md`: **đúng / sai / phải đổi** �
 | Vai | Giờ hẹn | Đã xong? |
 |---|---|---|
 | | | |
-
