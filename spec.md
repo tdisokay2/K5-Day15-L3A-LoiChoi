@@ -232,7 +232,9 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 27/11/2026 21:29 (UTC+7) | CP3 bước 01 / issue #12: thêm kết nối OpenRouter trong `ai.py`, cấu hình `.env.example`, trạng thái README và 9 kiểm thử API giả lập; giữ fake riêng | CP2 chỉ có nhận diện giả. 35/35 kiểm thử cục bộ đạt; kiểm usage, lỗi HTTP/timeout/JSON, không lộ key và không fallback fake. Chưa có `.env`, chưa gọi API thật, chưa có token/run ID thử kỹ thuật hoặc kết quả benchmark thật; cần Dương cấu hình và kiểm tiếp |
+| 27/11/2026 21:34 (UTC+7) | Đổi nhánh thành `CP3`; chọn `openai/gpt-4.1-mini` và điền model trong cấu hình riêng/mẫu | Nano gọi `eval --try` B01–B03 được nhưng B03 chỉ trích RAM. Thử Mini trực tiếp cùng 3 input: đủ 5 loại mỗi câu, tổng usage 831 vào/509 ra; CLI Mini 279 vào/165 ra. Chưa chấm benchmark; tên viết tắt và điều kiện vỏ khác cách diễn đạt vẫn hỏi lại. Giá Mini $0,40 vào/$1,60 ra trên một triệu token theo https://openrouter.ai/openai/gpt-4.1-mini (kiểm 27/11/2026); khoảng $0,04/100 câu là tự ước tính theo mẫu 3 câu |
+| 27/11/2026 21:39 (UTC+7) | Xác nhận Dương đã chạy `python run.py eval --try` với Mini; đối chiếu CSV/trace | B01–B03 đều dùng `openai/gpt-4.1-mini`, một lần gọi/câu, tổng 831 token vào/484 token ra, cột error trống và trace không có lỗi. Run ID thử: `run-try`; không phải lượt 1 hoặc kết quả chấm đạt. Khung đã ghi đè lượt thử Nano khi người dùng chạy lại; không ghi nhận có bản lưu Nano |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

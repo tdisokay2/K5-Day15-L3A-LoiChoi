@@ -83,7 +83,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | `codebase/ai.py` | `call_model(system, user)` — chỗ duy nhất gọi model. Chưa điền `.env` thì chạy **chế độ giả** | 3.3 |
 
 - **Trước CP2:** để chế độ giả, công cụ trả dữ liệu giả — `python run.py` đi hết luồng là đủ.
-- **Trước CP3:** nối model thật theo [docs/connect-model.md](docs/connect-model.md), `eval --try` thấy token > 0 rồi mới `eval`.
+- **CP3 · bước 01 ([issue #12](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/12)):** `codebase/ai.py` đã có kết nối OpenRouter bằng thư viện chuẩn. Cấu hình `.env`: `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini`, `API_KEY=<key riêng>`. Biến môi trường được ưu tiên hơn `.env`; bỏ giá trị `MODEL_PROVIDER=fake` đã đặt ở terminal khi thử API thật. Các ví dụ hãng khác trong [docs/connect-model.md](docs/connect-model.md) chưa được triển khai. 35/35 kiểm thử cục bộ đạt với HTTP giả lập; đã xác nhận API/token thật, xem trạng thái thử kỹ thuật bên dưới. Chưa có lượt đánh giá chính thức.
 - Bộ chạy gửi **nguyên ô `input`** của câu thử vào `answer(text)`. Dữ liệu nền (bài học, thông báo, lịch…) để trong `data/`, đọc qua công cụ.
 
 ## Phần nào thật, phần nào giả
@@ -91,6 +91,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
 | Lời gọi AI nhận diện ở CP2 (`codebase/ai.py`) | **Giả** (`MODEL_PROVIDER=fake`, token = `0`) | Mô phỏng trích tên/mã bằng quy tắc, chưa gọi model AI thật; bắt buộc nối model thật qua `.env` từ CP3 |
+| Kết nối OpenRouter CP3 (`codebase/ai.py`) | **Đã xác nhận CLI và 3 câu thử API thật** | Chọn `openai/gpt-4.1-mini`; CLI thật dùng 279/165 token. Dương chạy `eval --try` B01–B03: tổng 831 token vào/484 token ra, CSV và trace khớp, không có lỗi kỹ thuật. `eval/run-try.csv` và `traces/run-try.jsonl` hiện là lượt Mini, khung đã ghi đè lượt Nano khi người dùng chạy lại. Đây là thử kết nối, chưa chấm benchmark chính thức. Tên viết tắt và điều kiện vỏ khác cách diễn đạt vẫn cần rà ở bước tích hợp |
 | Catalog linh kiện (`data/components.json`) | **Thật** | Thông số kỹ thuật và link nguồn hãng do nhóm thu thập, kiểm chéo thủ công |
 | Công cụ tra cứu & kiểm tra (`codebase/tools.py`) | **Thật** | `lookup_components` và `check_compatibility` chạy bằng code Python thuần trên catalog cục bộ |
 | Luồng chính (`codebase/agent.py`) | **Thật** | Workflow cố định: nhận diện → tra cứu → xác thực id → checker → hiển thị có căn cứ |
