@@ -32,4 +32,3 @@
 ## Kết luận 1 dòng
 
 Có gặp chỗ vướng [tên]? Có / Không / Một phần — vì sao. Có điều gì **ngược** với điều nhóm nghĩ?
-
