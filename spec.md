@@ -15,24 +15,24 @@ Luồng tham chiếu theo tài liệu công khai của hãng, chờ đối chi�
 3. Tra trang thông số và danh sách hỗ trợ theo đúng mã, rồi đối chiếu socket, BIOS, DDR hoặc chiều dài GPU theo bố trí vỏ. [Danh sách CPU hỗ trợ của ASUS](https://www.asus.com/us/supportonly/tuf%20gaming%20b650-plus%20wifi/helpdesk_cpu/) · [Giới hạn chiều dài GPU của NZXT](https://support.nzxt.com/hc/en-us/articles/47061130443291-What-is-the-maximum-GPU-length-for-the-H5-Flow-2024)
 4. Xác nhận các điểm chưa rõ trước khi chốt danh sách mua.
 
-Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Việc người dùng mục tiêu đang dùng công cụ hay AI nào và ảnh chụp luồng thực tế vẫn chờ xác minh.
+Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Trong 4 phản hồi qua sàng lọc, 3 chọn hỏi trợ lý AI là cách họ dựa vào chủ yếu và 1 chọn hỏi người có kinh nghiệm, bạn bè hoặc cộng đồng. Ảnh chụp luồng thực tế vẫn chờ bổ sung. [Khảo sát ngày 27/11](evidence/summary.md)
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 
 - **Người dùng chính** là sinh viên lần đầu tự chọn linh kiện để ráp máy tính để bàn.
 - **Việc cần làm** là rà danh sách linh kiện đã chọn trước khi đặt mua.
 - **Giả thuyết về khó khăn.** Tên biến thể gần giống nhau và thông số nằm trên nhiều trang có thể khiến người mới phải tra lại, nhờ xác nhận hoặc đổi linh kiện. Phỏng vấn sẽ kiểm xem họ đang xoay xở bằng cách nào và khâu nào thực sự mất công nhất.
-- **Tiến độ CP2.** Có 0 bản ghi phỏng vấn trong repo tại thời điểm cập nhật. Nguồn hãng xác nhận các điều kiện kỹ thuật cần đối chiếu. Tần suất gặp khó khăn, thời gian bỏ ra và hành vi thực tế của người dùng còn chờ xác minh. [Tổng hợp và kế hoạch thu thập](evidence/summary.md)
+- **Bằng chứng ban đầu tại CP2.** Có 8 phản hồi khảo sát, 4 qua sàng lọc. Ở câu 7, 2/4 chọn một bước phát sinh do chưa rõ tính tương thích (1 tra thêm, 1 nhờ xác nhận). Hai phản hồi còn lại có câu trả lời chưa nhất quán về việc có kiểm tra hay không. Hiện có 0 bản ghi phỏng vấn và 4/20 phản hồi đủ điều kiện theo ngưỡng khảo sát. [Tổng hợp bằng chứng](evidence/summary.md)
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| Rà ba cặp linh kiện trước khi mua | Chưa đo | Chưa đo | Thời gian tra và xác nhận, chưa đo | Chưa tính | Khả thi với danh mục nhỏ và quy tắc xác định | Chọn theo phạm vi thiết kế §4 |
+| Rà ba cặp linh kiện trước khi mua | 2/4 trong mẫu báo có bước phát sinh vì chưa rõ tương thích | Chưa đủ căn cứ | Thiếu dữ liệu về thời gian phát sinh | Chưa tính | Khả thi với danh mục nhỏ và quy tắc xác định | Chọn theo phạm vi thiết kế §4 |
 | So giá và tối ưu cấu hình theo ngân sách | Chưa đo | Chưa đo | Chưa đo | Chưa tính | Cần dữ liệu giá và tồn kho theo thời điểm | Ngoài phạm vi CP2 |
 | Rà toàn bộ cấu hình, gồm nguồn và tản nhiệt | Chưa đo | Chưa đo | Chưa đo | Chưa tính | Cần thêm dữ liệu và quy tắc lắp đặt | Ngoài phạm vi CP2 |
 
-Impact thời gian mỗi tháng sẽ tính từ số người gặp × số lần gặp mỗi người mỗi tháng × số phút phát sinh mỗi lần. Phỏng vấn sẽ ghi số lần trong 30 ngày gần nhất và thời gian của lần gần nhất. Hiện cả ba thừa số và tần suất dùng cho persona ở §8 còn thiếu nguồn.
+Impact thời gian mỗi tháng cần số người gặp × số lần gặp mỗi người mỗi tháng × số phút phát sinh mỗi lần. Mẫu hiện có chưa cho phép suy rộng số người gặp. Hai câu trả lời về tần suất lệch với thời điểm rà gần nhất và bản xuất chưa có số phút. Chưa tính impact hoặc dùng số lần của mẫu cho persona ở §8. [Cách đếm và giới hạn](evidence/summary.md)
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 
