@@ -239,6 +239,7 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 | 27/11/2026 · CP3 | Dũng rà 12 linh kiện, ghi phiên bản và điều kiện kỹ thuật trong Data Card, cập nhật bằng chứng và bảng impact §0–§2 | Issue #13 và #14. Bản xuất cập nhật có 20 phản hồi, 10 qua sàng lọc và 8/10 báo bước phát sinh. Bản xuất thiếu số phút và câu tần suất còn mâu thuẫn. Nguồn hãng xác nhận các giá trị catalog đã lưu. |
 | CP3 · phỏng vấn ngày 27/11/2026 | Lưu ba phiếu P1–P3 đã xác nhận và đối chiếu giả thuyết ở §0–§2 | Issue #13. Có 3 người đúng đối tượng, 1/3 báo phát sinh do tương thích. Dữ liệu số phút chưa đủ để tính impact. |
 | 28/11/2026 · CP3 | Rà nguồn B15–B25 và ghi lưu ý cho câu B22 | Đối chiếu catalog và nguồn hãng. Mốc 322 mm của Terra áp dụng cho bố trí khác mốc 200 mm khi có radiator 120 mm. Ghi ở `eval/README.md`, giữ nguyên bộ câu thử đã chốt. |
+| 28/11/2026 00:19 (UTC+7) | Issue #15: sửa câu chữ expected, pass_criterion và source của riêng **B22** trong `eval/benchmark.csv`; trạng thái mong đợi giữ nguyên (gpu_case = conflict, kết luận chung = conflict) | Dũng rà nguồn (commit `6424980`): 322 mm là mốc Fractal Design công bố cho Terra không radiator, tiêu chí cũ gọi đó là "không phải thông số hãng" là sai sự thật. Sửa **trước lượt 1**, chưa có output nào; không đổi metric, §7 hay câu khác |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
