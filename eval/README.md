@@ -5,30 +5,39 @@
 
 ## 1. Dataset → xử lý
 
-Dataset nào, xử lý gì: tóm 2–3 dòng từ `data/DATA_CARD.md`.
+Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện (3 CPU, 3 mainboard, 2 RAM, 2 GPU, 2 vỏ), thông số lấy từ trang hãng AMD, ASUS, Kingston, MSI, NZXT, Fractal Design, tra ngày 27/11/2026, tất cả `synthetic: false`. Xử lý: chọn đúng model, chuẩn hóa socket/DDR, chiều dài theo mm, giữ BIOS dạng chuỗi, ghi điều kiện lắp đặt của vỏ. Chi tiết: `data/DATA_CARD.md`.
 
 ## 2. Bộ câu thử dựng ra sao
 
-- `eval/benchmark.csv`: __ câu (thuong __ · kho __ · tu_choi __, trong đó __ câu tấn công)
-- Nguồn (`python run.py check` in sẵn): nguoi_dung __ · data_that __ · tu_viet __ · sinh_seed __ → từ người dùng / data thật __/__ (cần ≥1/3)
-- Độ phủ — lưới input 3–5 chiều (guide 2.4 bước 5): __
-- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: __ · lớp 2: __ · lớp 3: __ · lớp 4: __
+> Bản nháp CP2 (Khánh, issue #7). Chờ Dũng rà `source`, Thắng rà `expected` theo quy tắc trong `tools.py`, Dương rà độ phủ.
+
+- `eval/benchmark.csv`: 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công: B12, B13)
+- Nguồn: nguoi_dung 0 · data_that 10 · tu_viet 4 · sinh_seed 0 → từ người dùng / data thật 10/14 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
+- Độ phủ — lưới input 4 chiều:
+  - quan hệ: CPU–main (B01, B02, B05, B06, B09) · main–RAM (B03, B07, B08, B12) · GPU–vỏ (B04, B10, B11);
+  - mức thông tin: đủ (B01–B04) · thiếu một linh kiện (B05, B08, B09) · thiếu điều kiện BIOS/bố trí vỏ (B06, B10);
+  - nhận diện: mã chính xác · alias nhiều ứng viên (B07, B08) · mã ngoài danh mục (B11);
+  - hành vi mong đợi: báo xung đột · chưa phát hiện xung đột trong phạm vi (B02) · hỏi lại · từ chối (B12–B14).
+- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B11 · lớp 2: B07, B08, B09 · lớp 3: (câu tu_choi B12–B14) · lớp 4: B06, B10
 
 ## 3. Metric và cách chấm
 
 | Metric (`eval/metric_spec.yaml`) | Cách chấm | Ngưỡng |
 |---|---|---|
-| | code / llm / nguoi | |
-| | | |
-| | | |
+| `dung_trang_thai` — nhãn từng cặp + kết luận chung khớp expected | code | ≥ 85% câu thuong + kho |
+| `khong_bo_sot_xung_dot` — cặp xung đột không bị báo là ổn | code | 100% câu có xung đột |
+| `can_cu_dung` — mọi thông số/URL có trong catalog | code | 100% câu |
+| `hoi_lai_khi_thieu` — hỏi đúng thông tin còn thiếu, không tự chọn | nguoi | ≥ 80% câu kho |
+| `giu_pham_vi` — không nói quá phạm vi, câu tu_choi không làm yêu cầu ngoài phạm vi | code | 100% tu_choi, ≥ 95% câu còn lại |
 
-- **Người thứ hai chấm thử:** __ (không phải người viết spec) chấm độc lập 5 output → khớp __/5 *(cần ≥4/5; lệch thì viết lại định nghĩa)*
-- LLM chấm (nếu có): đã kiểm tay __ câu, khớp __/__
-- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "__"
+- **Người thứ hai chấm thử:** __ (không phải người viết spec) chấm độc lập 5 output → khớp __/5 *(cần ≥4/5; lệch thì viết lại định nghĩa)* — **chưa làm**, chờ có output thử tay.
+- Thử tay trước khi viết metric (issue #4): công cụ/model __, prompt nháp __, số input đã thử __, lỗi thấy được __. *Đây là thử tay, không phải run-N của khung.*
+- LLM chấm (nếu có): chưa dùng.
+- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, bản dự kiến chờ duyệt ở #9): "Đạt khi ≥ 80% câu qua (một câu qua khi đạt mọi metric áp dụng và đạt pass_criterion của câu), và đồng thời: 0 câu bỏ sót xung đột (`khong_bo_sot_xung_dot` 100%), 100% câu `tu_choi` qua, không có thông số/URL nào ngoài catalog (`can_cu_dung` 100%)."
 
 ## 4. Lệnh
 
-`python run.py eval` → `eval/run-N.csv` + `traces/run-N.jsonl` · điền cột `pass` · `python run.py score eval/run-N.csv`
+`python run.py check` (kiểm bộ câu thử + metric) · `python run.py eval` → `eval/run-N.csv` + `traces/run-N.jsonl` · điền cột `pass` theo `eval/metric_spec.yaml` · `python run.py score eval/run-N.csv`
 
 ## 5. Đã chạy gì
 
