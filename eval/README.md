@@ -11,14 +11,18 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 > Bộ câu thử CP2 (Khánh, issue #7). Dương đã duyệt ngày 27/11/2026 (qua tin nhắn nhóm). Dũng rà cột `source` B01–B14 (đối chiếu linh kiện và URL hãng trong `data/components.json`, nhãn data_that/tu_viet): đã rà xong ngày 27/11/2026, xác nhận qua tin nhắn nhóm. Thắng rà `expected` B01–B14 đối chiếu `codebase/tools.py`: khớp quy tắc tra cứu, 3 cặp kiểm tra, `insufficient_info` và ưu tiên `conflict`.
 
-- `eval/benchmark.csv`: 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công: B12, B13)
-- Nguồn: nguoi_dung 0 · data_that 10 · tu_viet 4 · sinh_seed 0 → từ người dùng / data thật 10/14 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
-- Độ phủ — lưới input 4 chiều:
-  - quan hệ: CPU–main (B01, B02, B05, B06, B09) · main–RAM (B03, B07, B08, B12) · GPU–vỏ (B04, B10, B11);
-  - mức thông tin: đủ (B01–B04) · thiếu một linh kiện (B05, B08, B09) · thiếu điều kiện BIOS/bố trí vỏ (B06, B10);
-  - nhận diện: mã chính xác · alias nhiều ứng viên (B07, B08) · mã ngoài danh mục (B11);
-  - hành vi mong đợi: báo xung đột · chưa phát hiện xung đột trong phạm vi (B02) · hỏi lại · từ chối (B12–B14).
-- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B11 · lớp 2: B07, B08, B09 · lớp 3: (câu tu_choi B12–B14) · lớp 4: B06, B10
+> **CP3 (issue #15):** thêm B15–B25, giữ nguyên 14 câu CP2 và expected cũ (không sửa, không xoá dòng nào). Expected 9 câu mới dựng từ catalog (B15–B21, B25 và cấu hình của B22) đã chạy thử qua `check_compatibility` / `lookup_components` trong `codebase/tools.py`: khớp cả kết luận chung lẫn từng cặp. **Chờ** Thắng rà `expected` (#16) và Dũng rà `source` B15–B25 trước lượt 1.
+
+- `eval/benchmark.csv`: 25 câu (thuong 9 · kho 11 · tu_choi 5, trong đó 3 câu tấn công: B12, B13, B23)
+- Nguồn: nguoi_dung 0 · data_that 18 · tu_viet 7 · sinh_seed 0 → từ người dùng / data thật 18/25 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). B22 có con số 322 mm do nhóm đặt ra nên ghi `tu_viet`. Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
+- Catalog dùng để dựng expected: `data/components.json` tại commit `09fac5b` (12 linh kiện, chưa đổi từ CP2).
+- Độ phủ — lưới input 5 chiều:
+  - quan hệ: CPU–main (B01, B02, B05, B06, B09, B20, B21) · main–RAM (B03, B07, B08, B12, B25) · GPU–vỏ (B04, B10, B11, B16–B19, B22) · nhiều cặp xung đột cùng lúc (B15);
+  - mức thông tin: đủ (B01–B04, B15, B16, B18) · thiếu một linh kiện (B05, B08, B09, B25) · thiếu hoặc lệch điều kiện BIOS/bố trí vỏ (B06, B10, B17, B19, B21);
+  - nhận diện: mã chính xác · tên viết tắt tự nhiên (B15) · alias nhiều ứng viên (B07, B08) · hai mã cùng loại (B20) · mã ngoài danh mục (B11);
+  - ranh giới và nguồn: chiều dài sát giới hạn 199/200 mm (B18) · BIOS khác mốc không so được thứ tự (B21) · thông tin người dùng/shop mâu thuẫn thông số hãng (B22);
+  - hành vi mong đợi: báo xung đột · chưa phát hiện xung đột trong phạm vi (B02, B16, B18) · hỏi lại · từ chối (B12–B14, B23, B24).
+- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B11, B22 · lớp 2: B07, B08, B09, B20 · lớp 3: (câu tu_choi B12–B14, B23, B24) · lớp 4: B06, B10, B17, B19, B21
 
 ## 3. Metric và cách chấm
 
