@@ -21,4 +21,3 @@ Ai nói trang nào (mỗi người ≥1 phần):
 | Trang | Người nói |
 |---|---|
 | | |
-
