@@ -36,7 +36,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 
-**Phụ trách:** Nguyễn Triều Dương. Đây là bản thiết kế bàn giao cho issue #1; schema và giao diện dưới đây **chờ Dũng, Thắng và Khánh xác nhận trong issue**, chưa ghi nhận là cả nhóm đã duyệt. Các công cụ được mô tả là hợp đồng cần triển khai; hiện `tools.py` vẫn là khung mẫu.
+**Phụ trách:** Nguyễn Triều Dương. Schema và giao diện được nhóm xác nhận bằng reaction trên [bình luận bàn giao issue #1](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/1#issuecomment-7215115574) ngày 27/11/2026: `khackhanh1201` (❤️), `katsu1154` (🎉), `DungZai` (❤️); Dương xác nhận các reaction này là ý kiến duyệt của đồng đội. Bản thiết kế bàn giao tại commit `0f12f73`. Các công cụ được mô tả là hợp đồng cần triển khai; hiện `tools.py` vẫn là khung mẫu.
 
 **Lát cắt một câu:** Khi sinh viên lần đầu tự ráp PC gửi danh sách linh kiện dự định mua, AI xác định mã hoặc hỏi lại điểm chưa rõ, chuyển cấu hình cho code kiểm CPU–mainboard, mainboard–RAM và GPU–vỏ máy, rồi trả các xung đột hoặc thông tin còn thiếu kèm căn cứ để người mua quyết định.
 
