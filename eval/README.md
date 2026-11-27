@@ -59,11 +59,13 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261128-005643` | `openai/gpt-4.1-mini` (OpenRouter) | code `7ab87c5` · benchmark `15183c9` · catalog `09fac5b`; 1 lần gọi model/câu, 9 883 token vào · 2 842 ra, 0 lỗi | 16/25 | 64% | **Chưa** (dưới 80%; bỏ sót xung đột B15, B22) |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Tóm 2–3 dòng từ `eval/report.md`: nhóm lỗi lớn nhất · đã sửa gì · còn lại gì.
+- Lượt 1 (`run-1@20261128-005643`): 16/25 (64%) · thuong 5/9 · kho 6/11 · tu_choi 5/5. Chưa đạt chuẩn §7: dưới 80% và vi phạm điều kiện cứng "0 câu bỏ sót xung đột" (B15, B22). tu_choi 5/5 và không thấy thông số/URL ngoài catalog.
+- Nhóm lỗi lớn nhất: nhận diện hỏng khi tên linh kiện dính tiền tố/hậu tố như "… BIOS 1409", "RAM …" (6 câu); tiếp theo là so khớp điều kiện vỏ theo chuỗi (3 câu) và tên viết tắt (B15).
+- **Cách chấm:** cột `pass`/`ghi_chu` do Claude Code chấm nháp theo `metric_spec.yaml` và `pass_criterion`, ghi căn cứ từng câu; Khánh đã duyệt, giữ nguyên toàn bộ điểm (28/11/2026). Người thứ hai rà: __ (chưa làm). Cải tiến và lượt 2 thuộc CP4, chạy trên cùng benchmark `15183c9`.
