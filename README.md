@@ -1,11 +1,14 @@
-> Đây là khung repo nộp bài. Điền mọi chỗ `____`, giữ nguyên tên các mục. **Mục 0 xoá đi sau khi tạo repo xong.**
-> Giờ, mốc, luật, rubric: xem `README.md`, `02-guide.md`, `03-rubric.md` trong repo đề (bộ đề BTC phát).
-
 # LoiChoi — Kiểm tra tương thích cấu hình PC trước khi mua
 
 **Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
 
-*Lát cắt = phần nhỏ nhất làm xong được trong hackathon: một người dùng · một việc · một quyết định AI · một kết quả.*
+*Lát cắt = kiểm tra danh sách linh kiện PC dự định mua theo catalog nhóm chuẩn bị ([data/components.json](data/components.json)) trên đúng 3 quan hệ: **CPU–mainboard** (socket, danh sách CPU hỗ trợ, điều kiện `min_bios`), **mainboard–RAM** (thế hệ DDR4/DDR5) và **GPU–vỏ máy** (chiều dài `mm` theo điều kiện lắp đặt `clearance_condition`).*
+
+> **Giới hạn & lưu ý an toàn:**
+> - **Phần chưa kiểm:** Nguồn (PSU) và đầu cấp nguồn, tản nhiệt CPU và khoảng trống lắp đặt, ổ đĩa/kết nối lưu trữ, kích thước form factor mainboard–vỏ máy, QVL/tốc độ/dung lượng/số thanh RAM, độ dày GPU và khoảng trống dây nguồn, giá bán/tồn kho/hiệu năng (FPS).
+> - **Điều kiện & thiếu thông tin:** Khi thiếu mã, mơ hồ biến thể/revision, thiếu điều kiện `BIOS` hoặc `bố trí vỏ`, hoặc thiếu nguồn hãng, hệ thống trả trạng thái **Thiếu thông tin (`insufficient_info`)** và hỏi lại, không tự đoán.
+> - **Không bảo đảm tương thích toàn bộ máy:** Trạng thái đạt chỉ có nghĩa *"Chưa phát hiện xung đột trong phạm vi đã kiểm"*; người mua cần xác nhận lại với hãng/người bán và tự quyết định.
+> - **Dữ liệu mô phỏng (`synthetic`):** Nếu có linh kiện gắn `synthetic: true`, kết quả luôn kèm nhãn **"MÔ PHỎNG — không dùng để quyết định mua"**.
 
 ## Nhóm làm gì, khung làm gì
 
@@ -42,7 +45,12 @@ Gõ `dir` (Windows) hoặc `ls` (macOS / Linux): thấy `run.py` và `README.md`
 
 - Windows: gõ `python` mà mở Microsoft Store hoặc báo không có lệnh → dùng `py`. Chưa có Python: cài từ python.org, **tick "Add python.exe to PATH"**, mở lại PowerShell.
 - macOS: báo `command not found: python` là bình thường → dùng `python3`.
-- `python run.py` in ra "[câu trả lời giả — chưa nối model] …" là khung chạy đúng. Nối model thật: [docs/connect-model.md](docs/connect-model.md).
+- `python run.py` chạy từ thư mục gốc repo ở chế độ giả (`MODEL_PROVIDER=fake`, **không cần API key**, token vào/ra = `0`). Nối model thật (chặng CP3): [docs/connect-model.md](docs/connect-model.md).
+- **Đầu vào mẫu chạy thử với `python run.py`** (dán nguyên dòng sau rồi nhấn Enter):
+  - Ca đủ thông tin (chưa phát hiện xung đột trong phạm vi đã kiểm):
+    `CPU: AMD Ryzen 7 7800X3D; Main: ASUS TUF GAMING B650-PLUS WIFI; RAM: Kingston KF556C40BBK2-32; GPU: MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC; Case: NZXT H5 Flow (2024); BIOS: 1409; bố trí vỏ: Không lắp radiator mặt trước`
+  - Ca thiếu/mơ hồ (trả `Thiếu thông tin` và hỏi lại):
+    `CPU: Ryzen 5 5600; Main: B760M; RAM: Kingston FURY Beast`
 
 Trong README này lệnh viết là `python …`; máy nhóm cần `python3` hay `py` thì gõ thay.
 
@@ -82,14 +90,15 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI nhận diện ở CP2 (`codebase/ai.py`) | **Giả** (`MODEL_PROVIDER=fake`, token = `0`) | Mô phỏng trích tên/mã bằng quy tắc, chưa gọi model AI thật; bắt buộc nối model thật qua `.env` từ CP3 |
+| Catalog linh kiện (`data/components.json`) | **Thật** | Thông số kỹ thuật và link nguồn hãng do nhóm thu thập, kiểm chéo thủ công |
+| Công cụ tra cứu & kiểm tra (`codebase/tools.py`) | **Thật** | `lookup_components` và `check_compatibility` chạy bằng code Python thuần trên catalog cục bộ |
+| Luồng chính (`codebase/agent.py`) | **Thật** | Workflow cố định: nhận diện → tra cứu → xác thực id → checker → hiển thị có căn cứ |
+| Đánh giá model thật, mô phỏng chi phí & slide | **Chưa triển khai** | Bộ câu thử và `metric_spec.yaml` đã dựng cho CP2; chạy `eval`/`simulate` thật và slide làm ở CP3–CP4 |
 
 ## Dùng AI vào việc gì
 
-2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
-
-____
+Nhóm sử dụng coding agent (Claude Code / Antigravity / Codex) để hỗ trợ viết và kiểm tra mã nguồn `codebase/` theo thiết kế ở `spec.md`, rà soát câu chữ tài liệu và cấu trúc câu thử; không dùng AI để bịa phỏng vấn, khảo sát hay sửa kết quả chạy. Mọi thay đổi mã nguồn, nguồn hãng trong `data/components.json` và bộ câu thử đều do các thành viên (Dương, Dũng, Khánh, Thắng) tự đọc, chạy thử và kiểm duyệt trước khi commit. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
 ## File mẫu — điền ở bước nào
 
