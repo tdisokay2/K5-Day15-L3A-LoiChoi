@@ -37,6 +37,14 @@ def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
 
 
+def _clearance_key(text: str) -> str:
+    """Nhận cách nói tương đương hẹp; không suy vị trí, kích thước hay phủ định."""
+    normalized = _norm(text).rstrip(".")
+    if re.fullmatch(r"không (?:lắp|gắn|có) radiator (?:ở )?(?:(?:mặt|phía) )?trước", normalized):
+        return "không lắp radiator mặt trước"
+    return normalized
+
+
 def _load_catalog(catalog_path: Path | None = None) -> tuple[dict[str, dict[str, Any]] | None, str | None]:
     """Đọc và kiểm tra schema cơ bản của catalog cục bộ.
 
@@ -141,13 +149,15 @@ def lookup_components(query: str, kind: str | None = None) -> dict[str, Any]:
     """lookup_components — Tra mã và biến thể linh kiện trong catalog cục bộ.
 
     Input: query (str: tên hoặc mã linh kiện), kind (str | None: cpu, mainboard, ram, gpu, case).
-    Output: dict {"candidates": [{id, kind, name, model, revision}], "reason": str}.
+    Output: dict {"candidates": [{id, kind, name, model, revision}], "reason": str,
+                  "match_type": exact | alias | partial | ambiguous | none}.
     Tác động ra ngoài: Không; chỉ đọc catalog cục bộ.
     """
     if kind is not None:
         if not isinstance(kind, str) or _norm(kind) not in VALID_KINDS:
             return {
                 "candidates": [],
+                "match_type": "none",
                 "reason": f"Loại linh kiện '{kind}' không nằm trong phạm vi hỗ trợ ({', '.join(VALID_KINDS)}).",
             }
         kind_norm = _norm(kind)
@@ -157,6 +167,7 @@ def lookup_components(query: str, kind: str | None = None) -> dict[str, Any]:
     if not isinstance(query, str) or not query.strip():
         return {
             "candidates": [],
+            "match_type": "none",
             "reason": "Từ khóa tra cứu trống; cần hỏi người dùng tên hoặc mã linh kiện cụ thể.",
         }
 
@@ -164,6 +175,7 @@ def lookup_components(query: str, kind: str | None = None) -> dict[str, Any]:
     if err or by_id is None:
         return {
             "candidates": [],
+            "match_type": "none",
             "reason": f"Lỗi dữ liệu catalog: {err}",
         }
 
@@ -182,7 +194,19 @@ def lookup_components(query: str, kind: str | None = None) -> dict[str, Any]:
             "cần hỏi lại để xác định đúng model/revision/biến thể."
         )
 
-    return {"candidates": candidates, "reason": reason}
+    match_type = "none" if not candidates else "ambiguous" if len(candidates) > 1 else "partial"
+    if len(matches) == 1:
+        comp = matches[0]
+        exact_names = [comp[key] for key in ("id", "name", "model")]
+        # Chỉ nhận alias đã có trong catalog; tên hãng + mã/alias cũng xác định
+        # cùng sản phẩm. Tìm gần đúng duy nhất vẫn cần người dùng xác nhận.
+        aliases = [a for a in comp["aliases"] if isinstance(a, str)]
+        aliases += [comp["manufacturer"] + " " + a for a in [comp["model"]] + aliases]
+        if _norm(query) in {_norm(v) for v in exact_names}:
+            match_type = "exact"
+        elif _norm(query) in {_norm(v) for v in aliases}:
+            match_type = "alias"
+    return {"candidates": candidates, "reason": reason, "match_type": match_type}
 
 
 def _extract_sources(
@@ -695,7 +719,7 @@ def _check_gpu_case(
         }
 
     facts.append(_make_fact(case["id"], "context.case_clearance_condition", case_clearance_condition.strip(), None))
-    if _norm(case_clearance_condition) != _norm(case_cond):
+    if _clearance_key(case_clearance_condition) != _clearance_key(case_cond):
         missing.append(
             f"Điều kiện lắp đặt người dùng ('{case_clearance_condition.strip()}') không khớp điều kiện của thông số hãng ('{case_cond}')"
         )

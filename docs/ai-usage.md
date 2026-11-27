@@ -17,3 +17,5 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 | Slide, văn bản (`spec.md`, `README.md`, `docs/ai-usage.md`) | Coding agent | Hỗ trợ tóm tắt, biên tập văn bản và cập nhật hướng dẫn chạy `README.md` | Đọc kiểm từng mục đối chiếu với code và kết quả chạy thực tế trên nhánh `CP2` | Kiều Văn Thắng, Nguyễn Triều Dương |
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
+
+**CP3 · bước 06 / issue #17:** Codex hỗ trợ tích hợp agent, prompt trích nguyên văn, metadata so khớp alias trong tools, so sánh cách nói tương đương hẹp về radiator, cập nhật CLI/spec/README và 9 kiểm thử hồi quy mới. Codex chạy 44/44 unittest, check bộ 25 câu, hai smoke API thật và CLI Mini thật, lưu nguyên kết quả/trace riêng. API lỗi được giả lập trong unittest; không tạo lỗi API thật để thử. Dương phụ trách đọc thay đổi và bàn giao Khánh đánh giá; chưa ghi nhận người khác review code mới. B15 còn hỏi lại và được báo đúng giới hạn; không sửa expected/metric/chuẩn đạt.

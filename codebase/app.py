@@ -30,12 +30,17 @@ def main() -> int:
     try:
         import tracing
         from agent import answer
+        from ai import MODEL_PROVIDER, MODEL_NAME
     except Exception as e:  # lỗi cú pháp, thiếu thư viện… trong codebase/
         print("Không nạp được codebase/ — lỗi ở %s: %s: %s" % (_where(e), type(e).__name__, e))
         print("Sửa lỗi rồi chạy lại. Cách nối model: docs/connect-model.md")
         return 1
     print("Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).")
-    print("CP2: chọn MODEL_PROVIDER=fake để chạy model giả. Nhập CPU: mã; mainboard: mã; RAM: mã; GPU: mã; case: mã.")
+    if MODEL_PROVIDER == "fake":
+        print("MODEL GIẢ (fake), token = 0; chưa gọi API thật.")
+    else:
+        print("Model được cấu hình: %s (%s). Token thực tế hiển thị sau mỗi lượt." % (MODEL_NAME, MODEL_PROVIDER))
+    print("Nhập CPU: mã; mainboard: mã; RAM: mã; GPU: mã; case: mã. Chỉ kiểm ba quan hệ trong danh mục.")
     print("Thông tin bổ sung: BIOS: phiên bản; bố trí vỏ: điều kiện lắp đặt. Khi sửa, gửi lại toàn bộ cấu hình.")
     blank = 0
     while True:
