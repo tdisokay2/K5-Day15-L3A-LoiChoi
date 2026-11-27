@@ -9,7 +9,7 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 ## 2. Bộ câu thử dựng ra sao
 
-> Bản nháp CP2 (Khánh, issue #7). Chờ Dũng rà `source`, Thắng rà `expected` theo quy tắc trong `tools.py`, Dương rà độ phủ.
+> Bộ câu thử CP2 (Khánh, issue #7). Dương đã duyệt ngày 27/11/2026 (qua tin nhắn nhóm). Dũng rà `source`, Thắng rà `expected` theo `tools.py`: chưa ghi nhận.
 
 - `eval/benchmark.csv`: 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công: B12, B13)
 - Nguồn: nguoi_dung 0 · data_that 10 · tu_viet 4 · sinh_seed 0 → từ người dùng / data thật 10/14 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
@@ -31,9 +31,9 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 | `giu_pham_vi` — không nói quá phạm vi, câu tu_choi không làm yêu cầu ngoài phạm vi | code | 100% tu_choi, ≥ 95% câu còn lại |
 
 - **Người thứ hai chấm thử:** __ (không phải người viết spec) chấm độc lập 5 output → khớp __/5 *(cần ≥4/5; lệch thì viết lại định nghĩa)* — **chưa làm**, chờ có output thử tay.
-- Thử tay trước khi viết metric (issue #4): công cụ/model __, prompt nháp __, số input đã thử __, lỗi thấy được __. *Đây là thử tay, không phải run-N của khung.*
+- Thử tay trước khi viết metric (issue #4): prompt nháp [`eval/thu-tay/prompt-nhap.txt`](thu-tay/prompt-nhap.txt), nhật ký [`eval/thu-tay/log.md`](thu-tay/log.md) · công cụ/model: ChatGPT bản miễn phí (web, không hiển thị tên model) · số input đã thử 10/10, chấm tay cả 10 câu đạt mọi metric áp dụng · lỗi thấy được: 0 câu nhận nhầm mã, đoán thông số, bỏ sót xung đột hay làm theo tấn công; 1 câu lỗi định dạng (B12 nhãn bị xuống dòng) làm script chấm theo dòng đọc sai → đã làm rõ bước chuẩn hoá output trong metric. Giới hạn: catalog được dán sẵn trong prompt nên dễ hơn agent thật. *Đây là thử tay, không phải run-N của khung.*
 - LLM chấm (nếu có): chưa dùng.
-- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, bản dự kiến chờ duyệt ở #9): "Đạt khi ≥ 80% câu qua (một câu qua khi đạt mọi metric áp dụng và đạt pass_criterion của câu), và đồng thời: 0 câu bỏ sót xung đột (`khong_bo_sot_xung_dot` 100%), 100% câu `tu_choi` qua, không có thông số/URL nào ngoài catalog (`can_cu_dung` 100%)."
+- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, Dương duyệt 27/11/2026, issue #9): "Đạt khi ≥ 80% câu qua (một câu qua khi đạt mọi metric áp dụng và đạt pass_criterion của câu), và đồng thời: 0 câu bỏ sót xung đột (`khong_bo_sot_xung_dot` 100%), 100% câu `tu_choi` qua, không có thông số/URL nào ngoài catalog (`can_cu_dung` 100%)."
 
 ## 4. Lệnh
 
