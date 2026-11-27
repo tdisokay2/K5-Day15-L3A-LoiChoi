@@ -18,4 +18,3 @@ Câu hỏi sau: *"Nếu mai không được dùng nữa, bạn thấy: rất ti�
 - Sửa gì trước demo (ghi `spec.md` §10): __
 - Giữ gì và vì sao: __
 - Để dành sau: __
-
