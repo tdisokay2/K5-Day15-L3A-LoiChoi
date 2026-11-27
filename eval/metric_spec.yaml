@@ -2,7 +2,7 @@
 # Ôn lại: ngày 5, ngày 9 · lab ngày 5, lab ngày 9.
 # CHỐT TRƯỚC 19:30 Thứ Sáu 27/11 (CP2), KHÔNG SỬA SAU. Sửa sau CP2 → khối R4 0 điểm (03-rubric).
 #
-# BẢN NHÁP CP2 — Khánh soạn (issue #4), chờ Dương duyệt ngưỡng ở issue #9 trước khi chốt.
+# ĐÃ CHỐT CP2 — Khánh soạn (issue #4); ngưỡng và cách chấm: Dương (đội trưởng) duyệt ngày 27/11/2026, trước 19:30 — xác nhận qua tin nhắn nhóm, Khánh ghi lại (issue #9). Từ CP2 không sửa.
 #
 # Cách đọc output khi chấm (khớp cả agent.py CP2 lẫn prompt thử tay; KHÔNG đổi ngưỡng):
 #   Output cần có ba dòng cặp, một dòng kết luận chung và mục "Chưa kiểm:". Nhãn là một trong:
