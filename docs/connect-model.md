@@ -162,4 +162,3 @@ Lỡ lộ key (commit `.env`, dán lên kênh chung) thì **thu hồi key ngay**
 Chi phí tính từ token đo được khi chạy `python run.py simulate`. Nhóm có thể đo token bằng model đang dùng để build, rồi tính theo giá model định dùng khi ra sản phẩm thật (khai ≥2 mức model trong `cost/personas.yaml` mục `prices`). Ghi rõ trong `cost/cost-estimate.md`: "đo token trên model X, tính giá model Y". Lưu ý: mỗi hãng tách token khác nhau, nên số token giữa hai hãng có thể lệch.
 
 Tiếng Việt: **luôn đo token thật**, không quy đổi từ số chữ.
-
