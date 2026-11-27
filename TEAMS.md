@@ -4,10 +4,10 @@
 > Giữ nguyên tên file `TEAMS.md` ở thư mục gốc repo, giữ nguyên các dòng `- Tên nhóm:` … và tiêu đề cột của bảng. Chỉ thay chỗ `____`.
 > Kiểm bằng `python run.py check`: phần "Kiểm TEAMS.md" không báo gì là đúng format.
 
-- Tên nhóm: LoiChoi
-- Lớp: L3A
+- Tên nhóm: ____
+- Lớp: ____
 - Track: ____
-- Link repo: https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi
+- Link repo: ____
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
@@ -22,4 +22,3 @@
 - **Mã học viên** ghi đúng như trên hệ thống của khoá, không có khoảng trắng. Đội trưởng nộp các checkpoint bằng mã ở dòng 1.
 - **Họ và tên** ghi đủ, có dấu.
 - **Phần việc chính:** 1 dòng ngắn, khớp với phần có tên người đó trong repo.
-

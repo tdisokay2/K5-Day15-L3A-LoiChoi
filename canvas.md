@@ -14,4 +14,3 @@
 | 6 | AI tự làm đến đâu + 1 dòng lý do: sai thì ai chịu gì | |
 | 7 | Phân công có tên | |
 | — | *(CP2)* Đã đổi gì so với CP1 | |
-

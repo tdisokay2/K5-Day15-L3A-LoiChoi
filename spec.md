@@ -102,4 +102,3 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
 |  |  |  |
-
