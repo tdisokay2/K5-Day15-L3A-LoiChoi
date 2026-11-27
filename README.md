@@ -2,6 +2,8 @@
 
 **Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
 
+**Bản tổng hợp CP3 (issue #20):** [spec §0–§7](spec.md) · [Canvas](canvas.md) · [bằng chứng](evidence/summary.md) · [báo cáo lượt 1](eval/report.md) · [video demo](https://youtu.be/syBKNhpcIIE). Lượt 1 `run-1@20261128-005643`: **16/25 (64%), chưa đạt chuẩn**, gồm thuong 5/9, kho 6/11, tu_choi 5/5; còn bỏ sót xung đột B15/B22. `python run.py score eval/run-1.csv` cho đúng số này; 44/44 unittest và `check` đạt. Bằng chứng có 3 phỏng vấn đúng đối tượng, 9 ví dụ khảo sát và 2 trích dẫn phỏng vấn; thời lượng riêng từng buổi chưa ghi và impact chưa tính được. Dương xác nhận ngày 28/11/2026 đã xem video không đăng nhập. Bản này đang trên `CP3`; chưa ghi nhận merge `main` hoặc nộp form thành công; phần form do đội trưởng xử lý.
+
 *Lát cắt = kiểm tra danh sách linh kiện PC dự định mua theo catalog nhóm chuẩn bị ([data/components.json](data/components.json)) trên đúng 3 quan hệ: **CPU–mainboard** (socket, danh sách CPU hỗ trợ, điều kiện `min_bios`), **mainboard–RAM** (thế hệ DDR4/DDR5) và **GPU–vỏ máy** (chiều dài `mm` theo điều kiện lắp đặt `clearance_condition`).*
 
 > **Giới hạn & lưu ý an toàn:**
@@ -45,7 +47,7 @@ Gõ `dir` (Windows) hoặc `ls` (macOS / Linux): thấy `run.py` và `README.md`
 
 - Windows: gõ `python` mà mở Microsoft Store hoặc báo không có lệnh → dùng `py`. Chưa có Python: cài từ python.org, **tick "Add python.exe to PATH"**, mở lại PowerShell.
 - macOS: báo `command not found: python` là bình thường → dùng `python3`.
-- `python run.py` chạy từ thư mục gốc repo ở chế độ giả (`MODEL_PROVIDER=fake`, **không cần API key**, token vào/ra = `0`). Nối model thật (chặng CP3): [docs/connect-model.md](docs/connect-model.md).
+- Chưa có `.env`/biến môi trường thì `python run.py` dùng chế độ giả (`MODEL_PROVIDER=fake`, không cần key, token = 0). Bản CP3 dùng `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini` và `API_KEY` riêng trong `.env`; `.env.example` đã điền sẵn provider/model, không có key. Biến môi trường có sẵn được ưu tiên hơn `.env`.
 - **Đầu vào mẫu chạy thử với `python run.py`** (dán nguyên dòng sau rồi nhấn Enter):
   - Ca đủ thông tin (chưa phát hiện xung đột trong phạm vi đã kiểm):
     `CPU: AMD Ryzen 7 7800X3D; Main: ASUS TUF GAMING B650-PLUS WIFI; RAM: Kingston KF556C40BBK2-32; GPU: MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC; Case: NZXT H5 Flow (2024); BIOS: 1409; bố trí vỏ: Không lắp radiator mặt trước`
@@ -83,7 +85,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | `codebase/ai.py` | `call_model(system, user)` — chỗ duy nhất gọi model. Chưa điền `.env` thì chạy **chế độ giả** | 3.3 |
 
 - **Trước CP2:** để chế độ giả, công cụ trả dữ liệu giả — `python run.py` đi hết luồng là đủ.
-- **CP3 · bước 01 ([issue #12](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/12)):** `codebase/ai.py` đã có kết nối OpenRouter bằng thư viện chuẩn. Cấu hình `.env`: `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini`, `API_KEY=<key riêng>`. Biến môi trường được ưu tiên hơn `.env`; bỏ giá trị `MODEL_PROVIDER=fake` đã đặt ở terminal khi thử API thật. Các ví dụ hãng khác trong [docs/connect-model.md](docs/connect-model.md) chưa được triển khai. 35/35 kiểm thử cục bộ đạt với HTTP giả lập; đã xác nhận API/token thật, xem trạng thái thử kỹ thuật bên dưới. Chưa có lượt đánh giá chính thức.
+- **CP3 · bước 01 ([issue #12](https://github.com/tdisokay2/K5-Day15-L3A-LoiChoi/issues/12)):** `codebase/ai.py` đã có kết nối OpenRouter bằng thư viện chuẩn. Cấu hình `.env`: `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4.1-mini`, `API_KEY=<key riêng>`. Biến môi trường được ưu tiên hơn `.env`; bỏ giá trị `MODEL_PROVIDER=fake` đã đặt ở terminal khi thử API thật. Các ví dụ hãng khác trong [docs/connect-model.md](docs/connect-model.md) chưa được triển khai. Đã xác nhận API/token thật và có lượt 1 chính thức ở bảng dưới; kiểm thử tích hợp hiện tại 44/44 đạt.
 - Bộ chạy gửi **nguyên ô `input`** của câu thử vào `answer(text)`. Dữ liệu nền (bài học, thông báo, lịch…) để trong `data/`, đọc qua công cụ.
 
 ## Phần nào thật, phần nào giả

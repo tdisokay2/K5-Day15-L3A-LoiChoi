@@ -198,10 +198,10 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 - **Đặc thù lĩnh vực (lớp 4):** cùng socket chưa đủ để kết luận CPU–mainboard; phải có nguồn hỗ trợ và điều kiện BIOS. GPU–vỏ chỉ kiểm chiều dài ở đúng bố trí có căn cứ; DDR chỉ kiểm thế hệ. Luôn nêu PSU/tản nhiệt/QVL và các điều kiện ngoài phạm vi chưa được kiểm.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công) · metric: `eval/metric_spec.yaml` (5 metric)
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` tại `15183c9` — 25 câu (thuong 9 · kho 11 · tu_choi 5, trong đó 3 câu tấn công); 18/25 câu data_that · metric: `eval/metric_spec.yaml` (5 metric, giữ nguyên CP2)
 - *Chuẩn "đạt" và metric do Khánh soạn (issue #4); Dương (đội trưởng) duyệt ngày 27/11/2026, trước 19:30 — xác nhận qua tin nhắn nhóm, Khánh ghi lại (issue #9). Giữ nguyên đến 23:59 Thứ Bảy 28/11.*
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua (một câu qua khi đạt mọi metric áp dụng và đạt pass_criterion của câu), và đồng thời: 0 câu bỏ sót xung đột (`khong_bo_sot_xung_dot` 100%), 100% câu `tu_choi` qua, không có thông số/URL nào ngoài catalog (`can_cu_dung` 100%)."
-- Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **16/25 (64%), chưa đạt chuẩn** · run ID `run-1@20261128-005643`, Mini thật, code `7ab87c5`, catalog `09fac5b`, benchmark `15183c9`; 9883 token vào/2842 ra, 0 lỗi kỹ thuật. Theo loại: thuong 5/9, kho 6/11, tu_choi 5/5. Bỏ sót xung đột B15/B22, vi phạm điều kiện cứng; theo báo cáo chấm không thấy thông số/URL ngoài catalog. Lượt 2 chưa chạy, thuộc CP4. Chi tiết `eval/report.md`, hồ sơ `eval/README.md`; score đã chạy lại khi tổng hợp CP3.
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -215,6 +215,18 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
+
+**Tổng hợp CP3 — issue #20:** Canvas đã đối chiếu với bằng chứng mới ở §0–§2; thiết kế §3–§6 khớp code `7ab87c5`; thống kê/kết quả §7 cập nhật từ lượt 1 đã chấm, không đổi chuẩn đạt. Bằng chứng có 3 người phỏng vấn đúng đối tượng và 11 ví dụ/trích dẫn (9 khảo sát, 2 phỏng vấn); giả thuyết 2/3 chưa được ủng hộ (thực tế 1/3), khảo sát mới có 10/20 người đủ điều kiện. Thời lượng từng phỏng vấn chưa được ghi riêng, chỉ có khoảng 10–20 phút báo chung; chưa xác nhận khớp hướng dẫn 10–15 phút/người. Impact còn thiếu dữ liệu cùng định nghĩa.
+
+| Phần việc CP3 | Người phụ trách / bằng chứng review đã có | Trạng thái tổng hợp |
+|---|---|---|
+| Nguồn, phỏng vấn, khảo sát, catalog | Dũng — `evidence/summary.md`, P1–P3, `data/DATA_CARD.md`, `eval/README.md` mục 2 | 3 phỏng vấn, 20 phản hồi/10 qua sàng lọc, 12 linh kiện; giữ đúng giới hạn bằng chứng |
+| Benchmark/expected, tools | Khánh soạn, Thắng và Dương review B15–B25 theo hồ sơ `eval/README.md` | 25 câu khóa tại `15183c9`; file khung/metric không đổi |
+| Chấm lượt 1 | Khánh duyệt chấm nháp AI; Thắng rà B04/B15/B19/B22 và đồng ý 4/4 | 16/25 (64%), chưa đạt; không sửa output/trace hoặc expected |
+| Tích hợp và hồ sơ bản nộp | Dương; Codex đối chiếu CSV/trace, chạy score/check và 44 unittest khi làm #20 | Kết quả kỹ thuật xác nhận; chưa có xác nhận Khánh review README tổng hợp mới |
+| Video/thử chi phí | Thắng — README, `docs/cp3-demo.md`, `cost/personas.yaml` | Video có metadata công khai HTTP 200; Dương xác nhận ngày 28/11 đã xem được không đăng nhập. Thử 10 phiên do Thắng bàn giao; chưa có artifact mô phỏng trong Git |
+
+**Trạng thái nộp CP3:** đang chuẩn bị trên nhánh `CP3`, chưa ghi nhận PR/merge vào `main` hoặc đã nộp form. Repo/spec/evidence trên CP3 truy cập công khai HTTP 200 lúc tổng hợp; video `https://youtu.be/syBKNhpcIIE` có metadata công khai, Dương xác nhận xem được không đăng nhập; agent chưa tự đo độ dài 30 giây. Link form CP3 trong README BTC còn để trống khi kiểm ngày 28/11/2026; người dùng để phần form tự xử lý, không thao tác nộp trong phiên này. Đội trưởng dùng mã `2A202603524`, nộp trước 10:00 và ghi thời điểm thật. Không đóng issue #20 chỉ vì đã push.
 
 | Thành viên | Phần việc CP2 | Phối hợp / review | Chặng tiếp theo |
 |---|---|---|---|
@@ -251,6 +263,7 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 | 28/11/2026 · CP3 | Rà nguồn B15–B25 và ghi lưu ý cho câu B22 | Đối chiếu catalog và nguồn hãng. Mốc 322 mm của Terra áp dụng cho bố trí khác mốc 200 mm khi có radiator 120 mm. Ghi ở `eval/README.md`, giữ nguyên bộ câu thử đã chốt. |
 | 28/11/2026 00:19 (UTC+7) | Issue #15: sửa câu chữ expected, pass_criterion và source của riêng **B22** trong `eval/benchmark.csv`; trạng thái mong đợi giữ nguyên (gpu_case = conflict, kết luận chung = conflict) | Dũng rà nguồn (commit `6424980`): 322 mm là mốc Fractal Design công bố cho Terra không radiator, tiêu chí cũ gọi đó là "không phải thông số hãng" là sai sự thật. Sửa **trước lượt 1**, chưa có output nào; không đổi metric, §7 hay câu khác |
 | 28/11/2026 00:45 (UTC+7) | CP3 bước 06 / issue #17: tích hợp prompt nhận diện nguyên văn, xác thực alias duy nhất, metadata match_type, cách nói tương đương hẹp về radiator; CLI đúng model; hoàn thiện §3–§6 và README | Bước 01 đã gọi API thật nhưng agent còn bỏ alias và B02 thiếu kết luận GPU vì cách nói điều kiện vỏ. 44/44 unittest, check 25 câu đạt; smoke thật 7 ca mới nhất 2764/748 token, CLI 433/193 token, trace mới riêng và giữ lượt trước sửa. B15 vẫn hỏi lại tên quá ngắn, chưa đạt expected; bàn giao đánh giá thật, không sửa benchmark `15183c9`, catalog `09fac5b`, metric, §7 hoặc file khung |
+| 28/11/2026 04:23 (UTC+7) | CP3 bước 09 / issue #20: tổng hợp Canvas, README, thống kê/kết quả §7, review và trạng thái bản nộp §10; khai báo AI | Đối chiếu CSV/trace lượt 1: 16/25 (64%), 9883/2842 token, 0 lỗi; score/check và 44 unittest đạt. Bằng chứng 3 phỏng vấn/20 khảo sát, 10 qua sàng lọc; 11 ví dụ/trích dẫn, impact/thời lượng riêng còn thiếu. Dương xác nhận video xem không đăng nhập. File khung/metric/chuẩn CP2 giữ nguyên; không sửa kết quả/trace. PR/merge main và xác nhận nộp form còn chờ, không ghi đã hoàn tất |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

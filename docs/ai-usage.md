@@ -18,6 +18,8 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
 
+**Tổng hợp CP3 / issue #20:** Codex hỗ trợ cập nhật Canvas/spec/README theo hồ sơ Dũng/Khánh/Thắng đã bàn giao; chạy lại score 16/25 (64%), check và 44 unittest; đối chiếu CSV/trace, chuẩn CP2, tên tệp nhạy cảm và link công khai. Không chấm lại hoặc sửa kết quả lượt 1, không xác nhận thay người xem video hoặc nộp form. Dương phụ trách bản nộp, xác nhận review của nhóm và nộp form thực tế.
+
 **CP3 · bước 06 / issue #17:** Codex hỗ trợ tích hợp agent, prompt trích nguyên văn, metadata so khớp alias trong tools, so sánh cách nói tương đương hẹp về radiator, cập nhật CLI/spec/README và 9 kiểm thử hồi quy mới. Codex chạy 44/44 unittest, check bộ 25 câu, hai smoke API thật và CLI Mini thật, lưu nguyên kết quả/trace riêng. API lỗi được giả lập trong unittest; không tạo lỗi API thật để thử. Dương phụ trách đọc thay đổi và bàn giao Khánh đánh giá; chưa ghi nhận người khác review code mới. B15 còn hỏi lại và được báo đúng giới hạn; không sửa expected/metric/chuẩn đạt.
 
 **CP3 · bước 08 / issue #19:** Antigravity hỗ trợ dựng `cost/personas.yaml` theo bài toán PC (gắn rõ `(tự ước tính)` cho số chưa có nguồn công khai, tra giá OpenRouter `openai/gpt-4.1-mini` và `openai/gpt-4.1-nano` ngày 28/11/2026), soạn kịch bản video 30s (`docs/cp3-demo.md`), chạy `python run.py simulate --try --rate-from eval/run-1.csv` (`simulate-try@20261128-033519`, 0/10 lỗi, 9.520/2.680 token) và cập nhật `README.md`. Kiều Văn Thắng kiểm tra lại nguồn persona, giá model, kết quả chạy thử 10 phiên và trực tiếp quay/kiểm tra ẩn danh video 30s.
