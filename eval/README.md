@@ -9,7 +9,7 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 
 ## 2. Bộ câu thử dựng ra sao
 
-> Bộ câu thử CP2 (Khánh, issue #7). Dương đã duyệt ngày 27/11/2026 (qua tin nhắn nhóm). Dũng rà `source`: chưa ghi nhận. Thắng rà `expected` B01–B14 đối chiếu `codebase/tools.py`: khớp quy tắc tra cứu, 3 cặp kiểm tra, `insufficient_info` và ưu tiên `conflict`.
+> Bộ câu thử CP2 (Khánh, issue #7). Dương đã duyệt ngày 27/11/2026 (qua tin nhắn nhóm). Dũng rà cột `source` B01–B14 (đối chiếu linh kiện và URL hãng trong `data/components.json`, nhãn data_that/tu_viet): đã rà xong ngày 27/11/2026, xác nhận qua tin nhắn nhóm. Thắng rà `expected` B01–B14 đối chiếu `codebase/tools.py`: khớp quy tắc tra cứu, 3 cặp kiểm tra, `insufficient_info` và ưu tiên `conflict`.
 
 - `eval/benchmark.csv`: 14 câu (thuong 5 · kho 6 · tu_choi 3, trong đó 2 câu tấn công: B12, B13)
 - Nguồn: nguoi_dung 0 · data_that 10 · tu_viet 4 · sinh_seed 0 → từ người dùng / data thật 10/14 (cần ≥1/3). Câu `data_that` dựng từ thông số hãng trong catalog; B03, B04, B06 còn ghi tình huống khớp khảo sát S01, S07, S02 (câu 8). Chưa có câu nào lấy nguyên văn từ phỏng vấn vì chưa có bản ghi phỏng vấn.
