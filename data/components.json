@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0",
+  "components": [
+    {
+      "id": "amd-ryzen-5-5600",
+      "kind": "cpu",
+      "name": "AMD Ryzen 5 5600",
+      "manufacturer": "AMD",
+      "model": "Ryzen 5 5600",
+      "revision": null,
+      "aliases": [
+        "Ryzen 5 5600",
+        "R5 5600",
+        "100-100000927BOX",
+        "100-000000927"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "AM4"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.amd.com/en/support/downloads/drivers.html/processors/ryzen/ryzen-5000-series/amd-ryzen-5-5600.html",
+          "title": "AMD Ryzen 5 5600 — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "amd-ryzen-5-7600",
+      "kind": "cpu",
+      "name": "AMD Ryzen 5 7600",
+      "manufacturer": "AMD",
+      "model": "Ryzen 5 7600",
+      "revision": null,
+      "aliases": [
+        "Ryzen 5 7600",
+        "R5 7600",
+        "100-100001015BOX",
+        "100-000001015"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "AM5"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600.html",
+          "title": "AMD Ryzen 5 7600 — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "amd-ryzen-7-7800x3d",
+      "kind": "cpu",
+      "name": "AMD Ryzen 7 7800X3D",
+      "manufacturer": "AMD",
+      "model": "Ryzen 7 7800X3D",
+      "revision": null,
+      "aliases": [
+        "Ryzen 7 7800X3D",
+        "R7 7800X3D"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "AM5"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7800x3d.html",
+          "title": "AMD Ryzen 7 7800X3D — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "asus-tuf-gaming-b650-plus-wifi",
+      "kind": "mainboard",
+      "name": "ASUS TUF GAMING B650-PLUS WIFI",
+      "manufacturer": "ASUS",
+      "model": "TUF GAMING B650-PLUS WIFI",
+      "revision": null,
+      "aliases": [
+        "TUF B650-PLUS WIFI"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "AM5",
+        "memory_type": "DDR5",
+        "cpu_support": [
+          {
+            "cpu_id": "amd-ryzen-7-7800x3d",
+            "min_bios": "1409",
+            "source_ids": [
+              "cpu-support"
+            ]
+          }
+        ],
+        "cpu_support_complete": false
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-plus-wifi/techspec/",
+          "title": "ASUS TUF GAMING B650-PLUS WIFI — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket",
+            "specs.memory_type"
+          ]
+        },
+        {
+          "id": "cpu-support",
+          "url": "https://www.asus.com/us/supportonly/tuf%20gaming%20b650-plus%20wifi/helpdesk_cpu/",
+          "title": "ASUS TUF GAMING B650-PLUS WIFI — CPU Support",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.cpu_support",
+            "specs.cpu_support.min_bios"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "asus-tuf-gaming-b760m-plus-wifi-d4",
+      "kind": "mainboard",
+      "name": "ASUS TUF GAMING B760M-PLUS WIFI D4",
+      "manufacturer": "ASUS",
+      "model": "TUF GAMING B760M-PLUS WIFI D4",
+      "revision": null,
+      "aliases": [
+        "TUF B760M-PLUS WIFI D4",
+        "ASUS B760M",
+        "B760M"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "LGA1700",
+        "memory_type": "DDR4",
+        "cpu_support": null,
+        "cpu_support_complete": false
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b760m-plus-wifi-d4/techspec/",
+          "title": "ASUS TUF GAMING B760M-PLUS WIFI D4 — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket",
+            "specs.memory_type"
+          ]
+        }
+      ],
+      "missing_fields": [
+        "specs.cpu_support"
+      ]
+    },
+    {
+      "id": "asus-tuf-gaming-b760m-plus-wifi",
+      "kind": "mainboard",
+      "name": "ASUS TUF GAMING B760M-PLUS WIFI",
+      "manufacturer": "ASUS",
+      "model": "TUF GAMING B760M-PLUS WIFI",
+      "revision": null,
+      "aliases": [
+        "ASUS B760M",
+        "B760M"
+      ],
+      "synthetic": false,
+      "specs": {
+        "socket": "LGA1700",
+        "memory_type": "DDR5",
+        "cpu_support": null,
+        "cpu_support_complete": false
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b760m-plus-wifi/techspec/",
+          "title": "ASUS TUF GAMING B760M-PLUS WIFI — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.socket",
+            "specs.memory_type"
+          ]
+        }
+      ],
+      "missing_fields": [
+        "specs.cpu_support"
+      ]
+    },
+    {
+      "id": "kingston-kf432c16bbk2-16",
+      "kind": "ram",
+      "name": "Kingston KF432C16BBK2/16",
+      "manufacturer": "Kingston",
+      "model": "KF432C16BBK2/16",
+      "revision": null,
+      "aliases": [
+        "Kingston FURY Beast"
+      ],
+      "synthetic": false,
+      "specs": {
+        "memory_type": "DDR4"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.kingston.com/unitedkingdom/en/memory/search/?partid=KF432C16BBK2%2F16",
+          "title": "Kingston KF432C16BBK2/16 — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.memory_type"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "kingston-kf556c40bbk2-32",
+      "kind": "ram",
+      "name": "Kingston KF556C40BBK2-32",
+      "manufacturer": "Kingston",
+      "model": "KF556C40BBK2-32",
+      "revision": null,
+      "aliases": [
+        "Kingston FURY Beast"
+      ],
+      "synthetic": false,
+      "specs": {
+        "memory_type": "DDR5"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.kingston.com/en/memory/search?partId=KF556C40BBK2-32",
+          "title": "Kingston KF556C40BBK2-32 — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.memory_type"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "msi-rtx-4060-ventus-2x-black-8g-oc",
+      "kind": "gpu",
+      "name": "MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC",
+      "manufacturer": "MSI",
+      "model": "GeForce RTX 4060 VENTUS 2X BLACK 8G OC",
+      "revision": null,
+      "aliases": [
+        "RTX 4060 VENTUS 2X BLACK 8G OC"
+      ],
+      "synthetic": false,
+      "specs": {
+        "length_mm": 199
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.msi.com/Graphics-Card/GeForce-RTX-4060-VENTUS-2X-BLACK-8G-OC/Specification",
+          "title": "MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.length_mm"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "asus-proart-rtx4080s-o16g",
+      "kind": "gpu",
+      "name": "ASUS PROART-RTX4080S-O16G",
+      "manufacturer": "ASUS",
+      "model": "PROART-RTX4080S-O16G",
+      "revision": null,
+      "aliases": [
+        "ASUS ProArt RTX 4080 SUPER OC"
+      ],
+      "synthetic": false,
+      "specs": {
+        "length_mm": 300
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://www.asus.com/my/motherboards-components/graphics-cards/proart/proart-rtx4080s-o16g/techspec/",
+          "title": "ASUS PROART-RTX4080S-O16G — thông số",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.length_mm"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "nzxt-h5-flow-2024",
+      "kind": "case",
+      "name": "NZXT H5 Flow (2024)",
+      "manufacturer": "NZXT",
+      "model": "H5 Flow (2024)",
+      "revision": "2024",
+      "aliases": [
+        "H5 Flow 2024"
+      ],
+      "synthetic": false,
+      "specs": {
+        "max_gpu_length_mm": 410,
+        "clearance_condition": "Không lắp radiator mặt trước"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://support.nzxt.com/hc/en-us/articles/47061130443291-What-is-the-maximum-GPU-length-for-the-H5-Flow-2024",
+          "title": "NZXT H5 Flow (2024) — giới hạn GPU",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.max_gpu_length_mm",
+            "specs.clearance_condition"
+          ]
+        }
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "fractal-design-terra",
+      "kind": "case",
+      "name": "Fractal Design Terra",
+      "manufacturer": "Fractal Design",
+      "model": "Terra",
+      "revision": null,
+      "aliases": [
+        "Fractal Terra"
+      ],
+      "synthetic": false,
+      "specs": {
+        "max_gpu_length_mm": 200,
+        "clearance_condition": "Có lắp radiator 120 mm"
+      },
+      "sources": [
+        {
+          "id": "spec",
+          "url": "https://support.fractal-design.com/support/solutions/articles/4000194849",
+          "title": "Fractal Design Terra — giới hạn GPU",
+          "accessed_on": "2026-11-27",
+          "fields": [
+            "specs.max_gpu_length_mm",
+            "specs.clearance_condition"
+          ]
+        }
+      ],
+      "missing_fields": []
+    }
+  ]
+}

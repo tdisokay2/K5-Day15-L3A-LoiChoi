@@ -1,48 +1,28 @@
-# Tổng hợp bằng chứng pain
+# Tổng hợp bằng chứng nhu cầu · CP2
 
-> Điền ở guide bước 1.2, xong trước **CP3 10:00 Thứ Bảy 28/11**. Chấm ở rubric R1.
-> Ba nguồn ngang nhau — tối thiểu **≥1 nguồn đạt ngưỡng**. Mạnh nhất: đào data ra insight → hỏi người dùng để kiểm lại (hoặc ngược lại).
+Giả thuyết được ghi trước khi phỏng vấn ở [hypothesis.md](hypothesis.md). Người dùng mục tiêu là sinh viên ngoài nhóm đã tự chọn linh kiện cho máy tính để bàn lần đầu, ưu tiên lần chọn trong 30 ngày gần nhất.
 
-## 1. Nguồn đã dùng
+## Tiến độ thu thập
 
-| Nguồn | Đạt ngưỡng? | File |
+| Nguồn | Tiến độ ghi nhận trong repo | Ngưỡng theo guide |
 |---|---|---|
-| Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☐ | `evidence/data-mining.md` |
-| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/interviews/P1.md`… |
-| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/survey/` |
+| Phỏng vấn | 0 bản ghi. Tình trạng đã liên hệ, đã hẹn hoặc đang chờ phản hồi chưa có ghi nhận. | Ít nhất 3 người đúng vai |
+| Khảo sát | Chưa có phản hồi trong repo | Ít nhất 20 người đúng vai |
+| Đào dữ liệu hành vi | Chưa có tập dữ liệu hành vi đã phân tích | Có mẫu số, cách đếm chạy lại được và ví dụ có nguồn |
 
-## 2. Số chính
+Chưa có mẫu để báo tỷ lệ, số phút hoặc trích dẫn người dùng. Kết quả pain và impact ở spec §1–§2 đang chờ phỏng vấn. [Guide của BTC, bước 1.2](https://github.com/VinUni-AI20k/K5-L3-Day15-AI-Product-Hackathon/blob/main/02-guide.md)
 
-- Đào data: __/__ (__%) …
-- Phỏng vấn: __/3 người gặp *(n nhỏ không ghi %)* · số lần / tháng: P1 __, P2 __, P3 __ · mỗi lần mất __–__ phút
-- Khảo sát: n = __ · __/__ (__%) …
+## Dẫn chứng kỹ thuật đã kiểm
 
-Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
+- ASUS có hai phiên bản B760M-PLUS WIFI dùng DDR4 và DDR5 khác nhau. Tên “B760M” còn thiếu chi tiết để chốt một mã. [Bảng so sánh của ASUS](https://www.asus.com/us/product-compare?LevelId=Motherboards-Components-Motherboards&ProductID=22497%2C22366)
+- ASUS ghi Ryzen 7 7800X3D được xác nhận từ BIOS 1409 trên TUF GAMING B650-PLUS WIFI. Socket khớp vẫn cần xem điều kiện BIOS. [Danh sách CPU hỗ trợ của ASUS](https://www.asus.com/us/supportonly/tuf%20gaming%20b650-plus%20wifi/helpdesk_cpu/)
+- NZXT công bố H5 Flow (2024) hỗ trợ GPU dài tối đa 410 mm và ghi rõ radiator mặt trước có thể giảm khoảng trống. [Hướng dẫn của NZXT](https://support.nzxt.com/hc/en-us/articles/47061130443291-What-is-the-maximum-GPU-length-for-the-H5-Flow-2024)
 
-| | Vai | Gặp pain? | Số lần / 1 tháng qua | Lần gần nhất mất | Đang xoay xở bằng |
-|---|---|---|---|---|---|
-| P1 | | | | | |
-| P2 | | | | | |
-| P3 | | | | | |
+Các nguồn hãng kiểm chứng quy tắc kỹ thuật và có thể dùng dựng ca thử cho Khánh. Tần suất người mới vướng từng tình huống vẫn là câu hỏi phỏng vấn.
 
-## 3. ≥5 trích dẫn hoặc ví dụ nguyên văn (có nguồn, bỏ tên)
+## Cách thu thập và bàn giao
 
-1. "…" — P_ / dòng data __ / phiếu khảo sát __
-2.
-3.
-4.
-5.
-
-## 4. Các nguồn có khớp nhau không
-
-Data nói __; người dùng nói __. Khớp / lệch ở đâu, vì sao: __
-
-## 5. Kết luận
-
-Giả thuyết ở `evidence/hypothesis.md`: **đúng / sai / phải đổi** — vì __. Điều vẫn chưa biết: __
-
-## Lịch hẹn (dùng cho CP2 — chỉ ghi vai và giờ, không tên)
-
-| Vai | Giờ hẹn | Đã xong? |
-|---|---|---|
-| | | |
+- Mỗi thành viên tìm người phù hợp ngoài nhóm. Dũng ghi vai, giờ hẹn và trạng thái thực tế, rồi tổng hợp theo mẫu [ghi chép phỏng vấn](interviews/TEMPLATE.md).
+- Hỏi về lần chọn cấu hình gần nhất trước khi nhắc tới công cụ hay tương thích. Nếu được đồng ý, xin danh sách linh kiện đã bỏ tên, số điện thoại, mã đơn và thông tin riêng tư.
+- Lưu trích dẫn nguyên văn khi được phép. Với mỗi người, ghi số lần gặp trong 30 ngày và thời gian lần gần nhất, hoặc ghi “không nhớ”. Đếm mỗi người đủ tiêu chí một lần và báo x/N theo số bản ghi thực tế.
+- Dương có thể dùng số 0 bản ghi để cập nhật tiến độ Canvas. Sau khi có ghi chép thật, bàn giao mẫu số, số người gặp, một trích dẫn đã ẩn danh và điều còn thiếu.
