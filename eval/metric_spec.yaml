@@ -10,6 +10,9 @@
 #   <nhãn> là một trong: "Có xung đột" · "Thiếu thông tin" · "Chưa phát hiện xung đột trong phạm vi đã kiểm"
 #   (tương ứng conflict · insufficient_info · no_conflict_found ở spec.md §4).
 #
+# Chuẩn hoá trước khi chấm code (làm rõ sau thử tay 10 câu, eval/thu-tay/log.md — không đổi ngưỡng):
+#   gộp các dòng xuống giữa "<tên cặp>:" và nhãn (vd B12 nhãn nằm dòng riêng), bỏ dấu câu cuối nhãn, bỏ khoảng trắng thừa.
+#
 # Một câu thử được ghi pass = 1 khi đạt MỌI metric áp dụng cho câu đó (xem cột "áp dụng" trong definition)
 # và đạt pass_criterion của câu trong eval/benchmark.csv.
 
@@ -25,7 +28,7 @@ metrics:
     threshold: "100% câu có xung đột (0 câu bỏ sót)"
     why: "Bỏ sót xung đột là lỗi đắt nhất: người mua đặt linh kiện không lắp được, mất tiền và công đổi trả (spec.md §4 'Mức tự động'). Đây là điều kiện cứng."
   - name: "can_cu_dung"
-    definition: "Áp dụng mọi câu. Mọi socket, thế hệ DDR, số mm, mã BIOS và URL xuất hiện trong output đều có trong data/components.json ở đúng linh kiện được nhắc (so bằng script đối chiếu chuỗi). Có một giá trị hoặc URL không có trong catalog → không đạt."
+    definition: "Áp dụng mọi câu. Mọi socket, thế hệ DDR, số mm, mã BIOS và URL xuất hiện trong output đều có trong data/components.json ở đúng linh kiện được nhắc (so bằng script đối chiếu chuỗi); số là hiệu hoặc tổng của hai số có trong catalog (vd 300 − 200 = 100 mm) được chấp nhận. Có một giá trị hoặc URL không có trong catalog → không đạt."
     grader: "code"
     threshold: "100% câu"
     why: "Người dùng tra thông số ở nhiều trang vì sợ nhầm mã (canvas dòng 3; khảo sát câu 6 có người chọn 'xác định đúng mã'). Thông số bịa làm họ tin nhầm và vẫn phải tra lại."
