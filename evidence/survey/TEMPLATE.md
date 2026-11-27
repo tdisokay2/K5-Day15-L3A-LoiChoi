@@ -25,4 +25,3 @@ Không thu tên, email, mã học viên trong form (trừ câu 8 nếu người 
 - `questions.md` — nguyên bộ câu hỏi + kênh đã gửi + giờ mở / chốt.
 - `results.csv` — bản xuất **đã xoá** mọi cột nhận ra người trả lời. Bản gốc còn thông tin cá nhân thì **không** commit.
 - Số chính + ≥3 câu trả lời nguyên văn → chép vào `evidence/summary.md`. Dưới khoảng 10 người thì chỉ ghi x/n, không ghi %.
-
