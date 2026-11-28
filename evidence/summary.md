@@ -1,4 +1,4 @@
-# Tổng hợp bằng chứng nhu cầu · CP3
+# Tổng hợp bằng chứng nhu cầu · CP3 và CP4
 
 Giả thuyết được ghi trước khi phỏng vấn ở [hypothesis.md](hypothesis.md). Người dùng mục tiêu là sinh viên ngoài nhóm đã tự chọn linh kiện cho máy tính để bàn lần đầu, ưu tiên lần chọn trong 30 ngày gần nhất.
 
@@ -8,7 +8,7 @@ Bằng chứng CP3 có **3 cuộc phỏng vấn thật với sinh viên đúng �
 
 | Nguồn | Tiến độ ghi nhận trong repo | Ngưỡng theo guide |
 |---|---|---|
-| Phỏng vấn | 3 sinh viên ngoài nhóm, lần chọn hoặc rà trong 30 ngày qua. Nhóm báo khoảng 10–20 phút mỗi cuộc, chưa ghi thời lượng riêng. | Đủ 3 người đúng vai. Hướng dẫn dự kiến 10–15 phút/người. |
+| Phỏng vấn | 3 sinh viên ngoài nhóm, lần chọn hoặc rà trong 30 ngày qua. CP3 ghi khoảng chung 10–20 phút. CP4 xác nhận thời lượng riêng ở mục bên dưới. | Đủ 3 người đúng vai. Hướng dẫn dự kiến 10–15 phút/người. |
 | Khảo sát | 20 phản hồi. Câu 1 có 10 “Có”, 9 “Không” và 1 “Không chắc chắn”. | 10/20 người đúng vai, còn thiếu 10 phản hồi đủ điều kiện |
 | Đào dữ liệu hành vi | Chưa có tập dữ liệu hành vi đã phân tích | Có mẫu số, cách đếm chạy lại được và ví dụ có nguồn |
 
@@ -67,8 +67,20 @@ P2 không đồng ý trích nguyên văn.
 
 Phiếu P1 ghi 2 lần và 40 phút, chưa xác định 40 phút có phải thời gian tăng thêm do đổi mainboard. P2 ghi 0 lần và 5 phút, chưa rõ 5 phút thuộc bước rà thường lệ hay phát sinh. P3 kể một lần đổi do hết hàng và không nhớ số phút. Chưa đủ số liệu cùng định nghĩa để tính impact theo phút/người/tháng.
 
+## Xác nhận bổ sung cho CP4 · 28/11/2026
+
+Nguồn là thông tin Dũng cung cấp sau khi hỏi lại P1–P3. Số CP3 ở trên được giữ để truy lịch sử. Kết quả phỏng vấn vẫn là **1/3 người báo vướng tương thích**. Thời lượng xác nhận của các buổi phỏng vấn ban đầu là **P1 20 phút, P2 20 phút, P3 25 phút**. Cả ba buổi dài hơn khoảng 10–15 phút trong hướng dẫn.
+
+| Phiếu | Số lần trong 30 ngày | Thời gian lần gần nhất |
+|---|---|---|
+| [P1](interviews/P1.md) | **3 lần vướng tương thích**, cập nhật từ số 2 lần ghi tại CP3. | **Khoảng 30 phút phát sinh cho cả 3 lần** theo hồi tưởng. **40 phút** là tổng thời gian rà và xử lý ở lần gần nhất. P1 còn nhắc **khoảng 20 phút** khi nói về việc tra lại, chưa rõ thuộc lần nào. |
+| [P2](interviews/P2.md) | **0 lần vướng tương thích**. | **5 phút rà thường lệ**, **0 phút phát sinh** ở lần được kể. |
+| [P3](interviews/P3.md) | **1 lần đổi linh kiện do hết hàng**. Chưa ghi nhận vướng tương thích. | **10 phút tổng thời gian đổi linh kiện và rà lại**. Chưa tách được phần thời gian tăng thêm do hết hàng. |
+
+**Impact thời gian do tương thích trong mẫu:** 1 người báo vướng × 3 lần trong 30 ngày × khoảng 10 phút trung bình/lần = **khoảng 30 phút trong 30 ngày**. Trung bình 10 phút/lần được tính từ tổng 30 phút P1 tự báo chia cho 3 lần. Chưa có thời gian tách riêng theo từng lần. Câu 9 khảo sát còn mâu thuẫn, nên chưa có căn cứ suy rộng tần suất, quy mô người gặp hoặc ROI.
+
 ## Bàn giao
 
-- **Dương:** bàn giao 3 phỏng vấn đúng đối tượng, 1/3 có bước phát sinh do tương thích, 9 ví dụ khảo sát và 2 trích dẫn phỏng vấn. Khảo sát có 20 phản hồi, 10 qua sàng lọc, 8/10 báo phát sinh. Impact chưa tính được.
-- **Thắng:** câu 9 khảo sát còn mâu thuẫn với câu 2 hoặc câu 7 và thiếu câu 10. Thời gian trong ba phiếu phỏng vấn chưa cùng định nghĩa để dùng cho persona.
+- **Dương:** bàn giao 3 phỏng vấn đúng đối tượng, 1/3 có bước phát sinh do tương thích, 9 ví dụ khảo sát và 2 trích dẫn phỏng vấn. Khảo sát có 20 phản hồi, 10 qua sàng lọc, 8/10 báo phát sinh. Impact trong mẫu là khoảng 30 phút/30 ngày theo hồi tưởng của P1.
+- **Thắng:** dùng 3 lần/30 ngày và trung bình khoảng 10 phút phát sinh/lần như số liệu tham chiếu của riêng P1. Mô phỏng hiện dùng quy mô 100/300/800 người dùng mỗi tháng và 1/2/4 lượt dùng mỗi người mỗi tháng theo persona. Ghi rõ đây là giả định mô phỏng. Câu 9 khảo sát hỏi số lần phát sinh do tương thích, có phản hồi mâu thuẫn và chưa đo lượt dùng công cụ. Chưa có số liệu về quy mô thực hoặc số phút tiết kiệm để chứng minh ROI. [Cấu hình persona](../cost/personas.yaml)
 - **Khánh:** phiếu P1 gợi ý tình huống sai socket sau khi mua. Câu 8 của S01 (RAM), S09 (GPU–vỏ) và S12 (CPU–mainboard) gợi ý các tình huống khác. Dùng mã linh kiện và nguồn hãng ở Data Card cho các ca dựa trên thông số. [Data Card](../data/DATA_CARD.md)
