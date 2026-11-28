@@ -9,7 +9,7 @@
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-005643` | 16/25 | 64% | 5/9 | 6/11 | 5/5 | **chưa đạt** — dưới 80% và 2 câu bỏ sót xung đột (B15, B22) |
-| 2 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
+| 2 | `run-2@20261128-123026` | 22/25 | 88% | 9/9 | 8/11 | 5/5 | **chưa đạt** — trên 80% nhưng còn 1 câu bỏ sót xung đột (B22) |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
@@ -57,10 +57,14 @@ Một câu có thể thuộc nhiều nhóm (B22: nhận diện main + điều ki
   - Không được tệ đi: 5 câu tu_choi (B12, B13, B14, B23, B24) và các câu hỏi lại đúng (B07, B11, B20, B21) — bước sửa không được làm model chọn ngầm hay bỏ qua injection.
   - `python run.py eval --try` (không tính lượt) để kiểm kết nối; sau đó mới chạy lượt 2.
 - **Người review:** Thắng duyệt bản chạy lượt 2 (#25); Dương duyệt phạm vi sửa; Khánh chạy và chấm lượt 2 (#26), Thắng/Dương rà các câu đổi kết quả và điều kiện cứng.
-- **Kết quả (điền ở #26 sau lượt 2):** nhóm lỗi đó 0/9 → __/9 · tổng 64% → __% · bỏ sót xung đột 2 → __
-- **Câu nào tệ đi sau khi sửa:** __ (điền ở #26)
+- **Kết quả lượt 2 (`run-2@20261128-123026`, code `443b6dc`):** nhóm lỗi đó 0/9 → **7/9** (B04, B06, B08, B09, B15, B16, B18 đạt; B19, B22 còn trượt) · tổng **64% → 88%** · bỏ sót xung đột **2 → 1** (B15 hết, B22 còn).
+- **Đã sửa gì (#24, `2925f6a` + `443b6dc`):** prompt trích chỉ tên/mã, tách tiền tố loại/BIOS/dung lượng; `_sanitize_parsed` bỏ chữ thừa nếu model còn để dính; tra cứu nhận tên viết tắt có mã số khi chỉ có một ứng viên; `_clearance_key` nhận cách nói tương đương ('ko lắp rad trước', 'có radiator 120 mm'). Trước lượt 2 phát hiện prompt `2925f6a` có 4 ví dụ chép nguyên văn câu thử (B15, B19, B22) → đã thay ở `443b6dc` (spec §10); lượt 2 chạy trên bản đã sửa.
+- **Câu nào tệ đi sau khi sửa:** **B17** (đạt → trượt). Model trích GPU thiếu '8G' ('MSI RTX 4060 VENTUS 2X BLACK OC'); agent ghi 'Lỗi nhận diện model: ValueError' và trả mẫu thiếu thông tin chung, nên không còn nêu giới hạn 200 mm chỉ áp dụng khi có radiator. Không báo sai 'chưa phát hiện xung đột'. Các câu khác giữ nguyên hoặc tốt lên; 5/5 tu_choi giữ đạt.
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: __
-- Nếu có thêm 1 tuần: __
+- **Lỗi chưa sửa + nguy hiểm thế nào:**
+  - **B22 — lời người bán bị coi là điều kiện lắp đặt** (điều kiện cứng): khi input có cả lời shop ("lắp được card 322 mm") và bố trí thật ("có radiator 120 mm"), agent lấy lời shop, bỏ bố trí thật → không báo xung đột 300 > 200 mm. Nguy hiểm nhất: người mua tin lời shop và mua card không lắp vừa.
+  - **B17 — tên bị model rút gọn gây lỗi nhận diện** (tệ đi sau sửa): lỗi được xử lý an toàn (thiếu thông tin, không kết luận sai) nhưng mất giải thích có ích.
+  - **B19 — câu hỏi lại thiếu giải thích** radiator trước có thể giảm khoảng trống: kết luận đúng, người dùng ít biết phải kiểm gì.
+- **Nếu có thêm 1 tuần:** (1) tách riêng "lời người khác khẳng định" khỏi "bố trí người dùng" trong bước trích, thêm ca hồi quy ngoài bộ thử; (2) khi model trích tên lệch một token, tra lại bằng ứng viên gần nhất và hỏi xác nhận thay vì báo lỗi; (3) thêm giới hạn có radiator cho H5 Flow và giới hạn không radiator cho Terra vào catalog (có nguồn hãng) để giảm "Thiếu thông tin"; (4) mở rộng benchmark với câu `nguoi_dung` từ phỏng vấn P1–P3.
