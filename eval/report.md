@@ -42,6 +42,8 @@ Một câu có thể thuộc nhiều nhóm (B22: nhận diện main + điều ki
 
 ### Kế hoạch (chốt ở #22, trước khi sửa code — chưa có kết quả lượt 2)
 
+> Cả nhóm (Dương, Dũng, Thắng, Khánh) đã đọc lỗi và xác nhận chọn nhóm lỗi này ngày 28/11/2026 (qua tin nhắn nhóm), trước khi Dương sửa ở #24.
+
 - **Nhắm vào nhóm lỗi:** *nhận diện linh kiện và ngữ cảnh làm mất thông tin kiểm* — gộp nhóm "dính tiền tố/hậu tố", "tên viết tắt" và "điều kiện vỏ so theo chuỗi" vì cùng một chỗ hỏng (bước trích + tra trước checker). Phủ cả 9 câu trượt: B04, B06, B08, B09, B15, B16, B18, B19, B22.
 - **Vì sao đau nhất với người dùng:** đây là nhóm duy nhất gây **bỏ sót xung đột** (B15, B22) — người mua thấy "Thiếu thông tin", tưởng chỉ cần bổ sung mã, trong khi cấu hình có linh kiện không lắp được. Đúng pain gốc: người mới phải tra lại vì tên/mã dễ nhầm (`evidence/summary.md`). Các nhóm còn lại không làm sai kết luận.
 - **Giả thuyết:** nếu tách được *đúng mã sản phẩm* và *đúng điều kiện lắp đặt* trước khi tra, checker (vốn đúng) sẽ nhận đủ linh kiện → cặp đúng trạng thái, xung đột đã biết không bị che. Không hứa tỷ lệ cải thiện khi chưa đo.
