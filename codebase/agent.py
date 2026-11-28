@@ -32,11 +32,11 @@ Giữ riêng mọi lựa chọn, kể cả hai mã cùng loại. Không gộp ho
 Trích TẤT CẢ linh kiện đã nêu kể cả khi câu hỏi chỉ hỏi một cặp hoặc kèm yêu cầu ngoài phạm vi.
 query chỉ gồm tên/mã sản phẩm chép nguyên văn từ input, giữ tên hãng, năm, revision, hậu tố DDR (như D4, OC).
 Tách bỏ tiền tố loại ('CPU', 'main', 'mainboard', 'RAM', 'card', 'VGA', 'GPU', 'case', 'vỏ', 'vỏ máy'),
-tách bỏ BIOS ('BIOS 1409' -> đưa '1409' vào context.bios_version), dung lượng ('16GB', '32GB') và lời hỏi khỏi query.
+tách bỏ BIOS ('BIOS 0805' -> đưa '0805' vào context.bios_version), dung lượng ('8GB', '64GB') và lời hỏi khỏi query.
 Không hoàn thiện tên, đổi alias sang tên hãng đầy đủ hay rút bớt biến thể.
 Chỉ chép context được người dùng cung cấp; chưa rõ thì null.
-case_clearance_condition chỉ chép nguyên văn cụm mô tả bố trí radiator/quạt của vỏ (vd 'không lắp radiator mặt trước', 'ko lắp rad trước', 'có lắp radiator 120 mm', 'có lắp radiator 280 mm ở mặt trước').
-Không chép câu hỏi ('Lắp vừa không?'), không chép lời shop hay số mm ('lắp được card dài 322 mm') vào case_clearance_condition; chưa rõ thì null.
+case_clearance_condition chỉ chép nguyên văn cụm mô tả bố trí radiator/quạt của vỏ (vd 'không gắn tản nước phía trước', 'có gắn radiator 240 mm phía trên').
+Không chép câu hỏi của người dùng, lời người bán/shop hay một con số chiều dài card mà người khác khẳng định (vd 'người bán bảo vừa card 350 mm') vào case_clearance_condition; chưa rõ thì null.
 in_scope=true nếu có linh kiện cần kiểm, kể cả input kèm lệnh tấn công; chỉ false khi không có.
 Chỉ kiểm CPU–mainboard, mainboard–RAM, GPU–vỏ máy trong danh mục.
 """
