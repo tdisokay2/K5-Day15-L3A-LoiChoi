@@ -282,6 +282,7 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 
 | 28/11/2026 13:04 (UTC+7) | CP4 #29: tổng hợp spec §0–§9, Canvas, README máy mới và khai báo AI; hoàn thiện an toàn theo code thực tế, số lượt 1→2, impact và mô phỏng | Issue #22–#28 đã đóng. Score lượt 2 22/25, vẫn chưa đạt vì B22; 49 unittest/check đạt. Chỉ đóng dấu nháy ghi_chu B06/B09/B16/B18 trong CSV để đọc đúng cột, giữ nguyên điểm/output/số đo và đối chiếu trace. 50 phiên/138 call/74854 vào/18990 ra khớp trace; tính lại bảng tiền ngoại tuyến, không sửa summary/trace gốc. Nêu rõ giả định Nano/users/tần suất/tỷ giá, impact riêng P1, bản thử người dùng cũ và review tài liệu mới còn chờ. Không đổi code, chuẩn, metric, benchmark hoặc dữ liệu nguồn |
 | 28/11/2026 13:08 (UTC+7) | Ghi nhận review tài liệu #29 tại `a8c37cc` | Dương xác nhận đã hoàn tất review của Khánh/Dũng/Thắng trong cuộc trò chuyện hỗ trợ. Commit `a8c37cc` đã kiểm có trên GitHub nhánh CP4. Chỉ cập nhật trạng thái review, không đổi số đo/code/chuẩn; merge và nộp CP4 vẫn thuộc #31 |
+| 28/11/2026 14:16 (UTC+7) | CP4 #30: thêm video demo CP4 https://youtu.be/CnhJdD9oC0c (code `443b6dc`, `openai/gpt-4.1-mini`) vào README, `slides/outline.md`, `docs/cp4-demo.md`; giữ video CP3 làm dự phòng | Video CP3 quay trước cải tiến CP4; video mới quay trên đúng bản dùng cho lượt 2. `demo-slides.pdf` trang 4 chưa xuất lại nên còn link CP3 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

@@ -121,7 +121,12 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 | Thử mô phỏng chi phí 10 phiên (`simulate --try`) | **Thật** (`simulate-try@20261128-033519`) | 10 phiên trên `openai/gpt-4.1-mini` (`--rate-from eval/run-1.csv`): 24 lượt gọi, 9.520 token vào / 2.680 token ra, 0/10 lỗi. Đây là chạy thử CP3, chưa phải bản `≥50` phiên / CP4 |
 | Đánh giá lượt 2 (`eval/run-2.csv`) | **Thật** | `run-2@20261128-123026`, 22/25 (88%), 13458/2999 token, 0 lỗi; vẫn chưa đạt do B22. Chỉ sửa dấu nháy ghi_chu ở 4 dòng để CSV đọc đúng, giữ nguyên output/điểm/số đo |
 | Mô phỏng ≥50 phiên | **Thật — 50 phiên** | `simulate-1@20261128-124358`; artifact CSV/summary/trace đã lưu. Bảng tiền tính lại khớp sau sửa định dạng ghi_chu của run-2; summary gốc giữ nguyên cảnh báo model từ CSV cũ |
-| Slide/video dự phòng CP4 | **Theo bước 09 / #30** | Không coi kịch bản hoặc video CP3 là đã kiểm bản demo CP4; xác nhận ở bước chốt #31 |
+| Slide/video dự phòng CP4 | **Thật** | Video CP4 quay trên code `443b6dc`, `openai/gpt-4.1-mini`: https://youtu.be/CnhJdD9oC0c ([docs/cp4-demo.md](docs/cp4-demo.md)). Slide `demo-slides.pdf` trang 4 vẫn ghi link video CP3 cho đến khi xuất lại; video CP3 giữ làm dự phòng thứ hai |
+
+### Video demo CP4 (~1 phút 31 giây)
+
+- **Bản chạy:** code `443b6dc` · model `openai/gpt-4.1-mini` · **Kịch bản:** [docs/cp4-demo.md](docs/cp4-demo.md)
+- **Link video (YouTube Không công khai):** https://youtu.be/CnhJdD9oC0c
 
 ### Video demo CP3 (~30 giây)
 
@@ -164,5 +169,5 @@ Nhóm sử dụng coding agent (Claude Code / Antigravity / Codex) để hỗ tr
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: https://youtu.be/syBKNhpcIIE |
+| 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video CP4: https://youtu.be/CnhJdD9oC0c (dự phòng CP3: https://youtu.be/syBKNhpcIIE) |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
