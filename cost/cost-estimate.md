@@ -2,6 +2,8 @@
 
 > Điền từ kết quả chạy thật `python run.py simulate --rate-from eval/run-2.csv` (lượt `simulate-1@20261128-124358`, 50 phiên, không sửa số khung sinh).
 
+**Đối chiếu khi tổng hợp #29:** mô phỏng có 50 phiên/138 lời gọi Mini, 74854 token vào/18990 ra, khớp `traces/simulate-1.jsonl`. Summary gốc có cảnh báo model khác do ghi_chu của run-2 thiếu dấu nháy quanh dấu phẩy tại B06/B09/B16/B18. Đã sửa riêng cách ghi CSV của ghi_chu, đối chiếu mọi output/token/model/call với trace, giữ nguyên điểm 22/25 và toàn bộ số đo. Tính lại ngoại tuyến từ CSV mô phỏng bằng hàm summarize của khung: cùng Mini và bảng tiền dưới đây khớp. Giữ nguyên summary/trace gốc để truy lịch sử, không coi cảnh báo model cũ là model thực đã gọi. Cost/task trong bảng dùng tỷ lệ câu đạt làm proxy cho phiên; chưa đo thành công đầu-cuối mỗi phiên thực tế. Dòng Nano dùng giả định cùng tỷ lệ 88% chỉ để so giá, không phải chất lượng Nano đo thật.
+
 ## 1. Đầu vào
 
 - **Persona** (`cost/personas.yaml`, `seed: 42`, `sessions: 50`, tổng `share = 1.0`):

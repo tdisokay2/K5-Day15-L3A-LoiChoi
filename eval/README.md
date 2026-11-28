@@ -66,6 +66,8 @@ Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, k
 
 ## 6. Lỗi chính
 
+**Rà CSV tại #29:** ghi_chu B06/B09/B16/B18 có dấu phẩy thiếu đóng dấu nháy, làm parser lệch model/token/error. Đã chỉ đóng dấu nháy đúng cho ghi_chu; giữ nguyên chữ trong ghi chú, điểm, input/output, số đo và thời gian. Đối chiếu trace `run-2`: model/call/tool/token/output khớp cả 25 câu; score vẫn 22/25 (88%), không còn cảnh báo lệch trace. Summary mô phỏng cũ giữ nguyên cảnh báo từ CSV lỗi; số tiền được tính lại từ artifact và ghi ở `cost/cost-estimate.md`.
+
 - Lượt 1 (`run-1@20261128-005643`): 16/25 (64%) · thuong 5/9 · kho 6/11 · tu_choi 5/5. Chưa đạt chuẩn §7: dưới 80% và vi phạm điều kiện cứng "0 câu bỏ sót xung đột" (B15, B22). tu_choi 5/5 và không thấy thông số/URL ngoài catalog.
 - Nhóm lỗi lớn nhất: nhận diện hỏng khi tên linh kiện dính tiền tố/hậu tố như "… BIOS 1409", "RAM …" (6 câu); tiếp theo là so khớp điều kiện vỏ theo chuỗi (3 câu) và tên viết tắt (B15).
 - **Cách chấm:** cột `pass`/`ghi_chu` do Claude Code chấm nháp theo `metric_spec.yaml` và `pass_criterion`, ghi căn cứ từng câu; Khánh đã duyệt, giữ nguyên toàn bộ điểm (28/11/2026). Người thứ hai rà: Kiều Văn Thắng rà độc lập B04, B15, B19, B22 (gồm cả hai câu bỏ sót xung đột và một câu sát ranh giới) ngày 28/11/2026 → đồng ý 4/4 với điểm đã duyệt, không có bất đồng (xác nhận qua tin nhắn nhóm). Cải tiến và lượt 2 thuộc CP4, chạy trên cùng benchmark `15183c9`.
