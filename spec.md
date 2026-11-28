@@ -1,7 +1,7 @@
 # AI SPEC — Kiểm tra tương thích cấu hình PC trước khi mua · Nhóm LoiChoi
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
-> Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
+> Bản tổng hợp CP4 / issue #29. Số đo và bằng chứng có nguồn tại các tệp được dẫn; phần giả định được ghi riêng. Merge/nộp CP4 thuộc issue #31, chưa được xác nhận trong bản này.
 
 Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — Thương mại điện tử: rà ba quan hệ tương thích linh kiện PC trước khi mua. Lớp L3A; Phòng/Zone chưa có thông tin xác nhận trong hồ sơ.
 Data BTC cấp đã dùng: chưa ghi nhận trong hồ sơ CP2. Danh mục hiện có được nhóm tổng hợp từ nguồn hãng; khảo sát là phản hồi nhóm thu thập, xem `data/DATA_CARD.md` và `evidence/summary.md`.
@@ -22,22 +22,22 @@ Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Tro
 - **Người dùng chính** là sinh viên lần đầu tự chọn linh kiện để ráp máy tính để bàn.
 - **Việc cần làm** là rà danh sách linh kiện đã chọn trước khi đặt mua.
 - **Giả thuyết về khó khăn.** Tên biến thể gần giống nhau và thông số nằm trên nhiều trang có thể khiến người mới phải tra lại, nhờ xác nhận hoặc đổi linh kiện. Phỏng vấn ghi **1/3** người có bước phát sinh do tương thích, dưới tiêu chí **2/3** đã đặt ra. Nhóm thu hẹp giả thuyết vào việc phát hiện xung đột cụ thể trước khi mua. [Giả thuyết và đối chiếu](evidence/hypothesis.md)
-- **Bằng chứng hiện có cho CP3.** Có 3 cuộc phỏng vấn thật với sinh viên ngoài nhóm, đúng đối tượng và kể chuyện trong 30 ngày qua. Bản xuất khảo sát có 20 phản hồi, trong đó 10 qua sàng lọc và 8/10 báo một bước phát sinh ở câu 7. Giá/ngân sách đứng đầu câu 6 với 6/10 lựa chọn. Hồ sơ có 9 ví dụ nguyên văn từ khảo sát và 2 trích dẫn phỏng vấn được phép lưu. [Tổng hợp bằng chứng và ví dụ](evidence/summary.md)
+- **Bằng chứng hiện có CP3–CP4.** Có 3 cuộc phỏng vấn thật với sinh viên ngoài nhóm, đúng đối tượng và kể chuyện trong 30 ngày qua. CP4 xác nhận thời lượng P1/P2/P3 là 20/20/25 phút, dài hơn khoảng trong guide. Khảo sát vẫn có 20 phản hồi, 10 qua sàng lọc và 8/10 báo bước phát sinh ở câu 7; giá/ngân sách đứng đầu câu 6 với 6/10. Có 9 ví dụ khảo sát, 2 trích dẫn phỏng vấn được phép lưu. Phỏng vấn bổ sung cho phép tính khoảng 30 phút phát sinh/30 ngày của riêng P1, không suy rộng. Ba phiên người dùng thử ở `validation/log.md` áp dụng bản CLI cũ, chưa phải xác nhận chất lượng lượt 2. [Nguồn và giới hạn](evidence/summary.md)
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| Rà ba cặp linh kiện trước khi mua | 1/3 người phỏng vấn phải đổi mainboard vì sai socket. Khảo sát có 8/10 báo bước phát sinh khi chưa rõ tương thích. | Chưa có ước lượng đáng tin. Câu 9 khảo sát có câu trả lời mâu thuẫn. | P1 ghi 40 phút ở lần gần nhất. Chưa xác định phần thời gian tăng thêm do đổi mainboard. | Chưa tính | Có catalog 12 linh kiện và quy tắc đối chiếu cho ba cặp | Chọn để thử luồng nhỏ có thể kiểm chứng từ nguồn hãng. [Data Card](data/DATA_CARD.md) |
+| Rà ba cặp linh kiện trước khi mua | 1/3 người phỏng vấn báo vướng tương thích. Khảo sát có 8/10 báo bước phát sinh khi chưa rõ tương thích. | P1 xác nhận 3 lần trong 30 ngày. Chưa có tần suất đại diện cho nhóm người dùng mục tiêu. | Trung bình khoảng 10 phút phát sinh/lần, tính từ tổng 30 phút P1 tự báo chia cho 3 lần. | Khoảng 30 phút/30 ngày của riêng P1. [Bằng chứng](evidence/summary.md#xác-nhận-bổ-sung-cho-cp4--28112026) | Có catalog 12 linh kiện và quy tắc đối chiếu cho ba cặp | Chọn để thử luồng nhỏ có thể kiểm chứng từ nguồn hãng. [Data Card](data/DATA_CARD.md) |
 | So giá và tối ưu cấu hình theo ngân sách | 6/10 chọn giá hoặc ngân sách là việc tốn thời gian nhất ở câu 6. Số người từng gặp khó chưa đo. | Chưa đo | Chưa đo | Chưa tính | Cần dữ liệu giá và tồn kho theo thời điểm | Hoãn vì nguồn dữ liệu hiện tại chỉ có thông số kỹ thuật. |
 | Rà toàn bộ cấu hình, gồm nguồn và tản nhiệt | Chưa đo nhu cầu rà toàn bộ cấu hình | Chưa đo | Chưa đo | Chưa tính | Cần thêm thông số và quy tắc lắp đặt | Hoãn vì phạm vi kiểm chưa có đủ căn cứ cho nguồn và tản nhiệt. |
 
-Để ước lượng impact theo phút/người/tháng, cần số lần gặp trong 30 ngày và số phút phát sinh mỗi lần. Muốn tính tổng impact còn cần quy mô nhóm người gặp. Câu 9 khảo sát còn mâu thuẫn và bản xuất thiếu câu 10 về thời gian. Các phiếu phỏng vấn chưa xác định số phút phát sinh cùng một cách. Chưa đủ dữ liệu để tính impact hoặc suy ra tần suất cho persona ở §8. [Cách đếm và giới hạn](evidence/summary.md)
+Impact tháng tính theo số người gặp × số lần gặp/người/tháng × số phút phát sinh trung bình/lần. Trong mẫu, 1 người × 3 lần × khoảng 10 phút = khoảng 30 phút trong 30 ngày. P2 xác nhận 5 phút rà thường lệ và 0 phút phát sinh. P3 xác nhận 10 phút là tổng thời gian đổi linh kiện và rà lại do hết hàng. Câu 9 khảo sát còn mâu thuẫn và bản xuất thiếu câu 10 về thời gian. Chưa đủ dữ liệu để suy ra tần suất cho persona ở §8 hoặc chứng minh ROI. [Cách đếm và giới hạn](evidence/summary.md)
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 
 - **PCPartPicker:** tham khảo cách lập danh sách linh kiện, xem thông tin từng sản phẩm và chia sẻ cấu hình. Nguồn: [hướng dẫn ráp PC của MSI, mục “Useful tool: PCPartPicker”, trang PDF 24](https://storage-asset.msi.com/event/mb/2017/pcBuild_landing/pdf/en/How%20to%20Build%20a%20PC%20E%20Book.pdf#page=24). Đáng học: gắn thông tin với từng mã trong danh sách. Điều thiết kế của nhóm cần tránh: kết quả tổng quát khiến người mới tưởng mọi điều kiện đã được kiểm; đây là rủi ro nhóm dự phòng, chưa phải kết luận về trải nghiệm của PCPartPicker.
-- **Cách triển khai của LoiChoi tại CP3:** nhận danh sách tiếng Việt qua model thật, tra tên/mã/alias trong catalog, hỏi lại biến thể chưa rõ, kiểm ba quan hệ bằng code và hiển thị nguồn cùng phần chưa kiểm. Chưa có bằng chứng nhóm làm tốt hơn giải pháp hiện có; Dũng tiếp tục kiểm giả thuyết với người dùng.
+- **Cách triển khai của LoiChoi tại CP4:** nhận danh sách tiếng Việt qua model thật, code kiểm JSON rồi tách nhãn/BIOS/dung lượng, tra tên/mã/alias hoặc viết tắt cụ thể trong catalog, hỏi lại biến thể chưa rõ, kiểm ba quan hệ bằng code và hiển thị nguồn cùng phần chưa kiểm. Chưa có bằng chứng nhóm làm tốt hơn giải pháp hiện có; lỗi B22 và giả thuyết pain 1/3 cho thấy cần tiếp tục kiểm chứng.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 
@@ -55,10 +55,12 @@ Công cụ tham chiếu gồm PCPartPicker và trang hỗ trợ của hãng. Tro
 flowchart TD
     A[Người mua gửi toàn bộ cấu hình] --> B[AI trích JSON tên mã và context nguyên văn]
     D[(components.json có nguồn)] --> C[lookup_components: tra mã và biến thể]
-    B -->|Có mentions| C
+    B --> J[Code kiểm JSON nguyên văn và tách nhãn BIOS dung lượng]
+    J -->|Trong phạm vi hoặc có mentions| C
     C --> V[Code xác thực id kind qua lookup lần hai]
     V --> K[check_compatibility kiểm ba cặp kể cả mã còn thiếu]
-    B -->|Lỗi API hoặc JSON sai| F[Cấu hình trống và thông báo chưa xác nhận được]
+    B -->|Lỗi API| F[Cấu hình trống và thông báo chưa xác nhận được]
+    J -->|JSON sai| F
     C -->|Lỗi lookup hoặc xác thực| F
     F --> K
     R -->|Còn thiếu thông tin| H[Hỏi mã biến thể BIOS hoặc bố trí vỏ]
@@ -69,7 +71,7 @@ flowchart TD
     R --> E[Diễn đạt kết quả; giữ nguyên kết luận của code]
     E --> P[Người mua xác nhận thông tin và tự quyết định]
     K -->|Lỗi hoặc kết quả sai hợp đồng| X[Chưa thể kết luận và đề nghị thử lại]
-    B -->|Không có mentions và ngoài phạm vi| O[Nêu giới hạn và đề nghị gửi cấu hình được hỗ trợ]
+    J -->|Không có mentions và ngoài phạm vi| O[Nêu giới hạn và đề nghị gửi cấu hình được hỗ trợ]
 ```
 
 Khi thiếu một linh kiện, vẫn kiểm các cặp đã xác định; những cặp còn lại nhận `insufficient_info`. Nhánh hỏi lại không tự lặp gọi model: kết thúc lượt và đợi người dùng gửi toàn bộ cấu hình đã sửa. Không giữ lựa chọn cũ một cách ngầm định.
@@ -126,7 +128,7 @@ Mỗi phần tử `checks` có `{pair, status, reason, facts, sources, missing}`
 
 **Quy tắc trạng thái dùng thống nhất ở từng cặp và kết quả chung:**
 
-**Nhận diện CP3:** model chỉ trả `mentions`, `context`, `in_scope`; query/context phải có nguyên văn trong input (cho phép khác hoa thường/khoảng trắng), không được thêm id, kết luận hay URL. Code chấp nhận một ứng viên khớp id/name/model hoặc alias có sẵn trong catalog, kể cả tên hãng đứng trước mã/alias; luôn lookup lại id và kind. Một kết quả tìm gần đúng không tự trở thành lựa chọn đã xác nhận. Nếu có mentions thì vẫn kiểm dù model gắn `in_scope=false`, để yêu cầu ngoài phạm vi xen vào không làm mất xung đột đã biết.
+**Nhận diện CP4 — code `443b6dc`:** model chỉ trả `mentions`, `context`, `in_scope`; query/context phải có nguyên văn trong input (cho phép khác hoa thường/khoảng trắng), không được thêm id, kết luận hay URL. Sau xác thực, `_sanitize_parsed` tách nhãn loại, BIOS cuối tên và dung lượng khỏi query. Code nhận id/name/model/alias hoặc một ứng viên tìm gần đúng có ký hiệu cụ thể chứa số theo `_is_specific_shorthand`; luôn lookup lại id/kind. Nhiều ứng viên và từ chung như VENTUS vẫn hỏi lại. Đây là nhận diện trong catalog nhỏ, không xác nhận các biến thể chưa có trong catalog. Nếu có mentions thì vẫn kiểm dù model gắn `in_scope=false`, để yêu cầu ngoài phạm vi xen vào không làm mất xung đột đã biết.
 
 | Giá trị máy | Hiển thị | Khi nào dùng |
 |---|---|---|
@@ -149,6 +151,8 @@ Kết quả chung ưu tiên `conflict` nếu có cặp xung đột; tiếp đế
 **Mức tự động:** [x] AI gợi ý, người quyết · [ ] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm. Sai có thể khiến người mua chọn nhầm linh kiện và tốn tiền/đổi trả; người mua tự xác nhận với hãng/người bán trước khi mua. Nhóm không tự đặt hàng, thay cấu hình, cập nhật BIOS hay sửa dữ liệu nguồn.
 
 **Đối chiếu điều kiện vỏ:** code chấp nhận cách nói tương đương hẹp về **không lắp/gắn/có radiator ở mặt/phía trước**; không suy đồng nghĩa khi có thêm điều kiện, đổi vị trí hoặc chưa rõ có lắp hay không. Fact context vẫn giữ nguyên văn người dùng; không sửa thông số/điều kiện catalog.
+
+**Bổ sung CP4:** `_clearance_key` nhận cả không/ko/k, radiator/rad, có hoặc không có từ lắp/gắn và bố trí có radiator 120 mm. Chỉ so cả cụm, không tự lấy giới hạn khi bố trí chưa rõ. Model không nhận danh sách điều kiện catalog: chỉ trích lời người dùng, code đối chiếu. Lượt 2 vẫn sai ở B22 khi nhầm lời shop với bố trí thật; không coi biện pháp này là đã chặn hết lỗi.
 
 **Chỗ chặn rủi ro:** xác thực id và nguồn trước checker; trả thiếu thông tin khi chưa đủ căn cứ; luôn hiện ba cặp, phần còn thiếu và phần chưa kiểm. Kết quả synthetic phải có nhãn mô phỏng. Lỗi model/công cụ kết thúc lượt với thông báo chưa thể kết luận và cách bổ sung/thử lại, không chuyển thành kết quả tương thích.
 
@@ -201,20 +205,27 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` tại `15183c9` — 25 câu (thuong 9 · kho 11 · tu_choi 5, trong đó 3 câu tấn công); 18/25 câu data_that · metric: `eval/metric_spec.yaml` (5 metric, giữ nguyên CP2)
 - *Chuẩn "đạt" và metric do Khánh soạn (issue #4); Dương (đội trưởng) duyệt ngày 27/11/2026, trước 19:30 — xác nhận qua tin nhắn nhóm, Khánh ghi lại (issue #9). Giữ nguyên đến 23:59 Thứ Bảy 28/11.*
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua (một câu qua khi đạt mọi metric áp dụng và đạt pass_criterion của câu), và đồng thời: 0 câu bỏ sót xung đột (`khong_bo_sot_xung_dot` 100%), 100% câu `tu_choi` qua, không có thông số/URL nào ngoài catalog (`can_cu_dung` 100%)."
-- Kết quả: lượt 1 **16/25 (64%), chưa đạt chuẩn** · run ID `run-1@20261128-005643`, Mini thật, code `7ab87c5`, catalog `09fac5b`, benchmark `15183c9`; 9883 token vào/2842 ra, 0 lỗi kỹ thuật. Theo loại: thuong 5/9, kho 6/11, tu_choi 5/5. Bỏ sót xung đột B15/B22, vi phạm điều kiện cứng; theo báo cáo chấm không thấy thông số/URL ngoài catalog. Lượt 2 chưa chạy, thuộc CP4. Chi tiết `eval/report.md`, hồ sơ `eval/README.md`; score đã chạy lại khi tổng hợp CP3.
+- **Lượt 1 giữ nguyên:** 16/25 (64%), chưa đạt; `run-1@20261128-005643`, code `7ab87c5`, Mini thật, 9883 token vào/2842 ra, 0 lỗi kỹ thuật; thuong 5/9, kho 6/11, tu_choi 5/5. Bỏ sót xung đột B15/B22.
+- **Lượt 2:** 22/25 (88%), **vẫn chưa đạt chuẩn** do còn bỏ sót xung đột B22; `run-2@20261128-123026`, code `443b6dc`, cùng Mini, catalog `09fac5b`, benchmark `15183c9`, 13458 token vào/2999 ra, 0 lỗi kỹ thuật; thuong 9/9, kho 8/11, tu_choi 5/5. Theo báo cáo chấm không thấy thông số/URL ngoài catalog. 7/9 câu trượt lượt 1 tốt lên, B17 tệ đi; B17/B19/B22 còn trượt. Khánh duyệt điểm, Thắng rà 9/9 câu thay đổi/điều kiện cứng khớp. Score đã kiểm lại; chỉ sửa dấu nháy ghi_chu B06/B09/B16/B18 để CSV không lệch cột, giữ nguyên mọi số đo/output/điểm. Chi tiết `eval/report.md`, `eval/README.md`, `eval/run-1.csv`, `eval/run-2.csv` và trace cùng tên.
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- **Nguồn:** `cost/personas.yaml`, `cost/simulate-1.csv`, `traces/simulate-1.jsonl`, `cost/simulate-1-summary.md`; run ID `simulate-1@20261128-124358`. 50 phiên, seed 42, 138 lượt gọi Mini thật, 74854 token vào/18990 ra, 0/50 phiên lỗi; số token đối chiếu trace. Ba persona có share 0,50/0,35/0,15, tần suất 1/2/4 phiên/người/tháng và 2/3/4 lượt/phiên **(tự ước tính)**; quy mô thấp/cơ sở/cao 100/300/800 người **(tự ước tính)**.
+- **Mini đo thật, chi phí tính theo bảng giá đã lưu:** trung bình $0,0012/phiên; chi phí/task thành công quy ước $0,0014 (khoảng 35 đồng). Công thức: chi phí trung bình phiên ÷ 0,88, lấy tỷ lệ câu đạt của `eval/run-2.csv` (`run-2@20261128-123026`), cùng model `openai/gpt-4.1-mini`. Đây là proxy từ câu thử, chưa đo tỷ lệ hoàn thành cả phiên ngoài thực tế. Giá $0,40 vào/$1,60 ra trên triệu token; nguồn/ngày kiểm ở `cost/personas.yaml`.
+- **Nano chỉ dự toán:** tính cùng token Mini theo giá Nano $0,10/$0,40 trên triệu token: $0,00030/phiên. $0,00034/task chỉ đúng nếu giả định chất lượng cũng 88%; chưa đo chất lượng Nano nên không coi đây là chi phí/task thành công đã kiểm chứng.
+- **Chi phí Mini/tháng:** thấp $0,2404; cơ sở $0,7213; cao khoảng $1,92. Cơ sở $0,0024/người/tháng (khoảng 61 đồng). Nano dự toán $0,0601/$0,1803/$0,4809. Công thức Σ(users × share × phiên/người/tháng × chi phí trung bình phiên theo persona). Quy đổi 25400 đồng/USD **(tự ước tính)**; chỉ tính API, chưa tính vận hành, bảo trì catalog và công rà thủ công. Chi tiết `cost/cost-estimate.md`.
+- **So impact §2:** khoảng 30 phút/30 ngày là thời gian phát sinh hồi tưởng của riêng P1, chưa phải thời gian công cụ tiết kiệm được. Chi phí API thấp là cơ sở thử tiếp; chưa chứng minh ROI hoặc khuyến nghị dùng rộng vì bằng chứng còn mỏng và B22 còn bỏ sót xung đột. Summary mô phỏng giữ nguyên cảnh báo model sai do CSV ghi chú từng lệch cột; lần tổng hợp này sửa dấu nháy ghi chú và tính lại từ artifact, xác nhận cùng Mini và bảng tiền không đổi.
 
 ## §9. Rủi ro & an toàn
-- Dữ liệu: đã ẩn danh gì, không thu gì, không đưa gì vào model gói miễn phí:
-- AI **không được** làm gì kể cả khi người dùng yêu cầu:
-- Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
+- **Dữ liệu đã ẩn danh:** khảo sát dùng S01–S20, bỏ dấu thời gian và thông tin định danh; phỏng vấn P1–P3, thử người dùng U1–U3. Không đưa tên/email/SĐT thật của người tham gia vào hồ sơ công khai; P2 không đồng ý trích nguyên văn nên chỉ lưu tóm tắt. Mã học viên trong TEAMS là thông tin nhóm bắt buộc, không gửi vào model.
+- **API nhận gì:** toàn bộ input người dùng cùng system prompt được gửi đến OpenRouter/model Mini, key chỉ dùng trong header xác thực. Tools đọc catalog cục bộ; code không tự gửi phỏng vấn, khảo sát, tệp BTC hoặc `.env` vào prompt. Thông báo input không hợp lệ có nhắc không gửi bí mật/dữ liệu cá nhân; hiện **không có bộ lọc tự ẩn danh hoặc ngăn gửi PII**: nếu người dùng dán dữ liệu riêng tư vào input thì dữ liệu đó có thể đi vào API và output/trace. Không nhập tên/email/SĐT, key, thông tin thanh toán hoặc tài liệu riêng trong demo/eval, kể cả khi dùng model miễn phí; không tuyên bố nhà cung cấp không lưu dữ liệu.
+- **Bí mật và trace:** `.env` bị gitignore, `.env.example` không có key; lỗi HTTP không in header/body API hay key. Trace lưu preview input/output và thời gian/token; trace eval còn chứa output cuối. Nhóm cần rà trước khi commit; không phải cơ chế tự xoá PII. Không có công cụ đọc bí mật hoặc thực hiện giao dịch cho model.
+- **AI không được làm dù được yêu cầu:** tự đặt hàng/thanh toán, liên hệ người bán, sửa catalog/cấu hình hay cập nhật BIOS; bỏ phép kiểm, đổi status/facts/sources hoặc bịa thông số/URL; bảo đảm toàn bộ máy tương thích; tư vấn giá/FPS/PSU/tản nhiệt ngoài ba cặp đã chốt. Prompt coi input là dữ liệu; JSON bị kiểm cấu trúc và đối chiếu nguyên văn, id/kind được lookup lại, checker quyết kết luận và code trình bày. Model/API/tools lỗi trả thiếu thông tin/chưa thể kết luận, không tự chuyển fake.
+- **Người có thể bị hại:** người mua có thể mất tiền/đổi trả vì sót socket, DDR hoặc chiều dài; người bán có thể chịu trả hàng; người tham gia có thể lộ dữ liệu nếu bị nhập vào API; nhóm có thể mất credit nếu lộ key. Biện pháp đang có là giới hạn 12000 ký tự, một lời gọi/lượt, timeout 60 giây, giữ xung đột đã biết cùng phần thiếu/chưa kiểm và nguồn hãng. Chưa có giới hạn chi tiêu/tần suất theo người dùng trong app.
+- **Rủi ro còn lại và người quyết:** lượt 2 vẫn bỏ sót xung đột B22; B17 mất giải thích do model trích sai tên, B19 hỏi thiếu hướng dẫn bố trí. Nguồn catalog có thể hết hạn hoặc thiếu điều kiện/revision. Không coi kết quả thiếu thông tin là linh kiện dùng được. Người mua xác nhận đúng mã/BIOS/bố trí với hãng hoặc người bán trước khi mua; Dũng rà nguồn, Thắng rà quy tắc/chi phí, Khánh rà đánh giá, Dương chịu trách nhiệm tích hợp. Phản hồi U1/U3 ở `validation/log.md` cho thấy cần giải thích thuật ngữ và ranh giới quyết định; log áp dụng cho bản CLI đã thử, chưa xác nhận người dùng đã thử bản `443b6dc`.
 
 ## §10. Phân công & changelog
+
+**Bản CP4 — issue #29:** đã kiểm các issue #22–#28 đều đóng; tổng hợp nguồn Dũng từ #23/#28, code #24/#25 tại `443b6dc`, đánh giá #26 tại `a7eb24e`/`3a163e5`, chi phí #27 tại `0c940ed`. Spec/Canvas/README dùng số 16/25 → 22/25, vẫn chưa đạt chuẩn; mô phỏng 50 phiên và impact riêng P1 khoảng 30 phút/30 ngày. 49/49 unittest và check bộ 25 câu đạt. Không đổi code sau lượt 2, không sửa chuẩn/metric hoặc số đo; ghi chú CSV được đóng dấu nháy đúng và đối chiếu trace. Summary mô phỏng gốc vẫn giữ nguyên, bảng tiền đã tính lại ngoại tuyến để giải thích cảnh báo model do CSV từng lệch cột. Dương đã xác nhận qua cuộc trò chuyện hỗ trợ ngày 28/11/2026 rằng Khánh đã rà đánh giá, Dũng rà nguồn và Thắng rà tools/chi phí trên bản tổng hợp `a8c37cc`. Đây là xác nhận do đội trưởng cung cấp, không mô tả là agent tự lấy ý kiến từng người. Bàn giao #31. Slide/video CP4 thuộc #30, merge/nộp thuộc #31; không coi đóng các issue trước là đã nộp CP4.
 
 **Tổng hợp CP3 — issue #20:** Canvas đã đối chiếu với bằng chứng mới ở §0–§2; thiết kế §3–§6 khớp code `7ab87c5`; thống kê/kết quả §7 cập nhật từ lượt 1 đã chấm, không đổi chuẩn đạt. Bằng chứng có 3 người phỏng vấn đúng đối tượng và 11 ví dụ/trích dẫn (9 khảo sát, 2 phỏng vấn); giả thuyết 2/3 chưa được ủng hộ (thực tế 1/3), khảo sát mới có 10/20 người đủ điều kiện. Thời lượng từng phỏng vấn chưa được ghi riêng, chỉ có khoảng 10–20 phút báo chung; chưa xác nhận khớp hướng dẫn 10–15 phút/người. Impact còn thiếu dữ liệu cùng định nghĩa.
 
@@ -264,9 +275,17 @@ Các câu dưới là tình huống thiết kế do nhóm tự dựng, chưa ph�
 | 28/11/2026 00:19 (UTC+7) | Issue #15: sửa câu chữ expected, pass_criterion và source của riêng **B22** trong `eval/benchmark.csv`; trạng thái mong đợi giữ nguyên (gpu_case = conflict, kết luận chung = conflict) | Dũng rà nguồn (commit `6424980`): 322 mm là mốc Fractal Design công bố cho Terra không radiator, tiêu chí cũ gọi đó là "không phải thông số hãng" là sai sự thật. Sửa **trước lượt 1**, chưa có output nào; không đổi metric, §7 hay câu khác |
 | 28/11/2026 00:45 (UTC+7) | CP3 bước 06 / issue #17: tích hợp prompt nhận diện nguyên văn, xác thực alias duy nhất, metadata match_type, cách nói tương đương hẹp về radiator; CLI đúng model; hoàn thiện §3–§6 và README | Bước 01 đã gọi API thật nhưng agent còn bỏ alias và B02 thiếu kết luận GPU vì cách nói điều kiện vỏ. 44/44 unittest, check 25 câu đạt; smoke thật 7 ca mới nhất 2764/748 token, CLI 433/193 token, trace mới riêng và giữ lượt trước sửa. B15 vẫn hỏi lại tên quá ngắn, chưa đạt expected; bàn giao đánh giá thật, không sửa benchmark `15183c9`, catalog `09fac5b`, metric, §7 hoặc file khung |
 | 28/11/2026 04:23 (UTC+7) | CP3 bước 09 / issue #20: tổng hợp Canvas, README, thống kê/kết quả §7, review và trạng thái bản nộp §10; khai báo AI | Đối chiếu CSV/trace lượt 1: 16/25 (64%), 9883/2842 token, 0 lỗi; score/check và 44 unittest đạt. Bằng chứng 3 phỏng vấn/20 khảo sát, 10 qua sàng lọc; 11 ví dụ/trích dẫn, impact/thời lượng riêng còn thiếu. Dương xác nhận video xem không đăng nhập. File khung/metric/chuẩn CP2 giữ nguyên; không sửa kết quả/trace. PR/merge main và xác nhận nộp form còn chờ, không ghi đã hoàn tất |
+| 28/11/2026 · CP4 | Issue #23: bổ sung xác nhận P1–P3 và tính impact trong mẫu ở §2 | Thời lượng phỏng vấn riêng lần lượt là 20, 20 và 25 phút. P1 báo khoảng 30 phút phát sinh cho 3 lần trong 30 ngày. P2 xác nhận rà thường lệ 5 phút và 0 phút phát sinh. P3 xác nhận 10 phút là tổng thời gian đổi linh kiện và rà lại do hết hàng. Giữ số CP3 để truy lịch sử. |
+| 28/11/2026 · CP4 | Issue #28: tổng hợp ba phiên thử bản CLI và ghi góp ý bàn giao | Ba sinh viên ngoài nhóm thử ngày 28/11, mỗi buổi 20 phút. Đã bỏ chi tiết giao diện và kết luận PSU ghi nhầm. Ghi hai lời trích được phép lưu cùng góp ý về thuật ngữ, căn cứ và giới hạn kiểm. [Log người dùng thử](validation/log.md) |
+| 28/11/2026 · CP4 | Issue #24: một lần cải tiến nhắm nhóm lỗi trích xuất/nhận diện và điều kiện vỏ (`codebase/agent.py`, `codebase/tools.py`, `tests/test_agent_cp4.py`) | Lượt 1 (`run-1@20261128-005643`) đạt 16/25 (64%), trượt 9 câu do `query` dính tiền tố loại/BIOS/dung lượng, viết tắt chưa xác thực, và `case_clearance_condition` chép cả câu/lời shop (`eval/report.md` §2–§3). Cải tiến: tách tiền tố/BIOS/dung lượng ở prompt + `_sanitize_parsed`, nhận viết tắt có mã số duy nhất qua `_is_specific_shorthand` (vẫn re-check id/kind, từ chung như `VENTUS` vẫn hỏi lại), mở rộng hẹp `_clearance_key` cho `rad`/`ko`/`gắn radiator 120mm`. Giữ nguyên benchmark `15183c9`, metric, chuẩn §7 và output lượt 1. |
+| 28/11/2026 12:28 (UTC+7) | CP4 #24/#26: thay 4 ví dụ trong prompt `codebase/agent.py` (SYSTEM) vốn chép nguyên văn câu thử — 'ko lắp rad trước' (B15), 'có lắp radiator 280 mm ở mặt trước', 'Lắp vừa không?' (B19), 'lắp được card dài 322 mm' (B22) — và ví dụ 'BIOS 1409', '16GB/32GB' bằng ví dụ diễn đạt khác; quy tắc giữ nguyên | AGENTS.md và #24 cấm giấu câu thử vào prompt; phát hiện khi kiểm SHA `2925f6a` trước lượt 2. Kiểm lại: không còn ví dụ/cụm 4 từ trùng input benchmark; unittest 49/49 OK; `eval --try` B01–B03 có token. Không đổi checker, catalog `09fac5b`, benchmark `15183c9`, metric, chuẩn §7. Lượt 2 chạy trên SHA sau sửa |
+
+| 28/11/2026 13:04 (UTC+7) | CP4 #29: tổng hợp spec §0–§9, Canvas, README máy mới và khai báo AI; hoàn thiện an toàn theo code thực tế, số lượt 1→2, impact và mô phỏng | Issue #22–#28 đã đóng. Score lượt 2 22/25, vẫn chưa đạt vì B22; 49 unittest/check đạt. Chỉ đóng dấu nháy ghi_chu B06/B09/B16/B18 trong CSV để đọc đúng cột, giữ nguyên điểm/output/số đo và đối chiếu trace. 50 phiên/138 call/74854 vào/18990 ra khớp trace; tính lại bảng tiền ngoại tuyến, không sửa summary/trace gốc. Nêu rõ giả định Nano/users/tần suất/tỷ giá, impact riêng P1, bản thử người dùng cũ và review tài liệu mới còn chờ. Không đổi code, chuẩn, metric, benchmark hoặc dữ liệu nguồn |
+| 28/11/2026 13:08 (UTC+7) | Ghi nhận review tài liệu #29 tại `a8c37cc` | Dương xác nhận đã hoàn tất review của Khánh/Dũng/Thắng trong cuộc trò chuyện hỗ trợ. Commit `a8c37cc` đã kiểm có trên GitHub nhánh CP4. Chỉ cập nhật trạng thái review, không đổi số đo/code/chuẩn; merge và nộp CP4 vẫn thuộc #31 |
+| 28/11/2026 14:16 (UTC+7) | CP4 #30: thêm video demo CP4 https://youtu.be/CnhJdD9oC0c (code `443b6dc`, `openai/gpt-4.1-mini`) vào README, `slides/outline.md`, `docs/cp4-demo.md`; giữ video CP3 làm dự phòng | Video CP3 quay trước cải tiến CP4; video mới quay trên đúng bản dùng cho lượt 2. `demo-slides.pdf` trang 4 chưa xuất lại nên còn link CP3 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
-|  |  |  |
+| Chưa ghi nhận | Chưa có thay đổi sau CP4 trong phiên tổng hợp #29 | Chỉ ghi thời điểm và nội dung khi thực tế phát sinh |

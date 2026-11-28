@@ -30,11 +30,13 @@ Trả JSON duy nhất: {mentions: [{query: str, kind: cpu|mainboard|ram|gpu|case
 context: {bios_version: str|null, case_clearance_condition: str|null}, in_scope: bool}.
 Giữ riêng mọi lựa chọn, kể cả hai mã cùng loại. Không gộp hoặc chọn một mã ngầm.
 Trích TẤT CẢ linh kiện đã nêu kể cả khi câu hỏi chỉ hỏi một cặp hoặc kèm yêu cầu ngoài phạm vi.
-query phải là đoạn chép nguyên văn tên/mã trong input, giữ tên hãng, năm, revision, hậu tố DDR.
-Không đưa nhãn loại như 'main', 'ram', 'card', 'case' hoặc lời hỏi vào query.
+query chỉ gồm tên/mã sản phẩm chép nguyên văn từ input, giữ tên hãng, năm, revision, hậu tố DDR (như D4, OC).
+Tách bỏ tiền tố loại ('CPU', 'main', 'mainboard', 'RAM', 'card', 'VGA', 'GPU', 'case', 'vỏ', 'vỏ máy'),
+tách bỏ BIOS ('BIOS 0805' -> đưa '0805' vào context.bios_version), dung lượng ('8GB', '64GB') và lời hỏi khỏi query.
 Không hoàn thiện tên, đổi alias sang tên hãng đầy đủ hay rút bớt biến thể.
 Chỉ chép context được người dùng cung cấp; chưa rõ thì null.
-Context cũng chép nguyên văn, không diễn đạt lại hoặc tự suy từ linh kiện.
+case_clearance_condition chỉ chép nguyên văn cụm mô tả bố trí radiator/quạt của vỏ (vd 'không gắn tản nước phía trước', 'có gắn radiator 240 mm phía trên').
+Không chép câu hỏi của người dùng, lời người bán/shop hay một con số chiều dài card mà người khác khẳng định (vd 'người bán bảo vừa card 350 mm') vào case_clearance_condition; chưa rõ thì null.
 in_scope=true nếu có linh kiện cần kiểm, kể cả input kèm lệnh tấn công; chỉ false khi không có.
 Chỉ kiểm CPU–mainboard, mainboard–RAM, GPU–vỏ máy trong danh mục.
 """
@@ -82,7 +84,45 @@ def _exact_candidate(query, candidate):
     return normalize(query) in {normalize(candidate[key]) for key in ("id", "name", "model")}
 
 
+def _is_specific_shorthand(query):
+    """Nhận tên viết tắt có mã số cụ thể (hoặc tiền tố mã sản phẩm), tránh nhận từ chung như 'VENTUS'."""
+    tokens = [t for t in re.split(r"[\s\-_/]+", query.strip().casefold()) if t]
+    if len(tokens) >= 2 and any(any(ch.isdigit() for ch in tok) for tok in tokens):
+        return True
+    if len(tokens) == 1 and len(tokens[0]) >= 5:
+        tok = tokens[0]
+        return any(ch.isalpha() for ch in tok) and any(ch.isdigit() for ch in tok)
+    return False
+
+
+def _sanitize_parsed(parsed):
+    """Tách tiền tố loại, hậu tố BIOS và dung lượng RAM khỏi query nếu model còn để dính."""
+    context = parsed["context"]
+    prefix_re = re.compile(
+        r"^(?:cpu|processor|vi xử lý|mainboard|motherboard|main|bo mạch chủ|ram|bộ nhớ|gpu|vga|card đồ họa|card|case|vỏ máy|vỏ)\s+(.+)$",
+        re.IGNORECASE,
+    )
+    bios_re = re.compile(r"^(.+?)\s+(?:đang\s+chạy\s+)?bios\s+([a-z0-9.\-_]+)$", re.IGNORECASE)
+    cap_re = re.compile(r"^(.+?)\s+\d+\s*gb$", re.IGNORECASE)
+    for mention in parsed["mentions"]:
+        q = mention["query"].strip()
+        m_prefix = prefix_re.match(q)
+        if m_prefix and m_prefix.group(1).strip():
+            q = m_prefix.group(1).strip()
+        m_bios = bios_re.match(q)
+        if m_bios and m_bios.group(1).strip():
+            q = m_bios.group(1).strip()
+            if context.get("bios_version") is None:
+                context["bios_version"] = m_bios.group(2).strip()
+        m_cap = cap_re.match(q)
+        if m_cap and len(m_cap.group(1).strip()) >= 2:
+            q = m_cap.group(1).strip()
+        mention["query"] = q
+    return parsed
+
+
 def _resolve(parsed, questions):
+    parsed = _sanitize_parsed(parsed)
     build = _empty_build()
     build["context"] = parsed["context"]
     selections = {kind: set() for kind in KINDS}
@@ -99,7 +139,11 @@ def _resolve(parsed, questions):
             if candidate["kind"] not in KINDS or (kind and candidate["kind"] != kind):
                 raise ValueError("Ứng viên sai loại")
         # Một id do tool trả vẫn được tra lại theo id, không tin id từ model.
-        if len(candidates) == 1 and (_exact_candidate(query, candidates[0]) or lookup.get("match_type") == "alias"):
+        if len(candidates) == 1 and (
+            _exact_candidate(query, candidates[0])
+            or lookup.get("match_type") == "alias"
+            or (lookup.get("match_type") == "partial" and _is_specific_shorthand(query))
+        ):
             candidate = candidates[0]
             verified = lookup_components(candidate["id"], candidate["kind"])
             if verified.get("candidates") != [candidate]:

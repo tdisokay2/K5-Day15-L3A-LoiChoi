@@ -60,12 +60,16 @@ Một dataset: `data/components.json` (schema 1.0, spec §4) — 12 linh kiện 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-005643` | `openai/gpt-4.1-mini` (OpenRouter) | code `7ab87c5` · benchmark `15183c9` · catalog `09fac5b`; 1 lần gọi model/câu, 9 883 token vào · 2 842 ra, 0 lỗi | 16/25 | 64% | **Chưa** (dưới 80%; bỏ sót xung đột B15, B22) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261128-123026` | `openai/gpt-4.1-mini` (OpenRouter) | code `443b6dc` (cải tiến nhận diện #24 + bỏ ví dụ trùng câu thử) · benchmark `15183c9` · catalog `09fac5b`; 13 458 token vào · 2 999 ra, 0 lỗi | 22/25 | 88% | **Chưa** (còn bỏ sót xung đột B22) |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
+**Rà CSV tại #29:** ghi_chu B06/B09/B16/B18 có dấu phẩy thiếu đóng dấu nháy, làm parser lệch model/token/error. Đã chỉ đóng dấu nháy đúng cho ghi_chu; giữ nguyên chữ trong ghi chú, điểm, input/output, số đo và thời gian. Đối chiếu trace `run-2`: model/call/tool/token/output khớp cả 25 câu; score vẫn 22/25 (88%), không còn cảnh báo lệch trace. Summary mô phỏng cũ giữ nguyên cảnh báo từ CSV lỗi; số tiền được tính lại từ artifact và ghi ở `cost/cost-estimate.md`.
+
 - Lượt 1 (`run-1@20261128-005643`): 16/25 (64%) · thuong 5/9 · kho 6/11 · tu_choi 5/5. Chưa đạt chuẩn §7: dưới 80% và vi phạm điều kiện cứng "0 câu bỏ sót xung đột" (B15, B22). tu_choi 5/5 và không thấy thông số/URL ngoài catalog.
 - Nhóm lỗi lớn nhất: nhận diện hỏng khi tên linh kiện dính tiền tố/hậu tố như "… BIOS 1409", "RAM …" (6 câu); tiếp theo là so khớp điều kiện vỏ theo chuỗi (3 câu) và tên viết tắt (B15).
 - **Cách chấm:** cột `pass`/`ghi_chu` do Claude Code chấm nháp theo `metric_spec.yaml` và `pass_criterion`, ghi căn cứ từng câu; Khánh đã duyệt, giữ nguyên toàn bộ điểm (28/11/2026). Người thứ hai rà: Kiều Văn Thắng rà độc lập B04, B15, B19, B22 (gồm cả hai câu bỏ sót xung đột và một câu sát ranh giới) ngày 28/11/2026 → đồng ý 4/4 với điểm đã duyệt, không có bất đồng (xác nhận qua tin nhắn nhóm). Cải tiến và lượt 2 thuộc CP4, chạy trên cùng benchmark `15183c9`.
+- **Lượt 2 (`run-2@20261128-123026`):** 22/25 (88%) · thuong 9/9 · kho 8/11 · tu_choi 5/5. Nhóm lỗi nhận diện 0/9 → 7/9; bỏ sót xung đột 2 → 1 (B22 còn). Tệ đi: B17. Vẫn **chưa đạt** chuẩn §7 vì điều kiện cứng "0 câu bỏ sót xung đột". Chấm: Claude Code chấm nháp, Khánh duyệt giữ nguyên toàn bộ điểm (28/11/2026); quyết định giữ lượt 2 làm kết quả CP4, không chạy thêm lượt để sửa B22. Người thứ hai rà câu đổi kết quả và điều kiện cứng: Kiều Văn Thắng rà B04, B06, B08, B09, B15, B16, B17, B18 và B22 ngày 28/11/2026 → đồng ý 9/9, không có bất đồng (xác nhận qua tin nhắn nhóm).
+- **Kế hoạch CP4 (#22):** nguyên nhân gốc cả 9 câu trượt nằm ở bước trích + tra trước checker (tên dính "BIOS…"/"RAM…"/dung lượng, viết tắt, điều kiện vỏ chép nguyên câu). Một lần cải tiến nhắm nhóm *nhận diện linh kiện và ngữ cảnh*, ưu tiên hết bỏ sót xung đột B15/B22; không đổi checker, catalog, benchmark, metric, chuẩn. Chi tiết và cách kiểm hồi quy: `eval/report.md` mục 2–3.

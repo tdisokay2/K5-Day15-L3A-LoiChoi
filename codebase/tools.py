@@ -40,8 +40,10 @@ def _norm(text: str) -> str:
 def _clearance_key(text: str) -> str:
     """Nhận cách nói tương đương hẹp; không suy vị trí, kích thước hay phủ định."""
     normalized = _norm(text).rstrip(".")
-    if re.fullmatch(r"không (?:lắp|gắn|có) radiator (?:ở )?(?:(?:mặt|phía) )?trước", normalized):
+    if re.fullmatch(r"(?:không|ko|k) (?:(?:lắp|gắn|có) )?(?:radiator|rad) (?:ở )?(?:(?:mặt|phía) )?trước", normalized):
         return "không lắp radiator mặt trước"
+    if re.fullmatch(r"(?:có )?(?:(?:lắp|gắn|dùng) )?(?:radiator|rad) 120\s*mm", normalized):
+        return "có lắp radiator 120 mm"
     return normalized
 
 
