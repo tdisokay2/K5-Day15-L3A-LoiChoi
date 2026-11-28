@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>LoiChoi — demo slides CP4</title>
+<!-- Nguồn của demo-slides.pdf. Xuất lại: chrome --headless --print-to-pdf=demo-slides.pdf slides/demo-slides.html
+     Nội dung lấy từ bản PDF của Thắng (65248e9); sửa trang 4 (link video CP4) và trang 7 (tách 35 ₫/task và 61 ₫/người/tháng). -->
+<style>
+@page { size: 13.333in 7.5in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; color: #1f2937; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.slide { width: 13.333in; height: 7.5in; padding: 0.55in 0.7in 0.45in; page-break-after: always; position: relative; overflow: hidden; }
+.slide:last-child { page-break-after: auto; }
+h1 { margin: 0; font-size: 34px; color: #1e3a8a; }
+.top { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #2563eb; padding-bottom: 10px; margin-bottom: 22px; }
+.tag { background: #e0ecff; color: #1d4ed8; font-weight: 600; font-size: 14px; padding: 6px 14px; border-radius: 14px; }
+.box { border: 1px solid #d6dbe4; border-left: 5px solid #2563eb; border-radius: 6px; padding: 14px 20px; background: #f8fafc; font-size: 17px; line-height: 1.5; margin-bottom: 16px; }
+.box.y { border-left-color: #d97706; background: #fffbeb; }
+.box.g { border-left-color: #16a34a; background: #f0fdf4; }
+.box.r { border-left-color: #dc2626; background: #fef2f2; }
+.box.gray { border-left-color: #64748b; background: #f1f5f9; font-style: italic; }
+.box h3 { margin: 0 0 6px; font-size: 18px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.big { font-size: 44px; font-weight: 800; margin: 0 0 6px; }
+.big.o { color: #c2410c; } .big.b { color: #1d4ed8; } .big.gr { color: #15803d; }
+code { font-family: Consolas, monospace; background: #e8edf5; padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 16px; }
+th { background: #1e3a8a; color: #fff; text-align: left; padding: 10px 12px; }
+td { border: 1px solid #d6dbe4; padding: 9px 12px; vertical-align: top; }
+ul { margin: 4px 0 0 18px; padding: 0; } li { margin-bottom: 4px; }
+.flow { display: flex; align-items: center; gap: 8px; margin: 6px 0 18px; }
+.flow div { flex: 1; border: 2px solid #3b82f6; border-radius: 8px; padding: 10px; text-align: center; font-weight: 600; font-size: 15px; background: #eff6ff; }
+.flow span { color: #3b82f6; font-weight: 700; }
+.foot { position: absolute; left: 0.7in; right: 0.7in; bottom: 0.25in; display: flex; justify-content: space-between; border-top: 1px solid #d6dbe4; padding-top: 6px; font-size: 12px; color: #64748b; }
+.hero { font-size: 40px; font-weight: 800; color: #c2410c; margin: 0 0 6px; }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="top"><h1>1. Người dùng &amp; Vấn đề (Pain)</h1><span class="tag">LoiChoi · Track D · L3A</span></div>
+  <div class="box"><h3>Ai &amp; Việc cần làm</h3><b>Sinh viên lần đầu tự chọn linh kiện ráp PC để bàn</b> — cần rà nhanh danh sách linh kiện dự định mua trước khi đặt hàng để tránh mua nhầm linh kiện không lắp vừa.</div>
+  <div class="grid2">
+    <div class="box y"><p class="big o">8/10 (80%)</p>Người qua sàng lọc khảo sát (8/10 trong 20 phản hồi) báo <b>phát sinh thêm bước</b> vì chưa rõ tương thích: <b>6</b> người phải tra thêm, <b>2</b> người nhờ xác nhận.<br><span style="font-size:14px;color:#64748b">Phần phân vân (câu 8): CPU–mainboard (4), GPU–vỏ (2), main–RAM (1).</span></div>
+    <div class="box"><p class="big b">1/3 phỏng vấn</p>Trong 3 sinh viên phỏng vấn thật (P1–P3), <b>P1</b> gặp sai socket khi ráp thử và phải đổi mainboard (dưới ngưỡng giả thuyết 2/3).<div class="box gray" style="margin:8px 0 0">“Mình tưởng khớp rồi, đến lúc ráp thử mới biết sai.” — P1</div></div>
+  </div>
+  <div class="box gray">Dẫn chứng kỹ thuật: ASUS công bố hai biến thể <code>TUF GAMING B760M-PLUS WIFI</code> (DDR5) và <code>... D4</code> (DDR4) tên gần giống nhau, dễ khiến người mới chọn nhầm.</div>
+  <div class="foot"><span>Nguồn: evidence/summary.md, interviews/P1–P3.md, survey/results.csv</span><span>Slide 1 / 8 · Người trình bày: Hồ Văn Dũng</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>2. Vì sao chọn bài toán này?</h1><span class="tag">Impact &amp; Phạm vi</span></div>
+  <table>
+    <tr><th>Hướng giải quyết</th><th>Tín hiệu người dùng</th><th>Tốn thời gian / tháng</th><th>Khả thi &amp; Quyết định</th></tr>
+    <tr><td><b>Rà 3 cặp linh kiện trước khi mua</b><br>(CPU–main, main–RAM, GPU–vỏ)</td><td>8/10 khảo sát báo phát sinh;<br>1/3 phỏng vấn (P1) sai socket</td><td>P1: <b>~30 phút / 30 ngày</b><br>(3 lần × ~10 phút/lần)</td><td><b>CHỌN</b> — Có catalog 12 linh kiện nguồn hãng &amp; quy tắc xác định</td></tr>
+    <tr><td>So giá &amp; tối ưu cấu hình theo ngân sách</td><td>6/10 khảo sát chọn tốn thời gian nhất (câu 6)</td><td>Chưa đo</td><td><b>HOÃN</b> — Cần dữ liệu giá &amp; tồn kho theo thời điểm</td></tr>
+    <tr><td>Rà toàn bộ cấu hình (gồm PSU, tản nhiệt)</td><td>Chưa đo</td><td>Chưa đo</td><td><b>HOÃN</b> — Thiếu thông số &amp; quy tắc lắp đặt đủ căn cứ</td></tr>
+  </table>
+  <div class="box y"><h3>Giới hạn bằng chứng (minh bạch)</h3><ul><li>P2 báo 5 phút rà thường lệ (0 phút phát sinh); P3 báo 10 phút đổi linh kiện do hết hàng.</li><li>Câu 9 khảo sát còn mâu thuẫn với câu 2/7 và thiếu câu 10 số phút → <b>chưa đủ dữ liệu suy rộng impact toàn nhóm hay chứng minh ROI</b>.</li></ul></div>
+  <div class="foot"><span>Nguồn: spec.md §2, evidence/summary.md</span><span>Slide 2 / 8 · Người trình bày: Hồ Văn Dũng</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>3. Giải pháp: AI trích nhận diện, Code kiểm căn cứ</h1><span class="tag">Thiết kế §4</span></div>
+  <div class="box"><b>Lát cắt 1 câu:</b> Nhận danh sách linh kiện tiếng Việt → AI tách mã &amp; ngữ cảnh → Code tra catalog <code>components.json</code> và kiểm đúng <b>3 quan hệ</b> → trả trạng thái, căn cứ nguồn hãng và phần chưa kiểm.</div>
+  <div class="flow"><div>1. Người dùng gửi cấu hình</div><span>→</span><div>2. Model AI trích JSON<br>(1 lần gọi / lượt)</div><span>→</span><div>3. Code tra &amp; xác thực id/kind<br>(lookup_components)</div><span>→</span><div>4. Code kiểm 3 cặp<br>(check_compatibility)</div><span>→</span><div>5. Mẫu kết quả + nguồn<br>+ phần chưa kiểm</div></div>
+  <div class="grid2">
+    <div class="box g"><h3>Vì sao dùng Workflow cố định?</h3><ul><li><b>AI chỉ trích xuất</b>, không tự đoán thông số, không tự đổi kết luận hay thêm URL.</li><li><b>Code quyết định</b> <code>conflict</code> → <code>insufficient_info</code> → <code>no_conflict_found</code>.</li><li>Mức tự động: <b>AI gợi ý, người mua tự quyết định</b>.</li></ul></div>
+    <div class="box r"><h3>Chốt chặn an toàn</h3><ul><li>Mơ hồ (<code>B760M</code>, <code>FURY Beast</code>) hoặc thiếu BIOS/bố trí vỏ → <b>hỏi lại</b>, không chọn ngầm.</li><li>Xung đột đã biết không bị che bởi cặp thiếu.</li><li>Chống prompt injection; không đọc <code>.env</code>, không đặt hàng.</li></ul></div>
+  </div>
+  <div class="foot"><span>Nguồn: spec.md §4, codebase/agent.py, codebase/tools.py</span><span>Slide 3 / 8 · Người trình bày: Nguyễn Triều Dương</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>4. Demo Live &amp; Kịch bản dự phòng</h1><span class="tag">Model: openai/gpt-4.1-mini</span></div>
+  <div class="grid2">
+    <div class="box g"><h3>Ca 1 (Thường — B01): Phát hiện xung đột</h3><b>Input:</b> <code>Ryzen 5 5600</code> + <code>ASUS TUF GAMING B650-PLUS WIFI</code> + <code>KF556C40BBK2-32</code> + <code>RTX 4060 VENTUS 2X BLACK 8G OC</code> + <code>NZXT H5 Flow (2024)</code>, không lắp radiator mặt trước.<br><b>Kết quả:</b> <code>Có xung đột</code> (CPU AM4 ≠ main AM5); 2 cặp còn lại chưa phát hiện xung đột; hiển thị 5 URL nguồn hãng + mục <i>Chưa kiểm</i>.</div>
+    <div class="box y"><h3>Ca 2 (Khó — B07): Mơ hồ biến thể DDR</h3><b>Input:</b> <code>Main ASUS B760M với RAM Kingston KF432C16BBK2/16 có dùng cùng nhau được không?</code><br><b>Kết quả:</b> <code>Thiếu thông tin</code> — liệt kê cả 2 ứng viên <code>B760M-PLUS WIFI D4</code> (DDR4) và <code>B760M-PLUS WIFI</code> (DDR5) để người dùng chọn, <b>không chọn ngầm</b>.</div>
+  </div>
+  <div class="box"><h3>Sẵn sàng câu thử lạ của giám khảo &amp; dự phòng mạng</h3><ul><li><b>Câu lạ:</b> Kiểm tra trực tiếp bằng <code>python run.py</code> (nếu ngoài phạm vi như PSU/giá hoặc thiếu BIOS/clearance → hệ thống từ chối/hỏi lại đúng quy tắc).</li><li><b>Video dự phòng CP4</b> (YouTube Không công khai, mở không cần đăng nhập): <code>https://youtu.be/CnhJdD9oC0c</code> — quay trên code <code>443b6dc</code>, <code>openai/gpt-4.1-mini</code>.</li><li>Video CP3 (dự phòng thứ hai): <code>https://youtu.be/syBKNhpcIIE</code> (B01 &amp; B07).</li></ul></div>
+  <div class="foot"><span>Nguồn: eval/benchmark.csv (B01, B07), docs/cp4-demo.md, docs/cp3-demo.md</span><span>Slide 4 / 8 · Người trình bày: Kiều Văn Thắng</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>5. Đánh giá thế nào: Lượt 1 → Lượt 2</h1><span class="tag">25 câu · 5 metric</span></div>
+  <div class="grid3">
+    <div class="box"><h3>Bộ câu thử &amp; Metric</h3><b>12</b> linh kiện nguồn hãng (<code>data/components.json</code>).<br><b>25 câu</b> (<code>15183c9</code>): thuong 9 · kho 11 · tu_choi 5 (18/25 <code>data_that</code>).<br><b>Chuẩn đạt (§7):</b> ≥80%, 0 sót xung đột, 100% <code>tu_choi</code>, 100% căn cứ đúng.</div>
+    <div class="box y"><p class="big o">16/25 (64%)</p><b>Lượt 1</b> (<code>run-1@20261128-005643</code>)<br>thuong 5/9 · kho 6/11 · tu_choi 5/5.<br><b>Chưa đạt:</b> &lt;80% và sót 2 xung đột (B15, B22).</div>
+    <div class="box g"><p class="big gr">22/25 (88%)</p><b>Lượt 2</b> (<code>run-2@20261128-123026</code>, code <code>443b6dc</code>)<br>thuong 9/9 · kho 8/11 · tu_choi 5/5.<br>Nhóm lỗi nhận diện <b>0/9 → 7/9</b>; sót xung đột <b>2 → 1</b>.</div>
+  </div>
+  <div class="box r"><h3>Trạng thái chuẩn "đạt" &amp; Lỗi còn lại</h3><ul><li><b>Vẫn CHƯA ĐẠT điều kiện cứng:</b> còn <b>1 câu bỏ sót xung đột (B22)</b> — khi có cả lời shop (322 mm) và bố trí thật (radiator 120 mm), model lấy lời shop làm điều kiện vỏ.</li><li><b>Câu tệ đi sau sửa (B17):</b> model trích thiếu <code>8G</code> ở tên GPU → agent báo lỗi nhận diện an toàn (Thiếu thông tin) nhưng mất giải thích mốc 200 mm.</li></ul></div>
+  <div class="foot"><span>Nguồn: eval/README.md, eval/report.md, eval/run-1.csv, eval/run-2.csv</span><span>Slide 5 / 8 · Người trình bày: Nguyễn Khắc Khánh</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>6. Chi phí khi dùng thật (50 phiên)</h1><span class="tag">simulate-1@20261128-124358</span></div>
+  <table>
+    <tr><th>Model (giá USD/1M token)</th><th>Chi phí / phiên</th><th>Chi phí / task thành công (88%)</th><th>Thấp (100 ng)</th><th>Cơ sở (300 ng)</th><th>Cao (800 ng)</th><th>/ người / tháng (cơ sở)</th></tr>
+    <tr><td><b>openai/gpt-4.1-mini</b><br><span style="font-size:13px;color:#64748b">Đo token thật (0.40 vào / 1.60 ra)</span></td><td>$0.0012<br>(≈ 31 ₫)</td><td><b>$0.0014</b><br>(≈ 35 ₫)</td><td>$0.2404<br>(≈ 6.107 ₫)</td><td><b>$0.7213</b><br>(≈ 18.322 ₫)</td><td>$1.92<br>(≈ 48.859 ₫)</td><td><b>$0.0024</b><br>(≈ 61 ₫)</td></tr>
+    <tr><td><b>openai/gpt-4.1-nano</b><br><span style="font-size:13px;color:#64748b">Ước tính từ token Mini (chưa đo chất lượng)</span></td><td>$0.00030<br>(≈ 8 ₫)</td><td>$0.00034<br>(≈ 9 ₫)</td><td>$0.0601<br>(≈ 1.527 ₫)</td><td>$0.1803<br>(≈ 4.581 ₫)</td><td>$0.4809<br>(≈ 12.215 ₫)</td><td>$0.00060<br>(≈ 15 ₫)</td></tr>
+  </table>
+  <div class="grid2">
+    <div class="box"><h3>Đầu vào &amp; Công thức</h3><ul><li>50 phiên thật (<code>seed 42</code>, <b>0/50 lỗi</b>): 3 persona (<code>0.50 / 0.35 / 0.15</code>), tần suất &amp; quy mô <code>100/300/800</code> là <b>(tự ước tính)</b>.</li><li><code>Chi phí/task = Chi phí/phiên ÷ 0.88</code> (lượt 2).</li></ul></div>
+    <div class="box y"><h3>So với Impact (§2)</h3>Chi phí API rất thấp (<b>≈ 61 ₫ / người / tháng</b>) so với ~30 phút phát sinh ở P1; nhưng <b>chưa thể kết luận ROI</b> vì số liệu impact §2 mới có 3 phỏng vấn và người dùng/tần suất là tự ước tính.</div>
+  </div>
+  <div class="foot"><span>Nguồn: cost/cost-estimate.md, cost/simulate-1-summary.md, openrouter.ai (28/11/2026)</span><span>Slide 6 / 8 · Người trình bày: Kiều Văn Thắng</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>7. Kết luận: Go / Iterate / Stop</h1><span class="tag">Quyết định: ITERATE</span></div>
+  <div class="box y"><p class="hero">ITERATE — Tiếp tục cải tiến có điều kiện trước khi dùng rộng</p>Chưa đạt điều kiện để <b>Go</b> ngay, nhưng đủ tín hiệu tích cực để <b>không Stop</b>.</div>
+  <div class="grid2">
+    <div class="box r"><h3>Vì sao chưa Go ngay?</h3><ul><li><b>Chưa qua điều kiện cứng (§7):</b> Lượt 2 đạt 88% nhưng vẫn còn <b>1 ca bỏ sót xung đột (B22)</b>.</li><li><b>Bằng chứng pain còn mỏng:</b> Mới có 1/3 phỏng vấn vướng tương thích; chưa đủ số phút để chứng minh ROI.</li></ul></div>
+    <div class="box g"><h3>Vì sao đáng Iterate (không Stop)?</h3><ul><li><b>Cải tiến hiệu quả rõ:</b> 1 vòng sửa kéo tỷ lệ đạt từ <b>64% → 88%</b>, nhóm <code>thuong</code> đạt <b>9/9</b>, <code>tu_choi</code> giữ <b>5/5</b>.</li><li><b>Chi phí rất thấp:</b> <b>$0.0014 / task thành công</b> (≈ 35 ₫); khoảng <b>61 ₫ / người / tháng</b> ở quy mô 300 người.</li></ul></div>
+  </div>
+  <div class="foot"><span>Tổng hợp từ Slide 1, 5, 6 (evidence/summary.md, eval/report.md, cost/cost-estimate.md)</span><span>Slide 7 / 8 · Người trình bày: Nguyễn Triều Dương</span></div>
+</section>
+
+<section class="slide">
+  <div class="top"><h1>8. Nếu có thêm 1 tuần</h1><span class="tag">Kế hoạch tiếp theo</span></div>
+  <div class="box r"><h3>1. Xử lý triệt để B22 (điều kiện cứng 0 bỏ sót xung đột)</h3>Tách riêng <i>“lời người khác/shop khẳng định”</i> khỏi <i>“bố trí thật của người dùng”</i> ở bước trích ngữ cảnh, kèm bộ ca hồi quy ngoài benchmark cho các tình huống nguồn mâu thuẫn.</div>
+  <div class="box y"><h3>2. Sửa lỗi B17 &amp; nâng chất lượng câu hỏi lại (B19)</h3>Khi model trích lệch 1 token (như thiếu <code>8G</code>), fallback tra ứng viên gần nhất để hỏi người dùng xác nhận thay vì báo lỗi chung; bổ sung giải thích rõ radiator trước làm giảm khoảng trống GPU.</div>
+  <div class="box"><h3>3. Mở rộng catalog &amp; kiểm thử với người dùng thật</h3>Bổ sung thông số giới hạn có/không radiator cho từng vỏ có nguồn hãng, thêm câu thử <code>nguoi_dung</code> từ phỏng vấn và chạy thử nghiệm <code>validation/log.md</code> trên bản CLI của nhóm.</div>
+  <div class="foot"><span>Nguồn: eval/report.md mục 4</span><span>Slide 8 / 8 · Người trình bày: Nguyễn Khắc Khánh</span></div>
+</section>
+
+</body>
+</html>

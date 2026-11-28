@@ -1,6 +1,6 @@
 # Dàn slide → lấy số từ file nào
 
-> File PDF đã xuất: [`demo-slides.pdf`](../demo-slides.pdf) ở thư mục gốc repo. Mọi số liệu, trích dẫn và run ID đều đối chiếu trực tiếp từ hồ sơ trong repo.
+> File PDF đã xuất: [`demo-slides.pdf`](../demo-slides.pdf) ở thư mục gốc repo. Nguồn HTML: [`slides/demo-slides.html`](demo-slides.html) (xuất lại: Chrome → In → Lưu PDF, hoặc `chrome --headless --print-to-pdf`). Bản 28/11 14:20 dựng lại từ PDF của Thắng (`65248e9`), chỉ sửa trang 4 (video CP4) và trang 7 (35 ₫/task, 61 ₫/người/tháng). Mọi số liệu, trích dẫn và run ID đều đối chiếu trực tiếp từ hồ sơ trong repo.
 
 | # | Trang | Có gì | Số lấy từ | Xong |
 |---|---|---|---|---|
